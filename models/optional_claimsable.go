@@ -8,10 +8,10 @@ import (
 type OptionalClaimsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAccessToken()([]PermissionGrantPoliciesable)
-    GetIdToken()([]PermissionGrantPoliciesable)
-    GetSaml2Token()([]PermissionGrantPoliciesable)
-    SetAccessToken(value []PermissionGrantPoliciesable)()
-    SetIdToken(value []PermissionGrantPoliciesable)()
-    SetSaml2Token(value []PermissionGrantPoliciesable)()
+    GetAccessToken()([]OptionalClaimable)
+    GetIdToken()([]OptionalClaimable)
+    GetSaml2Token()([]OptionalClaimable)
+    SetAccessToken(value []OptionalClaimable)()
+    SetIdToken(value []OptionalClaimable)()
+    SetSaml2Token(value []OptionalClaimable)()
 }

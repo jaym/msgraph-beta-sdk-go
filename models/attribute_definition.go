@@ -1,7 +1,6 @@
 package models
 
 import (
-    i62758439057444b51391f17c08afbeacb81186695ff1399f4e9d2eb3db26660b "attributedefinition"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -12,7 +11,7 @@ type AttributeDefinition struct {
     // true if the attribute should be used as the anchor for the object. Anchor attributes must have a unique value identifying an object, and must be immutable. Default is false. One, and only one, of the object's attributes must be designated as the anchor to support synchronization.
     anchor *bool
     // The apiExpressions property
-    apiExpressions []SecureScoresable
+    apiExpressions []StringKeyStringValuePairable
     // true if value of this attribute should be treated as case-sensitive. This setting affects how the synchronization engine detects changes for the attribute.
     caseExact *bool
     // The defaultValue property
@@ -20,7 +19,7 @@ type AttributeDefinition struct {
     // 'true' to allow null values for attributes.
     flowNullValues *bool
     // Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-    metadata []SecureScoresable
+    metadata []MetadataEntryable
     // true if an attribute can have multiple values. Default is false.
     multivalued *bool
     // The mutability property
@@ -28,197 +27,11 @@ type AttributeDefinition struct {
     // Name of the attribute. Must be unique within the object definition. Not nullable.
     name *string
     // For attributes with reference type, lists referenced objects (for example, the manager attribute would list User as the referenced object).
-    referencedObjects []SecureScoresable
+    referencedObjects []ReferencedObjectable
     // true if attribute is required. Object can not be created if any of the required attributes are missing. If during synchronization, the required attribute has no value, the default value will be used. If default the value was not set, synchronization will record an error.
     required *bool
     // The type property
     type_escaped *AttributeType
-}
-// SecureScores union type wrapper for classes referencedObject, secureScoresMember1
-type SecureScores struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type metadataEntry
-    metadataEntry MetadataEntryable
-    // Union type representation for type referencedObject
-    referencedObject ReferencedObjectable
-    // Union type representation for type secureScoresMember1
-    secureScoresMember1 SecureScoresMember1able
-    // Union type representation for type stringKeyStringValuePair
-    stringKeyStringValuePair StringKeyStringValuePairable
-}
-// NewSecureScores instantiates a new secureScores and sets the default values.
-func NewSecureScores()(*SecureScores) {
-    m := &SecureScores{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateSecureScoresFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateSecureScoresFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewSecureScores(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SecureScores) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *SecureScores) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["metadataEntry"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateMetadataEntryFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMetadataEntry(val.(MetadataEntryable))
-        }
-        return nil
-    }
-    res["referencedObject"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateReferencedObjectFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetReferencedObject(val.(ReferencedObjectable))
-        }
-        return nil
-    }
-    res["secureScoresMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSecureScoresMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSecureScoresMember1(val.(SecureScoresMember1able))
-        }
-        return nil
-    }
-    res["stringKeyStringValuePair"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateStringKeyStringValuePairFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStringKeyStringValuePair(val.(StringKeyStringValuePairable))
-        }
-        return nil
-    }
-    return res
-}
-// GetMetadataEntry gets the metadataEntry property value. Union type representation for type metadataEntry
-func (m *SecureScores) GetMetadataEntry()(MetadataEntryable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.metadataEntry
-    }
-}
-// GetReferencedObject gets the referencedObject property value. Union type representation for type referencedObject
-func (m *SecureScores) GetReferencedObject()(ReferencedObjectable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.referencedObject
-    }
-}
-// GetSecureScoresMember1 gets the secureScoresMember1 property value. Union type representation for type secureScoresMember1
-func (m *SecureScores) GetSecureScoresMember1()(SecureScoresMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.secureScoresMember1
-    }
-}
-// GetStringKeyStringValuePair gets the stringKeyStringValuePair property value. Union type representation for type stringKeyStringValuePair
-func (m *SecureScores) GetStringKeyStringValuePair()(StringKeyStringValuePairable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.stringKeyStringValuePair
-    }
-}
-// Serialize serializes information the current object
-func (m *SecureScores) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("metadataEntry", m.GetMetadataEntry())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("referencedObject", m.GetReferencedObject())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("secureScoresMember1", m.GetSecureScoresMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("stringKeyStringValuePair", m.GetStringKeyStringValuePair())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SecureScores) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetMetadataEntry sets the metadataEntry property value. Union type representation for type metadataEntry
-func (m *SecureScores) SetMetadataEntry(value MetadataEntryable)() {
-    if m != nil {
-        m.metadataEntry = value
-    }
-}
-// SetReferencedObject sets the referencedObject property value. Union type representation for type referencedObject
-func (m *SecureScores) SetReferencedObject(value ReferencedObjectable)() {
-    if m != nil {
-        m.referencedObject = value
-    }
-}
-// SetSecureScoresMember1 sets the secureScoresMember1 property value. Union type representation for type secureScoresMember1
-func (m *SecureScores) SetSecureScoresMember1(value SecureScoresMember1able)() {
-    if m != nil {
-        m.secureScoresMember1 = value
-    }
-}
-// SetStringKeyStringValuePair sets the stringKeyStringValuePair property value. Union type representation for type stringKeyStringValuePair
-func (m *SecureScores) SetStringKeyStringValuePair(value StringKeyStringValuePairable)() {
-    if m != nil {
-        m.stringKeyStringValuePair = value
-    }
-}
-// SecureScoresable 
-type SecureScoresable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetMetadataEntry()(MetadataEntryable)
-    GetReferencedObject()(ReferencedObjectable)
-    GetSecureScoresMember1()(SecureScoresMember1able)
-    GetStringKeyStringValuePair()(StringKeyStringValuePairable)
-    SetMetadataEntry(value MetadataEntryable)()
-    SetReferencedObject(value ReferencedObjectable)()
-    SetSecureScoresMember1(value SecureScoresMember1able)()
-    SetStringKeyStringValuePair(value StringKeyStringValuePairable)()
 }
 // NewAttributeDefinition instantiates a new attributeDefinition and sets the default values.
 func NewAttributeDefinition()(*AttributeDefinition) {
@@ -248,7 +61,7 @@ func (m *AttributeDefinition) GetAnchor()(*bool) {
     }
 }
 // GetApiExpressions gets the apiExpressions property value. The apiExpressions property
-func (m *AttributeDefinition) GetApiExpressions()([]SecureScoresable) {
+func (m *AttributeDefinition) GetApiExpressions()([]StringKeyStringValuePairable) {
     if m == nil {
         return nil
     } else {
@@ -285,14 +98,14 @@ func (m *AttributeDefinition) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["apiExpressions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateSecureScoresFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateStringKeyStringValuePairFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]SecureScoresable, len(val))
+            res := make([]StringKeyStringValuePairable, len(val))
             for i, v := range val {
-                res[i] = v.(SecureScoresable)
+                res[i] = v.(StringKeyStringValuePairable)
             }
             m.SetApiExpressions(res)
         }
@@ -329,14 +142,14 @@ func (m *AttributeDefinition) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["metadata"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateSecureScoresFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateMetadataEntryFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]SecureScoresable, len(val))
+            res := make([]MetadataEntryable, len(val))
             for i, v := range val {
-                res[i] = v.(SecureScoresable)
+                res[i] = v.(MetadataEntryable)
             }
             m.SetMetadata(res)
         }
@@ -373,14 +186,14 @@ func (m *AttributeDefinition) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["referencedObjects"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateSecureScoresFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateReferencedObjectFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]SecureScoresable, len(val))
+            res := make([]ReferencedObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(SecureScoresable)
+                res[i] = v.(ReferencedObjectable)
             }
             m.SetReferencedObjects(res)
         }
@@ -417,7 +230,7 @@ func (m *AttributeDefinition) GetFlowNullValues()(*bool) {
     }
 }
 // GetMetadata gets the metadata property value. Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-func (m *AttributeDefinition) GetMetadata()([]SecureScoresable) {
+func (m *AttributeDefinition) GetMetadata()([]MetadataEntryable) {
     if m == nil {
         return nil
     } else {
@@ -449,7 +262,7 @@ func (m *AttributeDefinition) GetName()(*string) {
     }
 }
 // GetReferencedObjects gets the referencedObjects property value. For attributes with reference type, lists referenced objects (for example, the manager attribute would list User as the referenced object).
-func (m *AttributeDefinition) GetReferencedObjects()([]SecureScoresable) {
+func (m *AttributeDefinition) GetReferencedObjects()([]ReferencedObjectable) {
     if m == nil {
         return nil
     } else {
@@ -581,7 +394,7 @@ func (m *AttributeDefinition) SetAnchor(value *bool)() {
     }
 }
 // SetApiExpressions sets the apiExpressions property value. The apiExpressions property
-func (m *AttributeDefinition) SetApiExpressions(value []SecureScoresable)() {
+func (m *AttributeDefinition) SetApiExpressions(value []StringKeyStringValuePairable)() {
     if m != nil {
         m.apiExpressions = value
     }
@@ -605,7 +418,7 @@ func (m *AttributeDefinition) SetFlowNullValues(value *bool)() {
     }
 }
 // SetMetadata sets the metadata property value. Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-func (m *AttributeDefinition) SetMetadata(value []SecureScoresable)() {
+func (m *AttributeDefinition) SetMetadata(value []MetadataEntryable)() {
     if m != nil {
         m.metadata = value
     }
@@ -629,7 +442,7 @@ func (m *AttributeDefinition) SetName(value *string)() {
     }
 }
 // SetReferencedObjects sets the referencedObjects property value. For attributes with reference type, lists referenced objects (for example, the manager attribute would list User as the referenced object).
-func (m *AttributeDefinition) SetReferencedObjects(value []SecureScoresable)() {
+func (m *AttributeDefinition) SetReferencedObjects(value []ReferencedObjectable)() {
     if m != nil {
         m.referencedObjects = value
     }

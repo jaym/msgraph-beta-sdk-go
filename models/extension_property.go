@@ -18,7 +18,7 @@ type ExtensionProperty struct {
     // Following values are supported. Not nullable. UserGroupOrganizationDeviceApplication
     targetObjects []string
 }
-// NewExtensionProperty instantiates a new extensionProperty and sets the default values.
+// NewExtensionProperty instantiates a new ExtensionProperty and sets the default values.
 func NewExtensionProperty()(*ExtensionProperty) {
     m := &ExtensionProperty{
         DirectoryObject: *NewDirectoryObject(),

@@ -1,7 +1,6 @@
 package models
 
 import (
-    i7cc7b2988c0a6476329d81e10ddb2ab3a063f332f60e624716de9721058f8e7e "onpremisespublishing"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -16,7 +15,7 @@ type OnPremisesPublishing struct {
     // Indicates if this application is an Application Proxy configured application. This is pre-set by the system. Read-only.
     applicationType *string
     // Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate before accessing the app. Passthru does not require authentication. Possible values are: passthru, aadPreAuthentication.
-    externalAuthenticationType Applicationsable
+    externalAuthenticationType *ExternalAuthenticationType
     // The published external url for the application. For example, https://intranet-contoso.msappproxy.net/.
     externalUrl *string
     // The internal url of the application. For example, https://intranet/.
@@ -38,306 +37,17 @@ type OnPremisesPublishing struct {
     // Indicates if the application should translate urls in the application body. Keep this value as false unless you have hardcoded HTML links to other on-premises applications and don't use custom domains. For more information, see Link translation with Application Proxy. Default value is false.
     isTranslateLinksInBodyEnabled *bool
     // The onPremisesApplicationSegments property
-    onPremisesApplicationSegments []Applicationsable
+    onPremisesApplicationSegments []OnPremisesApplicationSegmentable
     // Represents the single sign-on configuration for the on-premises application.
-    singleSignOnSettings Applicationsable
+    singleSignOnSettings OnPremisesPublishingSingleSignOnable
     // The useAlternateUrlForTranslationAndRedirect property
     useAlternateUrlForTranslationAndRedirect *bool
     // Details of the certificate associated with the application when a custom domain is in use. null when using the default domain. Read-only.
-    verifiedCustomDomainCertificatesMetadata Applicationsable
-    // The associated key credential for the custom domain used.
-    verifiedCustomDomainKeyCredential Applicationsable
-    // The associated password credential for the custom domain used.
-    verifiedCustomDomainPasswordCredential Applicationsable
-}
-// Applications union type wrapper for classes verifiedCustomDomainCertificatesMetadata, applicationsMember1
-type Applications struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type applicationsMember1
-    applicationsMember1 ApplicationsMember1able
-    // Union type representation for type externalAuthenticationType
-    externalAuthenticationType *ExternalAuthenticationType
-    // Union type representation for type keyCredential
-    keyCredential KeyCredentialable
-    // Union type representation for type onPremisesApplicationSegment
-    onPremisesApplicationSegment OnPremisesApplicationSegmentable
-    // Union type representation for type onPremisesPublishingSingleSignOn
-    onPremisesPublishingSingleSignOn OnPremisesPublishingSingleSignOnable
-    // Union type representation for type passwordCredential
-    passwordCredential PasswordCredentialable
-    // Union type representation for type verifiedCustomDomainCertificatesMetadata
     verifiedCustomDomainCertificatesMetadata VerifiedCustomDomainCertificatesMetadataable
-}
-// NewApplications instantiates a new applications and sets the default values.
-func NewApplications()(*Applications) {
-    m := &Applications{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateApplicationsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateApplicationsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewApplications(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Applications) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetApplicationsMember1 gets the applicationsMember1 property value. Union type representation for type applicationsMember1
-func (m *Applications) GetApplicationsMember1()(ApplicationsMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.applicationsMember1
-    }
-}
-// GetExternalAuthenticationType gets the externalAuthenticationType property value. Union type representation for type externalAuthenticationType
-func (m *Applications) GetExternalAuthenticationType()(*ExternalAuthenticationType) {
-    if m == nil {
-        return nil
-    } else {
-        return m.externalAuthenticationType
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *Applications) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["applicationsMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApplicationsMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetApplicationsMember1(val.(ApplicationsMember1able))
-        }
-        return nil
-    }
-    res["externalAuthenticationType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseExternalAuthenticationType)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetExternalAuthenticationType(val.(*ExternalAuthenticationType))
-        }
-        return nil
-    }
-    res["keyCredential"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateKeyCredentialFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetKeyCredential(val.(KeyCredentialable))
-        }
-        return nil
-    }
-    res["onPremisesApplicationSegment"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateOnPremisesApplicationSegmentFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOnPremisesApplicationSegment(val.(OnPremisesApplicationSegmentable))
-        }
-        return nil
-    }
-    res["onPremisesPublishingSingleSignOn"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateOnPremisesPublishingSingleSignOnFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOnPremisesPublishingSingleSignOn(val.(OnPremisesPublishingSingleSignOnable))
-        }
-        return nil
-    }
-    res["passwordCredential"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePasswordCredentialFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPasswordCredential(val.(PasswordCredentialable))
-        }
-        return nil
-    }
-    res["verifiedCustomDomainCertificatesMetadata"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateVerifiedCustomDomainCertificatesMetadataFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVerifiedCustomDomainCertificatesMetadata(val.(VerifiedCustomDomainCertificatesMetadataable))
-        }
-        return nil
-    }
-    return res
-}
-// GetKeyCredential gets the keyCredential property value. Union type representation for type keyCredential
-func (m *Applications) GetKeyCredential()(KeyCredentialable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.keyCredential
-    }
-}
-// GetOnPremisesApplicationSegment gets the onPremisesApplicationSegment property value. Union type representation for type onPremisesApplicationSegment
-func (m *Applications) GetOnPremisesApplicationSegment()(OnPremisesApplicationSegmentable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.onPremisesApplicationSegment
-    }
-}
-// GetOnPremisesPublishingSingleSignOn gets the onPremisesPublishingSingleSignOn property value. Union type representation for type onPremisesPublishingSingleSignOn
-func (m *Applications) GetOnPremisesPublishingSingleSignOn()(OnPremisesPublishingSingleSignOnable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.onPremisesPublishingSingleSignOn
-    }
-}
-// GetPasswordCredential gets the passwordCredential property value. Union type representation for type passwordCredential
-func (m *Applications) GetPasswordCredential()(PasswordCredentialable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.passwordCredential
-    }
-}
-// GetVerifiedCustomDomainCertificatesMetadata gets the verifiedCustomDomainCertificatesMetadata property value. Union type representation for type verifiedCustomDomainCertificatesMetadata
-func (m *Applications) GetVerifiedCustomDomainCertificatesMetadata()(VerifiedCustomDomainCertificatesMetadataable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.verifiedCustomDomainCertificatesMetadata
-    }
-}
-// Serialize serializes information the current object
-func (m *Applications) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("applicationsMember1", m.GetApplicationsMember1())
-        if err != nil {
-            return err
-        }
-    }
-    if m.GetExternalAuthenticationType() != nil {
-        cast := (*m.GetExternalAuthenticationType()).String()
-        err := writer.WriteStringValue("externalAuthenticationType", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("keyCredential", m.GetKeyCredential())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("onPremisesApplicationSegment", m.GetOnPremisesApplicationSegment())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("onPremisesPublishingSingleSignOn", m.GetOnPremisesPublishingSingleSignOn())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("passwordCredential", m.GetPasswordCredential())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("verifiedCustomDomainCertificatesMetadata", m.GetVerifiedCustomDomainCertificatesMetadata())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Applications) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetApplicationsMember1 sets the applicationsMember1 property value. Union type representation for type applicationsMember1
-func (m *Applications) SetApplicationsMember1(value ApplicationsMember1able)() {
-    if m != nil {
-        m.applicationsMember1 = value
-    }
-}
-// SetExternalAuthenticationType sets the externalAuthenticationType property value. Union type representation for type externalAuthenticationType
-func (m *Applications) SetExternalAuthenticationType(value *ExternalAuthenticationType)() {
-    if m != nil {
-        m.externalAuthenticationType = value
-    }
-}
-// SetKeyCredential sets the keyCredential property value. Union type representation for type keyCredential
-func (m *Applications) SetKeyCredential(value KeyCredentialable)() {
-    if m != nil {
-        m.keyCredential = value
-    }
-}
-// SetOnPremisesApplicationSegment sets the onPremisesApplicationSegment property value. Union type representation for type onPremisesApplicationSegment
-func (m *Applications) SetOnPremisesApplicationSegment(value OnPremisesApplicationSegmentable)() {
-    if m != nil {
-        m.onPremisesApplicationSegment = value
-    }
-}
-// SetOnPremisesPublishingSingleSignOn sets the onPremisesPublishingSingleSignOn property value. Union type representation for type onPremisesPublishingSingleSignOn
-func (m *Applications) SetOnPremisesPublishingSingleSignOn(value OnPremisesPublishingSingleSignOnable)() {
-    if m != nil {
-        m.onPremisesPublishingSingleSignOn = value
-    }
-}
-// SetPasswordCredential sets the passwordCredential property value. Union type representation for type passwordCredential
-func (m *Applications) SetPasswordCredential(value PasswordCredentialable)() {
-    if m != nil {
-        m.passwordCredential = value
-    }
-}
-// SetVerifiedCustomDomainCertificatesMetadata sets the verifiedCustomDomainCertificatesMetadata property value. Union type representation for type verifiedCustomDomainCertificatesMetadata
-func (m *Applications) SetVerifiedCustomDomainCertificatesMetadata(value VerifiedCustomDomainCertificatesMetadataable)() {
-    if m != nil {
-        m.verifiedCustomDomainCertificatesMetadata = value
-    }
-}
-// Applicationsable 
-type Applicationsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApplicationsMember1()(ApplicationsMember1able)
-    GetExternalAuthenticationType()(*ExternalAuthenticationType)
-    GetKeyCredential()(KeyCredentialable)
-    GetOnPremisesApplicationSegment()(OnPremisesApplicationSegmentable)
-    GetOnPremisesPublishingSingleSignOn()(OnPremisesPublishingSingleSignOnable)
-    GetPasswordCredential()(PasswordCredentialable)
-    GetVerifiedCustomDomainCertificatesMetadata()(VerifiedCustomDomainCertificatesMetadataable)
-    SetApplicationsMember1(value ApplicationsMember1able)()
-    SetExternalAuthenticationType(value *ExternalAuthenticationType)()
-    SetKeyCredential(value KeyCredentialable)()
-    SetOnPremisesApplicationSegment(value OnPremisesApplicationSegmentable)()
-    SetOnPremisesPublishingSingleSignOn(value OnPremisesPublishingSingleSignOnable)()
-    SetPasswordCredential(value PasswordCredentialable)()
-    SetVerifiedCustomDomainCertificatesMetadata(value VerifiedCustomDomainCertificatesMetadataable)()
+    // The associated key credential for the custom domain used.
+    verifiedCustomDomainKeyCredential KeyCredentialable
+    // The associated password credential for the custom domain used.
+    verifiedCustomDomainPasswordCredential PasswordCredentialable
 }
 // NewOnPremisesPublishing instantiates a new onPremisesPublishing and sets the default values.
 func NewOnPremisesPublishing()(*OnPremisesPublishing) {
@@ -383,7 +93,7 @@ func (m *OnPremisesPublishing) GetApplicationType()(*string) {
     }
 }
 // GetExternalAuthenticationType gets the externalAuthenticationType property value. Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate before accessing the app. Passthru does not require authentication. Possible values are: passthru, aadPreAuthentication.
-func (m *OnPremisesPublishing) GetExternalAuthenticationType()(Applicationsable) {
+func (m *OnPremisesPublishing) GetExternalAuthenticationType()(*ExternalAuthenticationType) {
     if m == nil {
         return nil
     } else {
@@ -432,12 +142,12 @@ func (m *OnPremisesPublishing) GetFieldDeserializers()(map[string]func(i878a80d2
         return nil
     }
     res["externalAuthenticationType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApplicationsFromDiscriminatorValue)
+        val, err := n.GetEnumValue(ParseExternalAuthenticationType)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetExternalAuthenticationType(val.(Applicationsable))
+            m.SetExternalAuthenticationType(val.(*ExternalAuthenticationType))
         }
         return nil
     }
@@ -542,26 +252,26 @@ func (m *OnPremisesPublishing) GetFieldDeserializers()(map[string]func(i878a80d2
         return nil
     }
     res["onPremisesApplicationSegments"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateApplicationsFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateOnPremisesApplicationSegmentFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]Applicationsable, len(val))
+            res := make([]OnPremisesApplicationSegmentable, len(val))
             for i, v := range val {
-                res[i] = v.(Applicationsable)
+                res[i] = v.(OnPremisesApplicationSegmentable)
             }
             m.SetOnPremisesApplicationSegments(res)
         }
         return nil
     }
     res["singleSignOnSettings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApplicationsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateOnPremisesPublishingSingleSignOnFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSingleSignOnSettings(val.(Applicationsable))
+            m.SetSingleSignOnSettings(val.(OnPremisesPublishingSingleSignOnable))
         }
         return nil
     }
@@ -576,32 +286,32 @@ func (m *OnPremisesPublishing) GetFieldDeserializers()(map[string]func(i878a80d2
         return nil
     }
     res["verifiedCustomDomainCertificatesMetadata"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApplicationsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateVerifiedCustomDomainCertificatesMetadataFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetVerifiedCustomDomainCertificatesMetadata(val.(Applicationsable))
+            m.SetVerifiedCustomDomainCertificatesMetadata(val.(VerifiedCustomDomainCertificatesMetadataable))
         }
         return nil
     }
     res["verifiedCustomDomainKeyCredential"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApplicationsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateKeyCredentialFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetVerifiedCustomDomainKeyCredential(val.(Applicationsable))
+            m.SetVerifiedCustomDomainKeyCredential(val.(KeyCredentialable))
         }
         return nil
     }
     res["verifiedCustomDomainPasswordCredential"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApplicationsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreatePasswordCredentialFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetVerifiedCustomDomainPasswordCredential(val.(Applicationsable))
+            m.SetVerifiedCustomDomainPasswordCredential(val.(PasswordCredentialable))
         }
         return nil
     }
@@ -680,7 +390,7 @@ func (m *OnPremisesPublishing) GetIsTranslateLinksInBodyEnabled()(*bool) {
     }
 }
 // GetOnPremisesApplicationSegments gets the onPremisesApplicationSegments property value. The onPremisesApplicationSegments property
-func (m *OnPremisesPublishing) GetOnPremisesApplicationSegments()([]Applicationsable) {
+func (m *OnPremisesPublishing) GetOnPremisesApplicationSegments()([]OnPremisesApplicationSegmentable) {
     if m == nil {
         return nil
     } else {
@@ -688,7 +398,7 @@ func (m *OnPremisesPublishing) GetOnPremisesApplicationSegments()([]Applications
     }
 }
 // GetSingleSignOnSettings gets the singleSignOnSettings property value. Represents the single sign-on configuration for the on-premises application.
-func (m *OnPremisesPublishing) GetSingleSignOnSettings()(Applicationsable) {
+func (m *OnPremisesPublishing) GetSingleSignOnSettings()(OnPremisesPublishingSingleSignOnable) {
     if m == nil {
         return nil
     } else {
@@ -704,7 +414,7 @@ func (m *OnPremisesPublishing) GetUseAlternateUrlForTranslationAndRedirect()(*bo
     }
 }
 // GetVerifiedCustomDomainCertificatesMetadata gets the verifiedCustomDomainCertificatesMetadata property value. Details of the certificate associated with the application when a custom domain is in use. null when using the default domain. Read-only.
-func (m *OnPremisesPublishing) GetVerifiedCustomDomainCertificatesMetadata()(Applicationsable) {
+func (m *OnPremisesPublishing) GetVerifiedCustomDomainCertificatesMetadata()(VerifiedCustomDomainCertificatesMetadataable) {
     if m == nil {
         return nil
     } else {
@@ -712,7 +422,7 @@ func (m *OnPremisesPublishing) GetVerifiedCustomDomainCertificatesMetadata()(App
     }
 }
 // GetVerifiedCustomDomainKeyCredential gets the verifiedCustomDomainKeyCredential property value. The associated key credential for the custom domain used.
-func (m *OnPremisesPublishing) GetVerifiedCustomDomainKeyCredential()(Applicationsable) {
+func (m *OnPremisesPublishing) GetVerifiedCustomDomainKeyCredential()(KeyCredentialable) {
     if m == nil {
         return nil
     } else {
@@ -720,7 +430,7 @@ func (m *OnPremisesPublishing) GetVerifiedCustomDomainKeyCredential()(Applicatio
     }
 }
 // GetVerifiedCustomDomainPasswordCredential gets the verifiedCustomDomainPasswordCredential property value. The associated password credential for the custom domain used.
-func (m *OnPremisesPublishing) GetVerifiedCustomDomainPasswordCredential()(Applicationsable) {
+func (m *OnPremisesPublishing) GetVerifiedCustomDomainPasswordCredential()(PasswordCredentialable) {
     if m == nil {
         return nil
     } else {
@@ -747,8 +457,9 @@ func (m *OnPremisesPublishing) Serialize(writer i878a80d2330e89d26896388a3f487ee
             return err
         }
     }
-    {
-        err := writer.WriteObjectValue("externalAuthenticationType", m.GetExternalAuthenticationType())
+    if m.GetExternalAuthenticationType() != nil {
+        cast := (*m.GetExternalAuthenticationType()).String()
+        err := writer.WriteStringValue("externalAuthenticationType", &cast)
         if err != nil {
             return err
         }
@@ -886,7 +597,7 @@ func (m *OnPremisesPublishing) SetApplicationType(value *string)() {
     }
 }
 // SetExternalAuthenticationType sets the externalAuthenticationType property value. Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate before accessing the app. Passthru does not require authentication. Possible values are: passthru, aadPreAuthentication.
-func (m *OnPremisesPublishing) SetExternalAuthenticationType(value Applicationsable)() {
+func (m *OnPremisesPublishing) SetExternalAuthenticationType(value *ExternalAuthenticationType)() {
     if m != nil {
         m.externalAuthenticationType = value
     }
@@ -952,13 +663,13 @@ func (m *OnPremisesPublishing) SetIsTranslateLinksInBodyEnabled(value *bool)() {
     }
 }
 // SetOnPremisesApplicationSegments sets the onPremisesApplicationSegments property value. The onPremisesApplicationSegments property
-func (m *OnPremisesPublishing) SetOnPremisesApplicationSegments(value []Applicationsable)() {
+func (m *OnPremisesPublishing) SetOnPremisesApplicationSegments(value []OnPremisesApplicationSegmentable)() {
     if m != nil {
         m.onPremisesApplicationSegments = value
     }
 }
 // SetSingleSignOnSettings sets the singleSignOnSettings property value. Represents the single sign-on configuration for the on-premises application.
-func (m *OnPremisesPublishing) SetSingleSignOnSettings(value Applicationsable)() {
+func (m *OnPremisesPublishing) SetSingleSignOnSettings(value OnPremisesPublishingSingleSignOnable)() {
     if m != nil {
         m.singleSignOnSettings = value
     }
@@ -970,19 +681,19 @@ func (m *OnPremisesPublishing) SetUseAlternateUrlForTranslationAndRedirect(value
     }
 }
 // SetVerifiedCustomDomainCertificatesMetadata sets the verifiedCustomDomainCertificatesMetadata property value. Details of the certificate associated with the application when a custom domain is in use. null when using the default domain. Read-only.
-func (m *OnPremisesPublishing) SetVerifiedCustomDomainCertificatesMetadata(value Applicationsable)() {
+func (m *OnPremisesPublishing) SetVerifiedCustomDomainCertificatesMetadata(value VerifiedCustomDomainCertificatesMetadataable)() {
     if m != nil {
         m.verifiedCustomDomainCertificatesMetadata = value
     }
 }
 // SetVerifiedCustomDomainKeyCredential sets the verifiedCustomDomainKeyCredential property value. The associated key credential for the custom domain used.
-func (m *OnPremisesPublishing) SetVerifiedCustomDomainKeyCredential(value Applicationsable)() {
+func (m *OnPremisesPublishing) SetVerifiedCustomDomainKeyCredential(value KeyCredentialable)() {
     if m != nil {
         m.verifiedCustomDomainKeyCredential = value
     }
 }
 // SetVerifiedCustomDomainPasswordCredential sets the verifiedCustomDomainPasswordCredential property value. The associated password credential for the custom domain used.
-func (m *OnPremisesPublishing) SetVerifiedCustomDomainPasswordCredential(value Applicationsable)() {
+func (m *OnPremisesPublishing) SetVerifiedCustomDomainPasswordCredential(value PasswordCredentialable)() {
     if m != nil {
         m.verifiedCustomDomainPasswordCredential = value
     }

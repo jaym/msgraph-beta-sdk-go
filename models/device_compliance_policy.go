@@ -2,7 +2,6 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    ieec3b3cefaa49311ed258da81563b5b029fd831fffea9e08a2c1b69fe5888d73 "devicecompliancepolicy"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -20,7 +19,7 @@ type DeviceCompliancePolicy struct {
     // List of DeviceComplianceDeviceStatus.
     deviceStatuses []DeviceComplianceDeviceStatusable
     // Device compliance devices status overview
-    deviceStatusOverview DeviceCompliancePoliciesable
+    deviceStatusOverview DeviceComplianceDeviceOverviewable
     // Admin provided name of the device configuration.
     displayName *string
     // DateTime the object was last modified.
@@ -32,169 +31,17 @@ type DeviceCompliancePolicy struct {
     // List of DeviceComplianceUserStatus.
     userStatuses []DeviceComplianceUserStatusable
     // Device compliance users status overview
-    userStatusOverview DeviceCompliancePoliciesable
+    userStatusOverview DeviceComplianceUserOverviewable
     // Version of the device configuration.
     version *int32
-}
-// DeviceCompliancePolicies union type wrapper for classes deviceComplianceUserOverview, deviceCompliancePoliciesMember1
-type DeviceCompliancePolicies struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type deviceComplianceDeviceOverview
-    deviceComplianceDeviceOverview DeviceComplianceDeviceOverviewable
-    // Union type representation for type deviceCompliancePoliciesMember1
-    deviceCompliancePoliciesMember1 DeviceCompliancePoliciesMember1able
-    // Union type representation for type deviceComplianceUserOverview
-    deviceComplianceUserOverview DeviceComplianceUserOverviewable
-}
-// NewDeviceCompliancePolicies instantiates a new deviceCompliancePolicies and sets the default values.
-func NewDeviceCompliancePolicies()(*DeviceCompliancePolicies) {
-    m := &DeviceCompliancePolicies{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateDeviceCompliancePoliciesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateDeviceCompliancePoliciesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewDeviceCompliancePolicies(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *DeviceCompliancePolicies) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetDeviceComplianceDeviceOverview gets the deviceComplianceDeviceOverview property value. Union type representation for type deviceComplianceDeviceOverview
-func (m *DeviceCompliancePolicies) GetDeviceComplianceDeviceOverview()(DeviceComplianceDeviceOverviewable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.deviceComplianceDeviceOverview
-    }
-}
-// GetDeviceCompliancePoliciesMember1 gets the deviceCompliancePoliciesMember1 property value. Union type representation for type deviceCompliancePoliciesMember1
-func (m *DeviceCompliancePolicies) GetDeviceCompliancePoliciesMember1()(DeviceCompliancePoliciesMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.deviceCompliancePoliciesMember1
-    }
-}
-// GetDeviceComplianceUserOverview gets the deviceComplianceUserOverview property value. Union type representation for type deviceComplianceUserOverview
-func (m *DeviceCompliancePolicies) GetDeviceComplianceUserOverview()(DeviceComplianceUserOverviewable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.deviceComplianceUserOverview
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *DeviceCompliancePolicies) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["deviceComplianceDeviceOverview"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceComplianceDeviceOverviewFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDeviceComplianceDeviceOverview(val.(DeviceComplianceDeviceOverviewable))
-        }
-        return nil
-    }
-    res["deviceCompliancePoliciesMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceCompliancePoliciesMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDeviceCompliancePoliciesMember1(val.(DeviceCompliancePoliciesMember1able))
-        }
-        return nil
-    }
-    res["deviceComplianceUserOverview"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceComplianceUserOverviewFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDeviceComplianceUserOverview(val.(DeviceComplianceUserOverviewable))
-        }
-        return nil
-    }
-    return res
-}
-// Serialize serializes information the current object
-func (m *DeviceCompliancePolicies) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("deviceComplianceDeviceOverview", m.GetDeviceComplianceDeviceOverview())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("deviceCompliancePoliciesMember1", m.GetDeviceCompliancePoliciesMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("deviceComplianceUserOverview", m.GetDeviceComplianceUserOverview())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *DeviceCompliancePolicies) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetDeviceComplianceDeviceOverview sets the deviceComplianceDeviceOverview property value. Union type representation for type deviceComplianceDeviceOverview
-func (m *DeviceCompliancePolicies) SetDeviceComplianceDeviceOverview(value DeviceComplianceDeviceOverviewable)() {
-    if m != nil {
-        m.deviceComplianceDeviceOverview = value
-    }
-}
-// SetDeviceCompliancePoliciesMember1 sets the deviceCompliancePoliciesMember1 property value. Union type representation for type deviceCompliancePoliciesMember1
-func (m *DeviceCompliancePolicies) SetDeviceCompliancePoliciesMember1(value DeviceCompliancePoliciesMember1able)() {
-    if m != nil {
-        m.deviceCompliancePoliciesMember1 = value
-    }
-}
-// SetDeviceComplianceUserOverview sets the deviceComplianceUserOverview property value. Union type representation for type deviceComplianceUserOverview
-func (m *DeviceCompliancePolicies) SetDeviceComplianceUserOverview(value DeviceComplianceUserOverviewable)() {
-    if m != nil {
-        m.deviceComplianceUserOverview = value
-    }
-}
-// DeviceCompliancePoliciesable 
-type DeviceCompliancePoliciesable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDeviceComplianceDeviceOverview()(DeviceComplianceDeviceOverviewable)
-    GetDeviceCompliancePoliciesMember1()(DeviceCompliancePoliciesMember1able)
-    GetDeviceComplianceUserOverview()(DeviceComplianceUserOverviewable)
-    SetDeviceComplianceDeviceOverview(value DeviceComplianceDeviceOverviewable)()
-    SetDeviceCompliancePoliciesMember1(value DeviceCompliancePoliciesMember1able)()
-    SetDeviceComplianceUserOverview(value DeviceComplianceUserOverviewable)()
 }
 // NewDeviceCompliancePolicy instantiates a new deviceCompliancePolicy and sets the default values.
 func NewDeviceCompliancePolicy()(*DeviceCompliancePolicy) {
     m := &DeviceCompliancePolicy{
         Entity: *NewEntity(),
     }
-    typeValue := "#microsoft.graph.deviceCompliancePolicy";
-    m.SetType(&typeValue);
+    odataTypeValue := "#microsoft.graph.deviceCompliancePolicy";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateDeviceCompliancePolicyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -242,7 +89,7 @@ func (m *DeviceCompliancePolicy) GetDeviceStatuses()([]DeviceComplianceDeviceSta
     }
 }
 // GetDeviceStatusOverview gets the deviceStatusOverview property value. Device compliance devices status overview
-func (m *DeviceCompliancePolicy) GetDeviceStatusOverview()(DeviceCompliancePoliciesable) {
+func (m *DeviceCompliancePolicy) GetDeviceStatusOverview()(DeviceComplianceDeviceOverviewable) {
     if m == nil {
         return nil
     } else {
@@ -323,12 +170,12 @@ func (m *DeviceCompliancePolicy) GetFieldDeserializers()(map[string]func(i878a80
         return nil
     }
     res["deviceStatusOverview"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceCompliancePoliciesFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateDeviceComplianceDeviceOverviewFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDeviceStatusOverview(val.(DeviceCompliancePoliciesable))
+            m.SetDeviceStatusOverview(val.(DeviceComplianceDeviceOverviewable))
         }
         return nil
     }
@@ -395,12 +242,12 @@ func (m *DeviceCompliancePolicy) GetFieldDeserializers()(map[string]func(i878a80
         return nil
     }
     res["userStatusOverview"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceCompliancePoliciesFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateDeviceComplianceUserOverviewFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetUserStatusOverview(val.(DeviceCompliancePoliciesable))
+            m.SetUserStatusOverview(val.(DeviceComplianceUserOverviewable))
         }
         return nil
     }
@@ -449,7 +296,7 @@ func (m *DeviceCompliancePolicy) GetUserStatuses()([]DeviceComplianceUserStatusa
     }
 }
 // GetUserStatusOverview gets the userStatusOverview property value. Device compliance users status overview
-func (m *DeviceCompliancePolicy) GetUserStatusOverview()(DeviceCompliancePoliciesable) {
+func (m *DeviceCompliancePolicy) GetUserStatusOverview()(DeviceComplianceUserOverviewable) {
     if m == nil {
         return nil
     } else {
@@ -601,7 +448,7 @@ func (m *DeviceCompliancePolicy) SetDeviceStatuses(value []DeviceComplianceDevic
     }
 }
 // SetDeviceStatusOverview sets the deviceStatusOverview property value. Device compliance devices status overview
-func (m *DeviceCompliancePolicy) SetDeviceStatusOverview(value DeviceCompliancePoliciesable)() {
+func (m *DeviceCompliancePolicy) SetDeviceStatusOverview(value DeviceComplianceDeviceOverviewable)() {
     if m != nil {
         m.deviceStatusOverview = value
     }
@@ -637,7 +484,7 @@ func (m *DeviceCompliancePolicy) SetUserStatuses(value []DeviceComplianceUserSta
     }
 }
 // SetUserStatusOverview sets the userStatusOverview property value. Device compliance users status overview
-func (m *DeviceCompliancePolicy) SetUserStatusOverview(value DeviceCompliancePoliciesable)() {
+func (m *DeviceCompliancePolicy) SetUserStatusOverview(value DeviceComplianceUserOverviewable)() {
     if m != nil {
         m.userStatusOverview = value
     }

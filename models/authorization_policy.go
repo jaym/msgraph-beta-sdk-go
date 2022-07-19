@@ -1,7 +1,6 @@
 package models
 
 import (
-    i79216f6b0271db2d57ee5a2216058dd276f024a3ff4403e3b1c73da2db3e2ced "authorizationpolicy"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -15,7 +14,7 @@ type AuthorizationPolicy struct {
     // Indicates whether a user can join the tenant by email validation.
     allowEmailVerifiedUsersToJoinOrganization *bool
     // Indicates who can invite external users to the organization. Possible values are: none, adminsAndGuestInviters, adminsGuestInvitersAndAllMembers, everyone.  everyone is the default setting for all cloud environments except US Government. See more in the table below.
-    allowInvitesFrom PermissionGrantPoliciesable
+    allowInvitesFrom *AllowInvitesFrom
     // To disable the use of MSOL PowerShell set this property to true. This will also disable user-based access to the legacy service endpoint used by MSOL PowerShell. This does not affect Azure AD Connect or Microsoft Graph.
     blockMsolPowerShell *bool
     // The defaultUserRoleOverrides property
@@ -28,125 +27,6 @@ type AuthorizationPolicy struct {
     guestUserRoleId *string
     // Indicates if user consent to apps is allowed, and if it is, which app consent policy (permissionGrantPolicy) governs the permission for users to grant consent. Values should be in the format managePermissionGrantsForSelf.{id}, where {id} is the id of a built-in or custom app consent policy. An empty list indicates user consent to apps is disabled.
     permissionGrantPolicyIdsAssignedToDefaultUserRole []string
-}
-// PermissionGrantPolicies union type wrapper for classes allowInvitesFrom, permissionGrantPoliciesMember1
-type PermissionGrantPolicies struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type allowInvitesFrom
-    allowInvitesFrom *AllowInvitesFrom
-    // Union type representation for type permissionGrantPoliciesMember1
-    permissionGrantPoliciesMember1 PermissionGrantPoliciesMember1able
-}
-// NewPermissionGrantPolicies instantiates a new permissionGrantPolicies and sets the default values.
-func NewPermissionGrantPolicies()(*PermissionGrantPolicies) {
-    m := &PermissionGrantPolicies{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreatePermissionGrantPoliciesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreatePermissionGrantPoliciesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPermissionGrantPolicies(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PermissionGrantPolicies) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetAllowInvitesFrom gets the allowInvitesFrom property value. Union type representation for type allowInvitesFrom
-func (m *PermissionGrantPolicies) GetAllowInvitesFrom()(*AllowInvitesFrom) {
-    if m == nil {
-        return nil
-    } else {
-        return m.allowInvitesFrom
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *PermissionGrantPolicies) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["allowInvitesFrom"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParseAllowInvitesFrom)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAllowInvitesFrom(val.(*AllowInvitesFrom))
-        }
-        return nil
-    }
-    res["permissionGrantPoliciesMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePermissionGrantPoliciesMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPermissionGrantPoliciesMember1(val.(PermissionGrantPoliciesMember1able))
-        }
-        return nil
-    }
-    return res
-}
-// GetPermissionGrantPoliciesMember1 gets the permissionGrantPoliciesMember1 property value. Union type representation for type permissionGrantPoliciesMember1
-func (m *PermissionGrantPolicies) GetPermissionGrantPoliciesMember1()(PermissionGrantPoliciesMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.permissionGrantPoliciesMember1
-    }
-}
-// Serialize serializes information the current object
-func (m *PermissionGrantPolicies) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetAllowInvitesFrom() != nil {
-        cast := (*m.GetAllowInvitesFrom()).String()
-        err := writer.WriteStringValue("allowInvitesFrom", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("permissionGrantPoliciesMember1", m.GetPermissionGrantPoliciesMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PermissionGrantPolicies) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetAllowInvitesFrom sets the allowInvitesFrom property value. Union type representation for type allowInvitesFrom
-func (m *PermissionGrantPolicies) SetAllowInvitesFrom(value *AllowInvitesFrom)() {
-    if m != nil {
-        m.allowInvitesFrom = value
-    }
-}
-// SetPermissionGrantPoliciesMember1 sets the permissionGrantPoliciesMember1 property value. Union type representation for type permissionGrantPoliciesMember1
-func (m *PermissionGrantPolicies) SetPermissionGrantPoliciesMember1(value PermissionGrantPoliciesMember1able)() {
-    if m != nil {
-        m.permissionGrantPoliciesMember1 = value
-    }
-}
-// PermissionGrantPoliciesable 
-type PermissionGrantPoliciesable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAllowInvitesFrom()(*AllowInvitesFrom)
-    GetPermissionGrantPoliciesMember1()(PermissionGrantPoliciesMember1able)
-    SetAllowInvitesFrom(value *AllowInvitesFrom)()
-    SetPermissionGrantPoliciesMember1(value PermissionGrantPoliciesMember1able)()
 }
 // NewAuthorizationPolicy instantiates a new AuthorizationPolicy and sets the default values.
 func NewAuthorizationPolicy()(*AuthorizationPolicy) {
@@ -184,7 +64,7 @@ func (m *AuthorizationPolicy) GetAllowEmailVerifiedUsersToJoinOrganization()(*bo
     }
 }
 // GetAllowInvitesFrom gets the allowInvitesFrom property value. Indicates who can invite external users to the organization. Possible values are: none, adminsAndGuestInviters, adminsGuestInvitersAndAllMembers, everyone.  everyone is the default setting for all cloud environments except US Government. See more in the table below.
-func (m *AuthorizationPolicy) GetAllowInvitesFrom()(PermissionGrantPoliciesable) {
+func (m *AuthorizationPolicy) GetAllowInvitesFrom()(*AllowInvitesFrom) {
     if m == nil {
         return nil
     } else {
@@ -257,12 +137,12 @@ func (m *AuthorizationPolicy) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["allowInvitesFrom"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePermissionGrantPoliciesFromDiscriminatorValue)
+        val, err := n.GetEnumValue(ParseAllowInvitesFrom)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetAllowInvitesFrom(val.(PermissionGrantPoliciesable))
+            m.SetAllowInvitesFrom(val.(*AllowInvitesFrom))
         }
         return nil
     }
@@ -380,8 +260,9 @@ func (m *AuthorizationPolicy) Serialize(writer i878a80d2330e89d26896388a3f487eef
             return err
         }
     }
-    {
-        err = writer.WriteObjectValue("allowInvitesFrom", m.GetAllowInvitesFrom())
+    if m.GetAllowInvitesFrom() != nil {
+        cast := (*m.GetAllowInvitesFrom()).String()
+        err = writer.WriteStringValue("allowInvitesFrom", &cast)
         if err != nil {
             return err
         }
@@ -447,7 +328,7 @@ func (m *AuthorizationPolicy) SetAllowEmailVerifiedUsersToJoinOrganization(value
     }
 }
 // SetAllowInvitesFrom sets the allowInvitesFrom property value. Indicates who can invite external users to the organization. Possible values are: none, adminsAndGuestInviters, adminsGuestInvitersAndAllMembers, everyone.  everyone is the default setting for all cloud environments except US Government. See more in the table below.
-func (m *AuthorizationPolicy) SetAllowInvitesFrom(value PermissionGrantPoliciesable)() {
+func (m *AuthorizationPolicy) SetAllowInvitesFrom(value *AllowInvitesFrom)() {
     if m != nil {
         m.allowInvitesFrom = value
     }

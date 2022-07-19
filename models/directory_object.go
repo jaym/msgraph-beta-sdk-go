@@ -16,8 +16,8 @@ func NewDirectoryObject()(*DirectoryObject) {
     m := &DirectoryObject{
         Entity: *NewEntity(),
     }
-    typeValue := "#microsoft.graph.directoryObject";
-    m.SetType(&typeValue);
+    odataTypeValue := "#microsoft.graph.directoryObject";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateDirectoryObjectFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -37,10 +37,22 @@ func CreateDirectoryObjectFromDiscriminatorValue(parseNode i878a80d2330e89d26896
                 switch mappingStr {
                     case "#microsoft.graph.application":
                         return NewApplication(), nil
+                    case "#microsoft.graph.device":
+                        return NewDevice(), nil
+                    case "#microsoft.graph.endpoint":
+                        return NewEndpoint(), nil
                     case "#microsoft.graph.extensionProperty":
                         return NewExtensionProperty(), nil
+                    case "#microsoft.graph.group":
+                        return NewGroup(), nil
+                    case "#microsoft.graph.organization":
+                        return NewOrganization(), nil
                     case "#microsoft.graph.policyBase":
                         return NewPolicyBase(), nil
+                    case "#microsoft.graph.resourceSpecificPermissionGrant":
+                        return NewResourceSpecificPermissionGrant(), nil
+                    case "#microsoft.graph.user":
+                        return NewUser(), nil
                 }
             }
         }

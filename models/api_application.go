@@ -1,7 +1,6 @@
 package models
 
 import (
-    ib98ad0ae79f6901bfacb150978e99efcbcf093f9da05b4d2106cc32c0a085b33 "apiapplication"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -16,127 +15,9 @@ type ApiApplication struct {
     // The definition of the delegated permissions exposed by the web API represented by this application registration. These delegated permissions may be requested by a client application, and may be granted by users or administrators during consent. Delegated permissions are sometimes referred to as OAuth 2.0 scopes.
     oauth2PermissionScopes []PermissionScopeable
     // Lists the client applications that are pre-authorized with the specified delegated permissions to access this application's APIs. Users are not required to consent to any pre-authorized application (for the permissions specified). However, any additional permissions not listed in preAuthorizedApplications (requested through incremental consent for example) will require user consent.
-    preAuthorizedApplications []Applicationsable
+    preAuthorizedApplications []PreAuthorizedApplicationable
     // Specifies the access token version expected by this resource. This changes the version and format of the JWT produced independent of the endpoint or client used to request the access token.  The endpoint used, v1.0 or v2.0, is chosen by the client and only impacts the version of id_tokens. Resources need to explicitly configure requestedAccessTokenVersion to indicate the supported access token format.  Possible values for requestedAccessTokenVersion are 1, 2, or null. If the value is null, this defaults to 1, which corresponds to the v1.0 endpoint.  If signInAudience on the application is configured as AzureADandPersonalMicrosoftAccount, the value for this property must be 2
     requestedAccessTokenVersion *int32
-}
-// Applications union type wrapper for classes preAuthorizedApplication, applicationsMember1
-type Applications struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type applicationsMember1
-    applicationsMember1 ApplicationsMember1able
-    // Union type representation for type preAuthorizedApplication
-    preAuthorizedApplication PreAuthorizedApplicationable
-}
-// NewApplications instantiates a new applications and sets the default values.
-func NewApplications()(*Applications) {
-    m := &Applications{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateApplicationsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateApplicationsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewApplications(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Applications) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetApplicationsMember1 gets the applicationsMember1 property value. Union type representation for type applicationsMember1
-func (m *Applications) GetApplicationsMember1()(ApplicationsMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.applicationsMember1
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *Applications) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["applicationsMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApplicationsMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetApplicationsMember1(val.(ApplicationsMember1able))
-        }
-        return nil
-    }
-    res["preAuthorizedApplication"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePreAuthorizedApplicationFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPreAuthorizedApplication(val.(PreAuthorizedApplicationable))
-        }
-        return nil
-    }
-    return res
-}
-// GetPreAuthorizedApplication gets the preAuthorizedApplication property value. Union type representation for type preAuthorizedApplication
-func (m *Applications) GetPreAuthorizedApplication()(PreAuthorizedApplicationable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.preAuthorizedApplication
-    }
-}
-// Serialize serializes information the current object
-func (m *Applications) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("applicationsMember1", m.GetApplicationsMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("preAuthorizedApplication", m.GetPreAuthorizedApplication())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Applications) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetApplicationsMember1 sets the applicationsMember1 property value. Union type representation for type applicationsMember1
-func (m *Applications) SetApplicationsMember1(value ApplicationsMember1able)() {
-    if m != nil {
-        m.applicationsMember1 = value
-    }
-}
-// SetPreAuthorizedApplication sets the preAuthorizedApplication property value. Union type representation for type preAuthorizedApplication
-func (m *Applications) SetPreAuthorizedApplication(value PreAuthorizedApplicationable)() {
-    if m != nil {
-        m.preAuthorizedApplication = value
-    }
-}
-// Applicationsable 
-type Applicationsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetApplicationsMember1()(ApplicationsMember1able)
-    GetPreAuthorizedApplication()(PreAuthorizedApplicationable)
-    SetApplicationsMember1(value ApplicationsMember1able)()
-    SetPreAuthorizedApplication(value PreAuthorizedApplicationable)()
 }
 // NewApiApplication instantiates a new apiApplication and sets the default values.
 func NewApiApplication()(*ApiApplication) {
@@ -207,14 +88,14 @@ func (m *ApiApplication) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["preAuthorizedApplications"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateApplicationsFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreatePreAuthorizedApplicationFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]Applicationsable, len(val))
+            res := make([]PreAuthorizedApplicationable, len(val))
             for i, v := range val {
-                res[i] = v.(Applicationsable)
+                res[i] = v.(PreAuthorizedApplicationable)
             }
             m.SetPreAuthorizedApplications(res)
         }
@@ -249,7 +130,7 @@ func (m *ApiApplication) GetOauth2PermissionScopes()([]PermissionScopeable) {
     }
 }
 // GetPreAuthorizedApplications gets the preAuthorizedApplications property value. Lists the client applications that are pre-authorized with the specified delegated permissions to access this application's APIs. Users are not required to consent to any pre-authorized application (for the permissions specified). However, any additional permissions not listed in preAuthorizedApplications (requested through incremental consent for example) will require user consent.
-func (m *ApiApplication) GetPreAuthorizedApplications()([]Applicationsable) {
+func (m *ApiApplication) GetPreAuthorizedApplications()([]PreAuthorizedApplicationable) {
     if m == nil {
         return nil
     } else {
@@ -337,7 +218,7 @@ func (m *ApiApplication) SetOauth2PermissionScopes(value []PermissionScopeable)(
     }
 }
 // SetPreAuthorizedApplications sets the preAuthorizedApplications property value. Lists the client applications that are pre-authorized with the specified delegated permissions to access this application's APIs. Users are not required to consent to any pre-authorized application (for the permissions specified). However, any additional permissions not listed in preAuthorizedApplications (requested through incremental consent for example) will require user consent.
-func (m *ApiApplication) SetPreAuthorizedApplications(value []Applicationsable)() {
+func (m *ApiApplication) SetPreAuthorizedApplications(value []PreAuthorizedApplicationable)() {
     if m != nil {
         m.preAuthorizedApplications = value
     }

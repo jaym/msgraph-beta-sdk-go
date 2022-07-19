@@ -15,7 +15,7 @@ type PermissionGrantConditionSetable interface {
     GetClientApplicationTenantIds()([]string)
     GetPermissionClassification()(*string)
     GetPermissions()([]string)
-    GetPermissionType()(RoleDefinitionsable)
+    GetPermissionType()(*PermissionType)
     GetResourceApplication()(*string)
     SetCertifiedClientApplicationsOnly(value *bool)()
     SetClientApplicationIds(value []string)()
@@ -24,6 +24,6 @@ type PermissionGrantConditionSetable interface {
     SetClientApplicationTenantIds(value []string)()
     SetPermissionClassification(value *string)()
     SetPermissions(value []string)()
-    SetPermissionType(value RoleDefinitionsable)()
+    SetPermissionType(value *PermissionType)()
     SetResourceApplication(value *string)()
 }

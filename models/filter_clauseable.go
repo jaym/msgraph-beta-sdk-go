@@ -10,8 +10,8 @@ type FilterClauseable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetOperatorName()(*string)
     GetSourceOperandName()(*string)
-    GetTargetOperand()(RoleAssignmentsable)
+    GetTargetOperand()(FilterOperandable)
     SetOperatorName(value *string)()
     SetSourceOperandName(value *string)()
-    SetTargetOperand(value RoleAssignmentsable)()
+    SetTargetOperand(value FilterOperandable)()
 }

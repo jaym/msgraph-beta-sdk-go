@@ -13,11 +13,11 @@ type ConnectorGroupable interface {
     GetIsDefault()(*bool)
     GetMembers()([]Connectorable)
     GetName()(*string)
-    GetRegion()(SecureScoresable)
+    GetRegion()(*ConnectorGroupRegion)
     SetApplications(value []Applicationable)()
     SetConnectorGroupType(value *ConnectorGroupType)()
     SetIsDefault(value *bool)()
     SetMembers(value []Connectorable)()
     SetName(value *string)()
-    SetRegion(value SecureScoresable)()
+    SetRegion(value *ConnectorGroupRegion)()
 }

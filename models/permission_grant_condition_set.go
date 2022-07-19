@@ -1,7 +1,6 @@
 package models
 
 import (
-    i1c5d7369355f82a45b357c61c3057d64aa494b7713433aefc0fcc70a3e210114 "permissiongrantconditionset"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -23,130 +22,11 @@ type PermissionGrantConditionSet struct {
     // The list of id values for the specific permissions to match with, or a list with the single value all to match with any permission. The id of delegated permissions can be found in the publishedPermissionScopes property of the API's **servicePrincipal** object. The id of application permissions can be found in the appRoles property of the API's **servicePrincipal** object. The id of resource-specific application permissions can be found in the resourceSpecificApplicationPermissions property of the API's **servicePrincipal** object. Default is the single value all.
     permissions []string
     // The permission type of the permission being granted. Possible values: application for application permissions (e.g. app roles), or delegated for delegated permissions. The value delegatedUserConsentable indicates delegated permissions which have not been configured by the API publisher to require admin consent—this value may be used in built-in permission grant policies, but cannot be used in custom permission grant policies. Required.
-    permissionType RoleDefinitionsable
+    permissionType *PermissionType
     // The appId of the resource application (e.g. the API) for which a permission is being granted, or any to match with any resource application or API. Default is any.
     resourceApplication *string
 }
-// RoleDefinitions union type wrapper for classes permissionType, roleDefinitionsMember1
-type RoleDefinitions struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type permissionType
-    permissionType *PermissionType
-    // Union type representation for type roleDefinitionsMember1
-    roleDefinitionsMember1 RoleDefinitionsMember1able
-}
-// NewRoleDefinitions instantiates a new roleDefinitions and sets the default values.
-func NewRoleDefinitions()(*RoleDefinitions) {
-    m := &RoleDefinitions{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateRoleDefinitionsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateRoleDefinitionsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewRoleDefinitions(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleDefinitions) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *RoleDefinitions) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["permissionType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetEnumValue(ParsePermissionType)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPermissionType(val.(*PermissionType))
-        }
-        return nil
-    }
-    res["roleDefinitionsMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleDefinitionsMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRoleDefinitionsMember1(val.(RoleDefinitionsMember1able))
-        }
-        return nil
-    }
-    return res
-}
-// GetPermissionType gets the permissionType property value. Union type representation for type permissionType
-func (m *RoleDefinitions) GetPermissionType()(*PermissionType) {
-    if m == nil {
-        return nil
-    } else {
-        return m.permissionType
-    }
-}
-// GetRoleDefinitionsMember1 gets the roleDefinitionsMember1 property value. Union type representation for type roleDefinitionsMember1
-func (m *RoleDefinitions) GetRoleDefinitionsMember1()(RoleDefinitionsMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.roleDefinitionsMember1
-    }
-}
-// Serialize serializes information the current object
-func (m *RoleDefinitions) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    if m.GetPermissionType() != nil {
-        cast := (*m.GetPermissionType()).String()
-        err := writer.WriteStringValue("permissionType", &cast)
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("roleDefinitionsMember1", m.GetRoleDefinitionsMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleDefinitions) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetPermissionType sets the permissionType property value. Union type representation for type permissionType
-func (m *RoleDefinitions) SetPermissionType(value *PermissionType)() {
-    if m != nil {
-        m.permissionType = value
-    }
-}
-// SetRoleDefinitionsMember1 sets the roleDefinitionsMember1 property value. Union type representation for type roleDefinitionsMember1
-func (m *RoleDefinitions) SetRoleDefinitionsMember1(value RoleDefinitionsMember1able)() {
-    if m != nil {
-        m.roleDefinitionsMember1 = value
-    }
-}
-// RoleDefinitionsable 
-type RoleDefinitionsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetPermissionType()(*PermissionType)
-    GetRoleDefinitionsMember1()(RoleDefinitionsMember1able)
-    SetPermissionType(value *PermissionType)()
-    SetRoleDefinitionsMember1(value RoleDefinitionsMember1able)()
-}
-// NewPermissionGrantConditionSet instantiates a new PermissionGrantConditionSet and sets the default values.
+// NewPermissionGrantConditionSet instantiates a new permissionGrantConditionSet and sets the default values.
 func NewPermissionGrantConditionSet()(*PermissionGrantConditionSet) {
     m := &PermissionGrantConditionSet{
         Entity: *NewEntity(),
@@ -287,12 +167,12 @@ func (m *PermissionGrantConditionSet) GetFieldDeserializers()(map[string]func(i8
         return nil
     }
     res["permissionType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleDefinitionsFromDiscriminatorValue)
+        val, err := n.GetEnumValue(ParsePermissionType)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetPermissionType(val.(RoleDefinitionsable))
+            m.SetPermissionType(val.(*PermissionType))
         }
         return nil
     }
@@ -325,7 +205,7 @@ func (m *PermissionGrantConditionSet) GetPermissions()([]string) {
     }
 }
 // GetPermissionType gets the permissionType property value. The permission type of the permission being granted. Possible values: application for application permissions (e.g. app roles), or delegated for delegated permissions. The value delegatedUserConsentable indicates delegated permissions which have not been configured by the API publisher to require admin consent—this value may be used in built-in permission grant policies, but cannot be used in custom permission grant policies. Required.
-func (m *PermissionGrantConditionSet) GetPermissionType()(RoleDefinitionsable) {
+func (m *PermissionGrantConditionSet) GetPermissionType()(*PermissionType) {
     if m == nil {
         return nil
     } else {
@@ -388,8 +268,9 @@ func (m *PermissionGrantConditionSet) Serialize(writer i878a80d2330e89d26896388a
             return err
         }
     }
-    {
-        err = writer.WriteObjectValue("permissionType", m.GetPermissionType())
+    if m.GetPermissionType() != nil {
+        cast := (*m.GetPermissionType()).String()
+        err = writer.WriteStringValue("permissionType", &cast)
         if err != nil {
             return err
         }
@@ -445,7 +326,7 @@ func (m *PermissionGrantConditionSet) SetPermissions(value []string)() {
     }
 }
 // SetPermissionType sets the permissionType property value. The permission type of the permission being granted. Possible values: application for application permissions (e.g. app roles), or delegated for delegated permissions. The value delegatedUserConsentable indicates delegated permissions which have not been configured by the API publisher to require admin consent—this value may be used in built-in permission grant policies, but cannot be used in custom permission grant policies. Required.
-func (m *PermissionGrantConditionSet) SetPermissionType(value RoleDefinitionsable)() {
+func (m *PermissionGrantConditionSet) SetPermissionType(value *PermissionType)() {
     if m != nil {
         m.permissionType = value
     }

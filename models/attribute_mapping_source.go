@@ -1,7 +1,6 @@
 package models
 
 import (
-    ie434a333fdad699a857605f44a3b8008c15e283831125f5dd9033d1c4121fbaf "attributemappingsource"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -14,127 +13,9 @@ type AttributeMappingSource struct {
     // The name property
     name *string
     // The parameters property
-    parameters []RoleAssignmentsable
+    parameters []StringKeyAttributeMappingSourceValuePairable
     // The type property
     type_escaped *AttributeMappingSourceType
-}
-// RoleAssignments union type wrapper for classes stringKeyAttributeMappingSourceValuePair, roleAssignmentsMember1
-type RoleAssignments struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type roleAssignmentsMember1
-    roleAssignmentsMember1 RoleAssignmentsMember1able
-    // Union type representation for type stringKeyAttributeMappingSourceValuePair
-    stringKeyAttributeMappingSourceValuePair StringKeyAttributeMappingSourceValuePairable
-}
-// NewRoleAssignments instantiates a new roleAssignments and sets the default values.
-func NewRoleAssignments()(*RoleAssignments) {
-    m := &RoleAssignments{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateRoleAssignmentsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateRoleAssignmentsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewRoleAssignments(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleAssignments) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *RoleAssignments) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["roleAssignmentsMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleAssignmentsMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRoleAssignmentsMember1(val.(RoleAssignmentsMember1able))
-        }
-        return nil
-    }
-    res["stringKeyAttributeMappingSourceValuePair"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateStringKeyAttributeMappingSourceValuePairFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStringKeyAttributeMappingSourceValuePair(val.(StringKeyAttributeMappingSourceValuePairable))
-        }
-        return nil
-    }
-    return res
-}
-// GetRoleAssignmentsMember1 gets the roleAssignmentsMember1 property value. Union type representation for type roleAssignmentsMember1
-func (m *RoleAssignments) GetRoleAssignmentsMember1()(RoleAssignmentsMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.roleAssignmentsMember1
-    }
-}
-// GetStringKeyAttributeMappingSourceValuePair gets the stringKeyAttributeMappingSourceValuePair property value. Union type representation for type stringKeyAttributeMappingSourceValuePair
-func (m *RoleAssignments) GetStringKeyAttributeMappingSourceValuePair()(StringKeyAttributeMappingSourceValuePairable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.stringKeyAttributeMappingSourceValuePair
-    }
-}
-// Serialize serializes information the current object
-func (m *RoleAssignments) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("roleAssignmentsMember1", m.GetRoleAssignmentsMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("stringKeyAttributeMappingSourceValuePair", m.GetStringKeyAttributeMappingSourceValuePair())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleAssignments) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetRoleAssignmentsMember1 sets the roleAssignmentsMember1 property value. Union type representation for type roleAssignmentsMember1
-func (m *RoleAssignments) SetRoleAssignmentsMember1(value RoleAssignmentsMember1able)() {
-    if m != nil {
-        m.roleAssignmentsMember1 = value
-    }
-}
-// SetStringKeyAttributeMappingSourceValuePair sets the stringKeyAttributeMappingSourceValuePair property value. Union type representation for type stringKeyAttributeMappingSourceValuePair
-func (m *RoleAssignments) SetStringKeyAttributeMappingSourceValuePair(value StringKeyAttributeMappingSourceValuePairable)() {
-    if m != nil {
-        m.stringKeyAttributeMappingSourceValuePair = value
-    }
-}
-// RoleAssignmentsable 
-type RoleAssignmentsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetRoleAssignmentsMember1()(RoleAssignmentsMember1able)
-    GetStringKeyAttributeMappingSourceValuePair()(StringKeyAttributeMappingSourceValuePairable)
-    SetRoleAssignmentsMember1(value RoleAssignmentsMember1able)()
-    SetStringKeyAttributeMappingSourceValuePair(value StringKeyAttributeMappingSourceValuePairable)()
 }
 // NewAttributeMappingSource instantiates a new attributeMappingSource and sets the default values.
 func NewAttributeMappingSource()(*AttributeMappingSource) {
@@ -187,14 +68,14 @@ func (m *AttributeMappingSource) GetFieldDeserializers()(map[string]func(i878a80
         return nil
     }
     res["parameters"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateRoleAssignmentsFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateStringKeyAttributeMappingSourceValuePairFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]RoleAssignmentsable, len(val))
+            res := make([]StringKeyAttributeMappingSourceValuePairable, len(val))
             for i, v := range val {
-                res[i] = v.(RoleAssignmentsable)
+                res[i] = v.(StringKeyAttributeMappingSourceValuePairable)
             }
             m.SetParameters(res)
         }
@@ -221,7 +102,7 @@ func (m *AttributeMappingSource) GetName()(*string) {
     }
 }
 // GetParameters gets the parameters property value. The parameters property
-func (m *AttributeMappingSource) GetParameters()([]RoleAssignmentsable) {
+func (m *AttributeMappingSource) GetParameters()([]StringKeyAttributeMappingSourceValuePairable) {
     if m == nil {
         return nil
     } else {
@@ -294,7 +175,7 @@ func (m *AttributeMappingSource) SetName(value *string)() {
     }
 }
 // SetParameters sets the parameters property value. The parameters property
-func (m *AttributeMappingSource) SetParameters(value []RoleAssignmentsable)() {
+func (m *AttributeMappingSource) SetParameters(value []StringKeyAttributeMappingSourceValuePairable)() {
     if m != nil {
         m.parameters = value
     }

@@ -1,7 +1,6 @@
 package models
 
 import (
-    i97652f2af6ecfcdde39b09d5596e701a32c51a726e73110e5f71ac12a911d07b "adminconsentrequestpolicy"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -17,129 +16,11 @@ type AdminConsentRequestPolicy struct {
     // Specifies the duration the request is active before it automatically expires if no decision is applied.
     requestDurationInDays *int32
     // Required.
-    reviewers []AdminConsentRequestPolicyWrapperable
+    reviewers []AccessReviewReviewerScopeable
     // Specifies the version of this policy. When the policy is updated, this version is updated. Read-only.
     version *int32
 }
-// AdminConsentRequestPolicyWrapper union type wrapper for classes accessReviewReviewerScope, adminConsentRequestPolicyMember1
-type AdminConsentRequestPolicyWrapper struct {
-    // Union type representation for type accessReviewReviewerScope
-    accessReviewReviewerScope AccessReviewReviewerScopeable
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type adminConsentRequestPolicyMember1
-    adminConsentRequestPolicyMember1 AdminConsentRequestPolicyMember1able
-}
-// NewAdminConsentRequestPolicyWrapper instantiates a new adminConsentRequestPolicyWrapper and sets the default values.
-func NewAdminConsentRequestPolicyWrapper()(*AdminConsentRequestPolicyWrapper) {
-    m := &AdminConsentRequestPolicyWrapper{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateAdminConsentRequestPolicyWrapperFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateAdminConsentRequestPolicyWrapperFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewAdminConsentRequestPolicyWrapper(), nil
-}
-// GetAccessReviewReviewerScope gets the accessReviewReviewerScope property value. Union type representation for type accessReviewReviewerScope
-func (m *AdminConsentRequestPolicyWrapper) GetAccessReviewReviewerScope()(AccessReviewReviewerScopeable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.accessReviewReviewerScope
-    }
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AdminConsentRequestPolicyWrapper) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetAdminConsentRequestPolicyMember1 gets the adminConsentRequestPolicyMember1 property value. Union type representation for type adminConsentRequestPolicyMember1
-func (m *AdminConsentRequestPolicyWrapper) GetAdminConsentRequestPolicyMember1()(AdminConsentRequestPolicyMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.adminConsentRequestPolicyMember1
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *AdminConsentRequestPolicyWrapper) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["accessReviewReviewerScope"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateAccessReviewReviewerScopeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAccessReviewReviewerScope(val.(AccessReviewReviewerScopeable))
-        }
-        return nil
-    }
-    res["adminConsentRequestPolicyMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateAdminConsentRequestPolicyMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAdminConsentRequestPolicyMember1(val.(AdminConsentRequestPolicyMember1able))
-        }
-        return nil
-    }
-    return res
-}
-// Serialize serializes information the current object
-func (m *AdminConsentRequestPolicyWrapper) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("accessReviewReviewerScope", m.GetAccessReviewReviewerScope())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("adminConsentRequestPolicyMember1", m.GetAdminConsentRequestPolicyMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAccessReviewReviewerScope sets the accessReviewReviewerScope property value. Union type representation for type accessReviewReviewerScope
-func (m *AdminConsentRequestPolicyWrapper) SetAccessReviewReviewerScope(value AccessReviewReviewerScopeable)() {
-    if m != nil {
-        m.accessReviewReviewerScope = value
-    }
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AdminConsentRequestPolicyWrapper) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetAdminConsentRequestPolicyMember1 sets the adminConsentRequestPolicyMember1 property value. Union type representation for type adminConsentRequestPolicyMember1
-func (m *AdminConsentRequestPolicyWrapper) SetAdminConsentRequestPolicyMember1(value AdminConsentRequestPolicyMember1able)() {
-    if m != nil {
-        m.adminConsentRequestPolicyMember1 = value
-    }
-}
-// AdminConsentRequestPolicyWrapperable 
-type AdminConsentRequestPolicyWrapperable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAccessReviewReviewerScope()(AccessReviewReviewerScopeable)
-    GetAdminConsentRequestPolicyMember1()(AdminConsentRequestPolicyMember1able)
-    SetAccessReviewReviewerScope(value AccessReviewReviewerScopeable)()
-    SetAdminConsentRequestPolicyMember1(value AdminConsentRequestPolicyMember1able)()
-}
-// NewAdminConsentRequestPolicy instantiates a new adminConsentRequestPolicy and sets the default values.
+// NewAdminConsentRequestPolicy instantiates a new AdminConsentRequestPolicy and sets the default values.
 func NewAdminConsentRequestPolicy()(*AdminConsentRequestPolicy) {
     m := &AdminConsentRequestPolicy{
         Entity: *NewEntity(),
@@ -194,14 +75,14 @@ func (m *AdminConsentRequestPolicy) GetFieldDeserializers()(map[string]func(i878
         return nil
     }
     res["reviewers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateAdminConsentRequestPolicyWrapperFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateAccessReviewReviewerScopeFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]AdminConsentRequestPolicyWrapperable, len(val))
+            res := make([]AccessReviewReviewerScopeable, len(val))
             for i, v := range val {
-                res[i] = v.(AdminConsentRequestPolicyWrapperable)
+                res[i] = v.(AccessReviewReviewerScopeable)
             }
             m.SetReviewers(res)
         }
@@ -252,7 +133,7 @@ func (m *AdminConsentRequestPolicy) GetRequestDurationInDays()(*int32) {
     }
 }
 // GetReviewers gets the reviewers property value. Required.
-func (m *AdminConsentRequestPolicy) GetReviewers()([]AdminConsentRequestPolicyWrapperable) {
+func (m *AdminConsentRequestPolicy) GetReviewers()([]AccessReviewReviewerScopeable) {
     if m == nil {
         return nil
     } else {
@@ -340,7 +221,7 @@ func (m *AdminConsentRequestPolicy) SetRequestDurationInDays(value *int32)() {
     }
 }
 // SetReviewers sets the reviewers property value. Required.
-func (m *AdminConsentRequestPolicy) SetReviewers(value []AdminConsentRequestPolicyWrapperable)() {
+func (m *AdminConsentRequestPolicy) SetReviewers(value []AccessReviewReviewerScopeable)() {
     if m != nil {
         m.reviewers = value
     }

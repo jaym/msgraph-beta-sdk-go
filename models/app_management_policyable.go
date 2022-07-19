@@ -10,8 +10,8 @@ type AppManagementPolicyable interface {
     PolicyBaseable
     GetAppliesTo()([]DirectoryObjectable)
     GetIsEnabled()(*bool)
-    GetRestrictions()(AuthorizationPolicyable)
+    GetRestrictions()(AppManagementConfigurationable)
     SetAppliesTo(value []DirectoryObjectable)()
     SetIsEnabled(value *bool)()
-    SetRestrictions(value AuthorizationPolicyable)()
+    SetRestrictions(value AppManagementConfigurationable)()
 }

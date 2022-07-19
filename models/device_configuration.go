@@ -1,12 +1,11 @@
 package models
 
 import (
-    i166bcd3027a66603c2ef3c6f80b5a17c09bff9f30ef13a681e096cbc9cd35cbd "deviceconfiguration"
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// DeviceConfiguration 
+// DeviceConfiguration device Configuration.
 type DeviceConfiguration struct {
     Entity
     // The list of assignments for the device configuration profile.
@@ -16,17 +15,17 @@ type DeviceConfiguration struct {
     // Admin provided description of the Device Configuration.
     description *string
     // The device mode applicability rule for this Policy.
-    deviceManagementApplicabilityRuleDeviceMode DeviceConfigurationsable
+    deviceManagementApplicabilityRuleDeviceMode DeviceManagementApplicabilityRuleDeviceModeable
     // The OS edition applicability for this Policy.
-    deviceManagementApplicabilityRuleOsEdition DeviceConfigurationsable
+    deviceManagementApplicabilityRuleOsEdition DeviceManagementApplicabilityRuleOsEditionable
     // The OS version applicability rule for this Policy.
-    deviceManagementApplicabilityRuleOsVersion DeviceConfigurationsable
+    deviceManagementApplicabilityRuleOsVersion DeviceManagementApplicabilityRuleOsVersionable
     // Device Configuration Setting State Device Summary
     deviceSettingStateSummaries []SettingStateDeviceSummaryable
     // Device configuration installation status by device.
     deviceStatuses []DeviceConfigurationDeviceStatusable
     // Device Configuration devices status overview
-    deviceStatusOverview DeviceConfigurationsable
+    deviceStatusOverview DeviceConfigurationDeviceOverviewable
     // Admin provided name of the device configuration.
     displayName *string
     // The list of group assignments for the device configuration profile.
@@ -40,271 +39,17 @@ type DeviceConfiguration struct {
     // Device configuration installation status by user.
     userStatuses []DeviceConfigurationUserStatusable
     // Device Configuration users status overview
-    userStatusOverview DeviceConfigurationsable
+    userStatusOverview DeviceConfigurationUserOverviewable
     // Version of the device configuration.
     version *int32
 }
-// DeviceConfigurations union type wrapper for classes deviceManagementApplicabilityRuleOsEdition, deviceConfigurationsMember1
-type DeviceConfigurations struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type deviceConfigurationDeviceOverview
-    deviceConfigurationDeviceOverview DeviceConfigurationDeviceOverviewable
-    // Union type representation for type deviceConfigurationsMember1
-    deviceConfigurationsMember1 DeviceConfigurationsMember1able
-    // Union type representation for type deviceConfigurationUserOverview
-    deviceConfigurationUserOverview DeviceConfigurationUserOverviewable
-    // Union type representation for type deviceManagementApplicabilityRuleDeviceMode
-    deviceManagementApplicabilityRuleDeviceMode DeviceManagementApplicabilityRuleDeviceModeable
-    // Union type representation for type deviceManagementApplicabilityRuleOsEdition
-    deviceManagementApplicabilityRuleOsEdition DeviceManagementApplicabilityRuleOsEditionable
-    // Union type representation for type deviceManagementApplicabilityRuleOsVersion
-    deviceManagementApplicabilityRuleOsVersion DeviceManagementApplicabilityRuleOsVersionable
-}
-// NewDeviceConfigurations instantiates a new deviceConfigurations and sets the default values.
-func NewDeviceConfigurations()(*DeviceConfigurations) {
-    m := &DeviceConfigurations{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateDeviceConfigurationsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateDeviceConfigurationsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewDeviceConfigurations(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *DeviceConfigurations) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetDeviceConfigurationDeviceOverview gets the deviceConfigurationDeviceOverview property value. Union type representation for type deviceConfigurationDeviceOverview
-func (m *DeviceConfigurations) GetDeviceConfigurationDeviceOverview()(DeviceConfigurationDeviceOverviewable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.deviceConfigurationDeviceOverview
-    }
-}
-// GetDeviceConfigurationsMember1 gets the deviceConfigurationsMember1 property value. Union type representation for type deviceConfigurationsMember1
-func (m *DeviceConfigurations) GetDeviceConfigurationsMember1()(DeviceConfigurationsMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.deviceConfigurationsMember1
-    }
-}
-// GetDeviceConfigurationUserOverview gets the deviceConfigurationUserOverview property value. Union type representation for type deviceConfigurationUserOverview
-func (m *DeviceConfigurations) GetDeviceConfigurationUserOverview()(DeviceConfigurationUserOverviewable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.deviceConfigurationUserOverview
-    }
-}
-// GetDeviceManagementApplicabilityRuleDeviceMode gets the deviceManagementApplicabilityRuleDeviceMode property value. Union type representation for type deviceManagementApplicabilityRuleDeviceMode
-func (m *DeviceConfigurations) GetDeviceManagementApplicabilityRuleDeviceMode()(DeviceManagementApplicabilityRuleDeviceModeable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.deviceManagementApplicabilityRuleDeviceMode
-    }
-}
-// GetDeviceManagementApplicabilityRuleOsEdition gets the deviceManagementApplicabilityRuleOsEdition property value. Union type representation for type deviceManagementApplicabilityRuleOsEdition
-func (m *DeviceConfigurations) GetDeviceManagementApplicabilityRuleOsEdition()(DeviceManagementApplicabilityRuleOsEditionable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.deviceManagementApplicabilityRuleOsEdition
-    }
-}
-// GetDeviceManagementApplicabilityRuleOsVersion gets the deviceManagementApplicabilityRuleOsVersion property value. Union type representation for type deviceManagementApplicabilityRuleOsVersion
-func (m *DeviceConfigurations) GetDeviceManagementApplicabilityRuleOsVersion()(DeviceManagementApplicabilityRuleOsVersionable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.deviceManagementApplicabilityRuleOsVersion
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *DeviceConfigurations) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["deviceConfigurationDeviceOverview"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceConfigurationDeviceOverviewFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDeviceConfigurationDeviceOverview(val.(DeviceConfigurationDeviceOverviewable))
-        }
-        return nil
-    }
-    res["deviceConfigurationsMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceConfigurationsMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDeviceConfigurationsMember1(val.(DeviceConfigurationsMember1able))
-        }
-        return nil
-    }
-    res["deviceConfigurationUserOverview"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceConfigurationUserOverviewFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDeviceConfigurationUserOverview(val.(DeviceConfigurationUserOverviewable))
-        }
-        return nil
-    }
-    res["deviceManagementApplicabilityRuleDeviceMode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceManagementApplicabilityRuleDeviceModeFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDeviceManagementApplicabilityRuleDeviceMode(val.(DeviceManagementApplicabilityRuleDeviceModeable))
-        }
-        return nil
-    }
-    res["deviceManagementApplicabilityRuleOsEdition"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceManagementApplicabilityRuleOsEditionFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDeviceManagementApplicabilityRuleOsEdition(val.(DeviceManagementApplicabilityRuleOsEditionable))
-        }
-        return nil
-    }
-    res["deviceManagementApplicabilityRuleOsVersion"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceManagementApplicabilityRuleOsVersionFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDeviceManagementApplicabilityRuleOsVersion(val.(DeviceManagementApplicabilityRuleOsVersionable))
-        }
-        return nil
-    }
-    return res
-}
-// Serialize serializes information the current object
-func (m *DeviceConfigurations) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("deviceConfigurationDeviceOverview", m.GetDeviceConfigurationDeviceOverview())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("deviceConfigurationsMember1", m.GetDeviceConfigurationsMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("deviceConfigurationUserOverview", m.GetDeviceConfigurationUserOverview())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("deviceManagementApplicabilityRuleDeviceMode", m.GetDeviceManagementApplicabilityRuleDeviceMode())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("deviceManagementApplicabilityRuleOsEdition", m.GetDeviceManagementApplicabilityRuleOsEdition())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("deviceManagementApplicabilityRuleOsVersion", m.GetDeviceManagementApplicabilityRuleOsVersion())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *DeviceConfigurations) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetDeviceConfigurationDeviceOverview sets the deviceConfigurationDeviceOverview property value. Union type representation for type deviceConfigurationDeviceOverview
-func (m *DeviceConfigurations) SetDeviceConfigurationDeviceOverview(value DeviceConfigurationDeviceOverviewable)() {
-    if m != nil {
-        m.deviceConfigurationDeviceOverview = value
-    }
-}
-// SetDeviceConfigurationsMember1 sets the deviceConfigurationsMember1 property value. Union type representation for type deviceConfigurationsMember1
-func (m *DeviceConfigurations) SetDeviceConfigurationsMember1(value DeviceConfigurationsMember1able)() {
-    if m != nil {
-        m.deviceConfigurationsMember1 = value
-    }
-}
-// SetDeviceConfigurationUserOverview sets the deviceConfigurationUserOverview property value. Union type representation for type deviceConfigurationUserOverview
-func (m *DeviceConfigurations) SetDeviceConfigurationUserOverview(value DeviceConfigurationUserOverviewable)() {
-    if m != nil {
-        m.deviceConfigurationUserOverview = value
-    }
-}
-// SetDeviceManagementApplicabilityRuleDeviceMode sets the deviceManagementApplicabilityRuleDeviceMode property value. Union type representation for type deviceManagementApplicabilityRuleDeviceMode
-func (m *DeviceConfigurations) SetDeviceManagementApplicabilityRuleDeviceMode(value DeviceManagementApplicabilityRuleDeviceModeable)() {
-    if m != nil {
-        m.deviceManagementApplicabilityRuleDeviceMode = value
-    }
-}
-// SetDeviceManagementApplicabilityRuleOsEdition sets the deviceManagementApplicabilityRuleOsEdition property value. Union type representation for type deviceManagementApplicabilityRuleOsEdition
-func (m *DeviceConfigurations) SetDeviceManagementApplicabilityRuleOsEdition(value DeviceManagementApplicabilityRuleOsEditionable)() {
-    if m != nil {
-        m.deviceManagementApplicabilityRuleOsEdition = value
-    }
-}
-// SetDeviceManagementApplicabilityRuleOsVersion sets the deviceManagementApplicabilityRuleOsVersion property value. Union type representation for type deviceManagementApplicabilityRuleOsVersion
-func (m *DeviceConfigurations) SetDeviceManagementApplicabilityRuleOsVersion(value DeviceManagementApplicabilityRuleOsVersionable)() {
-    if m != nil {
-        m.deviceManagementApplicabilityRuleOsVersion = value
-    }
-}
-// DeviceConfigurationsable 
-type DeviceConfigurationsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetDeviceConfigurationDeviceOverview()(DeviceConfigurationDeviceOverviewable)
-    GetDeviceConfigurationsMember1()(DeviceConfigurationsMember1able)
-    GetDeviceConfigurationUserOverview()(DeviceConfigurationUserOverviewable)
-    GetDeviceManagementApplicabilityRuleDeviceMode()(DeviceManagementApplicabilityRuleDeviceModeable)
-    GetDeviceManagementApplicabilityRuleOsEdition()(DeviceManagementApplicabilityRuleOsEditionable)
-    GetDeviceManagementApplicabilityRuleOsVersion()(DeviceManagementApplicabilityRuleOsVersionable)
-    SetDeviceConfigurationDeviceOverview(value DeviceConfigurationDeviceOverviewable)()
-    SetDeviceConfigurationsMember1(value DeviceConfigurationsMember1able)()
-    SetDeviceConfigurationUserOverview(value DeviceConfigurationUserOverviewable)()
-    SetDeviceManagementApplicabilityRuleDeviceMode(value DeviceManagementApplicabilityRuleDeviceModeable)()
-    SetDeviceManagementApplicabilityRuleOsEdition(value DeviceManagementApplicabilityRuleOsEditionable)()
-    SetDeviceManagementApplicabilityRuleOsVersion(value DeviceManagementApplicabilityRuleOsVersionable)()
-}
-// NewDeviceConfiguration instantiates a new DeviceConfiguration and sets the default values.
+// NewDeviceConfiguration instantiates a new deviceConfiguration and sets the default values.
 func NewDeviceConfiguration()(*DeviceConfiguration) {
     m := &DeviceConfiguration{
         Entity: *NewEntity(),
     }
-    typeValue := "#microsoft.graph.deviceConfiguration";
-    m.SetType(&typeValue);
+    odataTypeValue := "#microsoft.graph.deviceConfiguration";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateDeviceConfigurationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -336,7 +81,7 @@ func (m *DeviceConfiguration) GetDescription()(*string) {
     }
 }
 // GetDeviceManagementApplicabilityRuleDeviceMode gets the deviceManagementApplicabilityRuleDeviceMode property value. The device mode applicability rule for this Policy.
-func (m *DeviceConfiguration) GetDeviceManagementApplicabilityRuleDeviceMode()(DeviceConfigurationsable) {
+func (m *DeviceConfiguration) GetDeviceManagementApplicabilityRuleDeviceMode()(DeviceManagementApplicabilityRuleDeviceModeable) {
     if m == nil {
         return nil
     } else {
@@ -344,7 +89,7 @@ func (m *DeviceConfiguration) GetDeviceManagementApplicabilityRuleDeviceMode()(D
     }
 }
 // GetDeviceManagementApplicabilityRuleOsEdition gets the deviceManagementApplicabilityRuleOsEdition property value. The OS edition applicability for this Policy.
-func (m *DeviceConfiguration) GetDeviceManagementApplicabilityRuleOsEdition()(DeviceConfigurationsable) {
+func (m *DeviceConfiguration) GetDeviceManagementApplicabilityRuleOsEdition()(DeviceManagementApplicabilityRuleOsEditionable) {
     if m == nil {
         return nil
     } else {
@@ -352,7 +97,7 @@ func (m *DeviceConfiguration) GetDeviceManagementApplicabilityRuleOsEdition()(De
     }
 }
 // GetDeviceManagementApplicabilityRuleOsVersion gets the deviceManagementApplicabilityRuleOsVersion property value. The OS version applicability rule for this Policy.
-func (m *DeviceConfiguration) GetDeviceManagementApplicabilityRuleOsVersion()(DeviceConfigurationsable) {
+func (m *DeviceConfiguration) GetDeviceManagementApplicabilityRuleOsVersion()(DeviceManagementApplicabilityRuleOsVersionable) {
     if m == nil {
         return nil
     } else {
@@ -376,7 +121,7 @@ func (m *DeviceConfiguration) GetDeviceStatuses()([]DeviceConfigurationDeviceSta
     }
 }
 // GetDeviceStatusOverview gets the deviceStatusOverview property value. Device Configuration devices status overview
-func (m *DeviceConfiguration) GetDeviceStatusOverview()(DeviceConfigurationsable) {
+func (m *DeviceConfiguration) GetDeviceStatusOverview()(DeviceConfigurationDeviceOverviewable) {
     if m == nil {
         return nil
     } else {
@@ -429,32 +174,32 @@ func (m *DeviceConfiguration) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["deviceManagementApplicabilityRuleDeviceMode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceConfigurationsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateDeviceManagementApplicabilityRuleDeviceModeFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDeviceManagementApplicabilityRuleDeviceMode(val.(DeviceConfigurationsable))
+            m.SetDeviceManagementApplicabilityRuleDeviceMode(val.(DeviceManagementApplicabilityRuleDeviceModeable))
         }
         return nil
     }
     res["deviceManagementApplicabilityRuleOsEdition"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceConfigurationsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateDeviceManagementApplicabilityRuleOsEditionFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDeviceManagementApplicabilityRuleOsEdition(val.(DeviceConfigurationsable))
+            m.SetDeviceManagementApplicabilityRuleOsEdition(val.(DeviceManagementApplicabilityRuleOsEditionable))
         }
         return nil
     }
     res["deviceManagementApplicabilityRuleOsVersion"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceConfigurationsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateDeviceManagementApplicabilityRuleOsVersionFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDeviceManagementApplicabilityRuleOsVersion(val.(DeviceConfigurationsable))
+            m.SetDeviceManagementApplicabilityRuleOsVersion(val.(DeviceManagementApplicabilityRuleOsVersionable))
         }
         return nil
     }
@@ -487,12 +232,12 @@ func (m *DeviceConfiguration) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["deviceStatusOverview"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceConfigurationsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateDeviceConfigurationDeviceOverviewFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetDeviceStatusOverview(val.(DeviceConfigurationsable))
+            m.SetDeviceStatusOverview(val.(DeviceConfigurationDeviceOverviewable))
         }
         return nil
     }
@@ -569,12 +314,12 @@ func (m *DeviceConfiguration) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["userStatusOverview"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDeviceConfigurationsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateDeviceConfigurationUserOverviewFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetUserStatusOverview(val.(DeviceConfigurationsable))
+            m.SetUserStatusOverview(val.(DeviceConfigurationUserOverviewable))
         }
         return nil
     }
@@ -631,7 +376,7 @@ func (m *DeviceConfiguration) GetUserStatuses()([]DeviceConfigurationUserStatusa
     }
 }
 // GetUserStatusOverview gets the userStatusOverview property value. Device Configuration users status overview
-func (m *DeviceConfiguration) GetUserStatusOverview()(DeviceConfigurationsable) {
+func (m *DeviceConfiguration) GetUserStatusOverview()(DeviceConfigurationUserOverviewable) {
     if m == nil {
         return nil
     } else {
@@ -795,19 +540,19 @@ func (m *DeviceConfiguration) SetDescription(value *string)() {
     }
 }
 // SetDeviceManagementApplicabilityRuleDeviceMode sets the deviceManagementApplicabilityRuleDeviceMode property value. The device mode applicability rule for this Policy.
-func (m *DeviceConfiguration) SetDeviceManagementApplicabilityRuleDeviceMode(value DeviceConfigurationsable)() {
+func (m *DeviceConfiguration) SetDeviceManagementApplicabilityRuleDeviceMode(value DeviceManagementApplicabilityRuleDeviceModeable)() {
     if m != nil {
         m.deviceManagementApplicabilityRuleDeviceMode = value
     }
 }
 // SetDeviceManagementApplicabilityRuleOsEdition sets the deviceManagementApplicabilityRuleOsEdition property value. The OS edition applicability for this Policy.
-func (m *DeviceConfiguration) SetDeviceManagementApplicabilityRuleOsEdition(value DeviceConfigurationsable)() {
+func (m *DeviceConfiguration) SetDeviceManagementApplicabilityRuleOsEdition(value DeviceManagementApplicabilityRuleOsEditionable)() {
     if m != nil {
         m.deviceManagementApplicabilityRuleOsEdition = value
     }
 }
 // SetDeviceManagementApplicabilityRuleOsVersion sets the deviceManagementApplicabilityRuleOsVersion property value. The OS version applicability rule for this Policy.
-func (m *DeviceConfiguration) SetDeviceManagementApplicabilityRuleOsVersion(value DeviceConfigurationsable)() {
+func (m *DeviceConfiguration) SetDeviceManagementApplicabilityRuleOsVersion(value DeviceManagementApplicabilityRuleOsVersionable)() {
     if m != nil {
         m.deviceManagementApplicabilityRuleOsVersion = value
     }
@@ -825,7 +570,7 @@ func (m *DeviceConfiguration) SetDeviceStatuses(value []DeviceConfigurationDevic
     }
 }
 // SetDeviceStatusOverview sets the deviceStatusOverview property value. Device Configuration devices status overview
-func (m *DeviceConfiguration) SetDeviceStatusOverview(value DeviceConfigurationsable)() {
+func (m *DeviceConfiguration) SetDeviceStatusOverview(value DeviceConfigurationDeviceOverviewable)() {
     if m != nil {
         m.deviceStatusOverview = value
     }
@@ -867,7 +612,7 @@ func (m *DeviceConfiguration) SetUserStatuses(value []DeviceConfigurationUserSta
     }
 }
 // SetUserStatusOverview sets the userStatusOverview property value. Device Configuration users status overview
-func (m *DeviceConfiguration) SetUserStatusOverview(value DeviceConfigurationsable)() {
+func (m *DeviceConfiguration) SetUserStatusOverview(value DeviceConfigurationUserOverviewable)() {
     if m != nil {
         m.userStatusOverview = value
     }

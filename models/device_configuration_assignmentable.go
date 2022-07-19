@@ -8,12 +8,12 @@ import (
 type DeviceConfigurationAssignmentable interface {
     Entityable
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetIntent()(DeviceConfigurationsable)
+    GetIntent()(*DeviceConfigAssignmentIntent)
     GetSource()(*DeviceAndAppManagementAssignmentSource)
     GetSourceId()(*string)
-    GetTarget()(DeviceConfigurationsable)
-    SetIntent(value DeviceConfigurationsable)()
+    GetTarget()(DeviceAndAppManagementAssignmentTargetable)
+    SetIntent(value *DeviceConfigAssignmentIntent)()
     SetSource(value *DeviceAndAppManagementAssignmentSource)()
     SetSourceId(value *string)()
-    SetTarget(value DeviceConfigurationsable)()
+    SetTarget(value DeviceAndAppManagementAssignmentTargetable)()
 }

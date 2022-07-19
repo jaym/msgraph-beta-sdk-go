@@ -1,7 +1,6 @@
 package models
 
 import (
-    ie48d5ed2cc2fb4d9ec5d97eb5b0d1efa799b1a66e5556abb92853d79f7a4526c "synchronizationtemplate"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -19,163 +18,11 @@ type SynchronizationTemplate struct {
     // One of the well-known factory tags supported by the synchronization engine. The factoryTag tells the synchronization engine which implementation to use when processing jobs based on this template.
     factoryTag *string
     // Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-    metadata []RoleDefinitionsable
+    metadata []MetadataEntryable
     // Default synchronization schema for the jobs based on this template.
-    schema RoleDefinitionsable
+    schema SynchronizationSchemaable
 }
-// RoleDefinitions union type wrapper for classes synchronizationSchema, roleDefinitionsMember1
-type RoleDefinitions struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type metadataEntry
-    metadataEntry MetadataEntryable
-    // Union type representation for type roleDefinitionsMember1
-    roleDefinitionsMember1 RoleDefinitionsMember1able
-    // Union type representation for type synchronizationSchema
-    synchronizationSchema SynchronizationSchemaable
-}
-// NewRoleDefinitions instantiates a new roleDefinitions and sets the default values.
-func NewRoleDefinitions()(*RoleDefinitions) {
-    m := &RoleDefinitions{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateRoleDefinitionsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateRoleDefinitionsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewRoleDefinitions(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleDefinitions) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *RoleDefinitions) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["metadataEntry"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateMetadataEntryFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetMetadataEntry(val.(MetadataEntryable))
-        }
-        return nil
-    }
-    res["roleDefinitionsMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleDefinitionsMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRoleDefinitionsMember1(val.(RoleDefinitionsMember1able))
-        }
-        return nil
-    }
-    res["synchronizationSchema"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSynchronizationSchemaFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSynchronizationSchema(val.(SynchronizationSchemaable))
-        }
-        return nil
-    }
-    return res
-}
-// GetMetadataEntry gets the metadataEntry property value. Union type representation for type metadataEntry
-func (m *RoleDefinitions) GetMetadataEntry()(MetadataEntryable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.metadataEntry
-    }
-}
-// GetRoleDefinitionsMember1 gets the roleDefinitionsMember1 property value. Union type representation for type roleDefinitionsMember1
-func (m *RoleDefinitions) GetRoleDefinitionsMember1()(RoleDefinitionsMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.roleDefinitionsMember1
-    }
-}
-// GetSynchronizationSchema gets the synchronizationSchema property value. Union type representation for type synchronizationSchema
-func (m *RoleDefinitions) GetSynchronizationSchema()(SynchronizationSchemaable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.synchronizationSchema
-    }
-}
-// Serialize serializes information the current object
-func (m *RoleDefinitions) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("metadataEntry", m.GetMetadataEntry())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("roleDefinitionsMember1", m.GetRoleDefinitionsMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("synchronizationSchema", m.GetSynchronizationSchema())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleDefinitions) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetMetadataEntry sets the metadataEntry property value. Union type representation for type metadataEntry
-func (m *RoleDefinitions) SetMetadataEntry(value MetadataEntryable)() {
-    if m != nil {
-        m.metadataEntry = value
-    }
-}
-// SetRoleDefinitionsMember1 sets the roleDefinitionsMember1 property value. Union type representation for type roleDefinitionsMember1
-func (m *RoleDefinitions) SetRoleDefinitionsMember1(value RoleDefinitionsMember1able)() {
-    if m != nil {
-        m.roleDefinitionsMember1 = value
-    }
-}
-// SetSynchronizationSchema sets the synchronizationSchema property value. Union type representation for type synchronizationSchema
-func (m *RoleDefinitions) SetSynchronizationSchema(value SynchronizationSchemaable)() {
-    if m != nil {
-        m.synchronizationSchema = value
-    }
-}
-// RoleDefinitionsable 
-type RoleDefinitionsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetMetadataEntry()(MetadataEntryable)
-    GetRoleDefinitionsMember1()(RoleDefinitionsMember1able)
-    GetSynchronizationSchema()(SynchronizationSchemaable)
-    SetMetadataEntry(value MetadataEntryable)()
-    SetRoleDefinitionsMember1(value RoleDefinitionsMember1able)()
-    SetSynchronizationSchema(value SynchronizationSchemaable)()
-}
-// NewSynchronizationTemplate instantiates a new SynchronizationTemplate and sets the default values.
+// NewSynchronizationTemplate instantiates a new synchronizationTemplate and sets the default values.
 func NewSynchronizationTemplate()(*SynchronizationTemplate) {
     m := &SynchronizationTemplate{
         Entity: *NewEntity(),
@@ -280,33 +127,33 @@ func (m *SynchronizationTemplate) GetFieldDeserializers()(map[string]func(i878a8
         return nil
     }
     res["metadata"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateRoleDefinitionsFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateMetadataEntryFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]RoleDefinitionsable, len(val))
+            res := make([]MetadataEntryable, len(val))
             for i, v := range val {
-                res[i] = v.(RoleDefinitionsable)
+                res[i] = v.(MetadataEntryable)
             }
             m.SetMetadata(res)
         }
         return nil
     }
     res["schema"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleDefinitionsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateSynchronizationSchemaFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSchema(val.(RoleDefinitionsable))
+            m.SetSchema(val.(SynchronizationSchemaable))
         }
         return nil
     }
     return res
 }
 // GetMetadata gets the metadata property value. Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-func (m *SynchronizationTemplate) GetMetadata()([]RoleDefinitionsable) {
+func (m *SynchronizationTemplate) GetMetadata()([]MetadataEntryable) {
     if m == nil {
         return nil
     } else {
@@ -314,7 +161,7 @@ func (m *SynchronizationTemplate) GetMetadata()([]RoleDefinitionsable) {
     }
 }
 // GetSchema gets the schema property value. Default synchronization schema for the jobs based on this template.
-func (m *SynchronizationTemplate) GetSchema()(RoleDefinitionsable) {
+func (m *SynchronizationTemplate) GetSchema()(SynchronizationSchemaable) {
     if m == nil {
         return nil
     } else {
@@ -406,13 +253,13 @@ func (m *SynchronizationTemplate) SetFactoryTag(value *string)() {
     }
 }
 // SetMetadata sets the metadata property value. Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.
-func (m *SynchronizationTemplate) SetMetadata(value []RoleDefinitionsable)() {
+func (m *SynchronizationTemplate) SetMetadata(value []MetadataEntryable)() {
     if m != nil {
         m.metadata = value
     }
 }
 // SetSchema sets the schema property value. Default synchronization schema for the jobs based on this template.
-func (m *SynchronizationTemplate) SetSchema(value RoleDefinitionsable)() {
+func (m *SynchronizationTemplate) SetSchema(value SynchronizationSchemaable)() {
     if m != nil {
         m.schema = value
     }

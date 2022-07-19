@@ -1,7 +1,6 @@
 package models
 
 import (
-    ifc34716178b3f5ee21872073486af614784f168d6df1183a34dcd99cfadaf63d "webapplication"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -12,7 +11,7 @@ type WebApplication struct {
     // Home page or landing page of the application.
     homePageUrl *string
     // Specifies whether this web application can request tokens using the OAuth 2.0 implicit flow.
-    implicitGrantSettings PermissionGrantPoliciesable
+    implicitGrantSettings ImplicitGrantSettingsable
     // Specifies the URL that will be used by Microsoft's authorization service to logout an user using front-channel, back-channel or SAML logout protocols.
     logoutUrl *string
     // The oauth2AllowImplicitFlow property
@@ -21,124 +20,6 @@ type WebApplication struct {
     redirectUris []string
     // Specifies the index of the URLs where user tokens are sent for sign-in. This is only valid for applications using SAML.
     redirectUriSettings []RedirectUriSettingsable
-}
-// PermissionGrantPolicies union type wrapper for classes implicitGrantSettings, permissionGrantPoliciesMember1
-type PermissionGrantPolicies struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type implicitGrantSettings
-    implicitGrantSettings ImplicitGrantSettingsable
-    // Union type representation for type permissionGrantPoliciesMember1
-    permissionGrantPoliciesMember1 PermissionGrantPoliciesMember1able
-}
-// NewPermissionGrantPolicies instantiates a new permissionGrantPolicies and sets the default values.
-func NewPermissionGrantPolicies()(*PermissionGrantPolicies) {
-    m := &PermissionGrantPolicies{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreatePermissionGrantPoliciesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreatePermissionGrantPoliciesFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewPermissionGrantPolicies(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PermissionGrantPolicies) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *PermissionGrantPolicies) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["implicitGrantSettings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateImplicitGrantSettingsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetImplicitGrantSettings(val.(ImplicitGrantSettingsable))
-        }
-        return nil
-    }
-    res["permissionGrantPoliciesMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePermissionGrantPoliciesMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPermissionGrantPoliciesMember1(val.(PermissionGrantPoliciesMember1able))
-        }
-        return nil
-    }
-    return res
-}
-// GetImplicitGrantSettings gets the implicitGrantSettings property value. Union type representation for type implicitGrantSettings
-func (m *PermissionGrantPolicies) GetImplicitGrantSettings()(ImplicitGrantSettingsable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.implicitGrantSettings
-    }
-}
-// GetPermissionGrantPoliciesMember1 gets the permissionGrantPoliciesMember1 property value. Union type representation for type permissionGrantPoliciesMember1
-func (m *PermissionGrantPolicies) GetPermissionGrantPoliciesMember1()(PermissionGrantPoliciesMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.permissionGrantPoliciesMember1
-    }
-}
-// Serialize serializes information the current object
-func (m *PermissionGrantPolicies) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("implicitGrantSettings", m.GetImplicitGrantSettings())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("permissionGrantPoliciesMember1", m.GetPermissionGrantPoliciesMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PermissionGrantPolicies) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetImplicitGrantSettings sets the implicitGrantSettings property value. Union type representation for type implicitGrantSettings
-func (m *PermissionGrantPolicies) SetImplicitGrantSettings(value ImplicitGrantSettingsable)() {
-    if m != nil {
-        m.implicitGrantSettings = value
-    }
-}
-// SetPermissionGrantPoliciesMember1 sets the permissionGrantPoliciesMember1 property value. Union type representation for type permissionGrantPoliciesMember1
-func (m *PermissionGrantPolicies) SetPermissionGrantPoliciesMember1(value PermissionGrantPoliciesMember1able)() {
-    if m != nil {
-        m.permissionGrantPoliciesMember1 = value
-    }
-}
-// PermissionGrantPoliciesable 
-type PermissionGrantPoliciesable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetImplicitGrantSettings()(ImplicitGrantSettingsable)
-    GetPermissionGrantPoliciesMember1()(PermissionGrantPoliciesMember1able)
-    SetImplicitGrantSettings(value ImplicitGrantSettingsable)()
-    SetPermissionGrantPoliciesMember1(value PermissionGrantPoliciesMember1able)()
 }
 // NewWebApplication instantiates a new webApplication and sets the default values.
 func NewWebApplication()(*WebApplication) {
@@ -173,12 +54,12 @@ func (m *WebApplication) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["implicitGrantSettings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePermissionGrantPoliciesFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateImplicitGrantSettingsFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetImplicitGrantSettings(val.(PermissionGrantPoliciesable))
+            m.SetImplicitGrantSettings(val.(ImplicitGrantSettingsable))
         }
         return nil
     }
@@ -241,7 +122,7 @@ func (m *WebApplication) GetHomePageUrl()(*string) {
     }
 }
 // GetImplicitGrantSettings gets the implicitGrantSettings property value. Specifies whether this web application can request tokens using the OAuth 2.0 implicit flow.
-func (m *WebApplication) GetImplicitGrantSettings()(PermissionGrantPoliciesable) {
+func (m *WebApplication) GetImplicitGrantSettings()(ImplicitGrantSettingsable) {
     if m == nil {
         return nil
     } else {
@@ -343,7 +224,7 @@ func (m *WebApplication) SetHomePageUrl(value *string)() {
     }
 }
 // SetImplicitGrantSettings sets the implicitGrantSettings property value. Specifies whether this web application can request tokens using the OAuth 2.0 implicit flow.
-func (m *WebApplication) SetImplicitGrantSettings(value PermissionGrantPoliciesable)() {
+func (m *WebApplication) SetImplicitGrantSettings(value ImplicitGrantSettingsable)() {
     if m != nil {
         m.implicitGrantSettings = value
     }

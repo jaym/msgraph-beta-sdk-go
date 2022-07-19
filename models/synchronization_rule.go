@@ -1,7 +1,6 @@
 package models
 
 import (
-    iff24d2e6d08fb0746d44d7db432a679464a6202041af277015d47f4a7c86632d "synchronizationrule"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -14,169 +13,17 @@ type SynchronizationRule struct {
     // Synchronization rule identifier. Must be one of the identifiers recognized by the synchronization engine. Supported rule identifiers can be found in the synchronization template returned by the API.
     id *string
     // Additional extension properties. Unless instructed explicitly by the support team, metadata values should not be changed.
-    metadata []RoleAssignmentsable
+    metadata []StringKeyStringValuePairable
     // Human-readable name of the synchronization rule. Not nullable.
     name *string
     // Collection of object mappings supported by the rule. Tells the synchronization engine which objects should be synchronized.
-    objectMappings []RoleAssignmentsable
+    objectMappings []ObjectMappingable
     // Priority relative to other rules in the synchronizationSchema. Rules with the lowest priority number will be processed first.
     priority *int32
     // Name of the source directory. Must match one of the directory definitions in synchronizationSchema.
     sourceDirectoryName *string
     // Name of the target directory. Must match one of the directory definitions in synchronizationSchema.
     targetDirectoryName *string
-}
-// RoleAssignments union type wrapper for classes stringKeyStringValuePair, roleAssignmentsMember1
-type RoleAssignments struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type objectMapping
-    objectMapping ObjectMappingable
-    // Union type representation for type roleAssignmentsMember1
-    roleAssignmentsMember1 RoleAssignmentsMember1able
-    // Union type representation for type stringKeyStringValuePair
-    stringKeyStringValuePair StringKeyStringValuePairable
-}
-// NewRoleAssignments instantiates a new roleAssignments and sets the default values.
-func NewRoleAssignments()(*RoleAssignments) {
-    m := &RoleAssignments{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateRoleAssignmentsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateRoleAssignmentsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewRoleAssignments(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleAssignments) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *RoleAssignments) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["objectMapping"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateObjectMappingFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetObjectMapping(val.(ObjectMappingable))
-        }
-        return nil
-    }
-    res["roleAssignmentsMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleAssignmentsMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRoleAssignmentsMember1(val.(RoleAssignmentsMember1able))
-        }
-        return nil
-    }
-    res["stringKeyStringValuePair"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateStringKeyStringValuePairFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStringKeyStringValuePair(val.(StringKeyStringValuePairable))
-        }
-        return nil
-    }
-    return res
-}
-// GetObjectMapping gets the objectMapping property value. Union type representation for type objectMapping
-func (m *RoleAssignments) GetObjectMapping()(ObjectMappingable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.objectMapping
-    }
-}
-// GetRoleAssignmentsMember1 gets the roleAssignmentsMember1 property value. Union type representation for type roleAssignmentsMember1
-func (m *RoleAssignments) GetRoleAssignmentsMember1()(RoleAssignmentsMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.roleAssignmentsMember1
-    }
-}
-// GetStringKeyStringValuePair gets the stringKeyStringValuePair property value. Union type representation for type stringKeyStringValuePair
-func (m *RoleAssignments) GetStringKeyStringValuePair()(StringKeyStringValuePairable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.stringKeyStringValuePair
-    }
-}
-// Serialize serializes information the current object
-func (m *RoleAssignments) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("objectMapping", m.GetObjectMapping())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("roleAssignmentsMember1", m.GetRoleAssignmentsMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("stringKeyStringValuePair", m.GetStringKeyStringValuePair())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleAssignments) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetObjectMapping sets the objectMapping property value. Union type representation for type objectMapping
-func (m *RoleAssignments) SetObjectMapping(value ObjectMappingable)() {
-    if m != nil {
-        m.objectMapping = value
-    }
-}
-// SetRoleAssignmentsMember1 sets the roleAssignmentsMember1 property value. Union type representation for type roleAssignmentsMember1
-func (m *RoleAssignments) SetRoleAssignmentsMember1(value RoleAssignmentsMember1able)() {
-    if m != nil {
-        m.roleAssignmentsMember1 = value
-    }
-}
-// SetStringKeyStringValuePair sets the stringKeyStringValuePair property value. Union type representation for type stringKeyStringValuePair
-func (m *RoleAssignments) SetStringKeyStringValuePair(value StringKeyStringValuePairable)() {
-    if m != nil {
-        m.stringKeyStringValuePair = value
-    }
-}
-// RoleAssignmentsable 
-type RoleAssignmentsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetObjectMapping()(ObjectMappingable)
-    GetRoleAssignmentsMember1()(RoleAssignmentsMember1able)
-    GetStringKeyStringValuePair()(StringKeyStringValuePairable)
-    SetObjectMapping(value ObjectMappingable)()
-    SetRoleAssignmentsMember1(value RoleAssignmentsMember1able)()
-    SetStringKeyStringValuePair(value StringKeyStringValuePairable)()
 }
 // NewSynchronizationRule instantiates a new synchronizationRule and sets the default values.
 func NewSynchronizationRule()(*SynchronizationRule) {
@@ -229,14 +76,14 @@ func (m *SynchronizationRule) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["metadata"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateRoleAssignmentsFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateStringKeyStringValuePairFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]RoleAssignmentsable, len(val))
+            res := make([]StringKeyStringValuePairable, len(val))
             for i, v := range val {
-                res[i] = v.(RoleAssignmentsable)
+                res[i] = v.(StringKeyStringValuePairable)
             }
             m.SetMetadata(res)
         }
@@ -253,14 +100,14 @@ func (m *SynchronizationRule) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["objectMappings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateRoleAssignmentsFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateObjectMappingFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]RoleAssignmentsable, len(val))
+            res := make([]ObjectMappingable, len(val))
             for i, v := range val {
-                res[i] = v.(RoleAssignmentsable)
+                res[i] = v.(ObjectMappingable)
             }
             m.SetObjectMappings(res)
         }
@@ -307,7 +154,7 @@ func (m *SynchronizationRule) GetId()(*string) {
     }
 }
 // GetMetadata gets the metadata property value. Additional extension properties. Unless instructed explicitly by the support team, metadata values should not be changed.
-func (m *SynchronizationRule) GetMetadata()([]RoleAssignmentsable) {
+func (m *SynchronizationRule) GetMetadata()([]StringKeyStringValuePairable) {
     if m == nil {
         return nil
     } else {
@@ -323,7 +170,7 @@ func (m *SynchronizationRule) GetName()(*string) {
     }
 }
 // GetObjectMappings gets the objectMappings property value. Collection of object mappings supported by the rule. Tells the synchronization engine which objects should be synchronized.
-func (m *SynchronizationRule) GetObjectMappings()([]RoleAssignmentsable) {
+func (m *SynchronizationRule) GetObjectMappings()([]ObjectMappingable) {
     if m == nil {
         return nil
     } else {
@@ -439,7 +286,7 @@ func (m *SynchronizationRule) SetId(value *string)() {
     }
 }
 // SetMetadata sets the metadata property value. Additional extension properties. Unless instructed explicitly by the support team, metadata values should not be changed.
-func (m *SynchronizationRule) SetMetadata(value []RoleAssignmentsable)() {
+func (m *SynchronizationRule) SetMetadata(value []StringKeyStringValuePairable)() {
     if m != nil {
         m.metadata = value
     }
@@ -451,7 +298,7 @@ func (m *SynchronizationRule) SetName(value *string)() {
     }
 }
 // SetObjectMappings sets the objectMappings property value. Collection of object mappings supported by the rule. Tells the synchronization engine which objects should be synchronized.
-func (m *SynchronizationRule) SetObjectMappings(value []RoleAssignmentsable)() {
+func (m *SynchronizationRule) SetObjectMappings(value []ObjectMappingable)() {
     if m != nil {
         m.objectMappings = value
     }

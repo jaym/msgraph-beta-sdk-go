@@ -1,7 +1,6 @@
 package models
 
 import (
-    iba5c7fc1153fd5a3d2c20314683593d0e0b82ece320ae1cdac0cf447f082116e "attributemapping"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -20,127 +19,9 @@ type AttributeMapping struct {
     // If higher than 0, this attribute will be used to perform an initial match of the objects between source and target directories. The synchronization engine will try to find the matching object using attribute with lowest value of matching priority first. If not found, the attribute with the next matching priority will be used, and so on a until match is found or no more matching attributes are left. Only attributes that are expected to have unique values, such as email, should be used as matching attributes.
     matchingPriority *int32
     // Defines how a value should be extracted (or transformed) from the source object.
-    source RoleAssignmentsable
+    source AttributeMappingSourceable
     // Name of the attribute on the target object.
     targetAttributeName *string
-}
-// RoleAssignments union type wrapper for classes attributeMappingSource, roleAssignmentsMember1
-type RoleAssignments struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type attributeMappingSource
-    attributeMappingSource AttributeMappingSourceable
-    // Union type representation for type roleAssignmentsMember1
-    roleAssignmentsMember1 RoleAssignmentsMember1able
-}
-// NewRoleAssignments instantiates a new roleAssignments and sets the default values.
-func NewRoleAssignments()(*RoleAssignments) {
-    m := &RoleAssignments{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateRoleAssignmentsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateRoleAssignmentsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewRoleAssignments(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleAssignments) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetAttributeMappingSource gets the attributeMappingSource property value. Union type representation for type attributeMappingSource
-func (m *RoleAssignments) GetAttributeMappingSource()(AttributeMappingSourceable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.attributeMappingSource
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *RoleAssignments) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["attributeMappingSource"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateAttributeMappingSourceFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAttributeMappingSource(val.(AttributeMappingSourceable))
-        }
-        return nil
-    }
-    res["roleAssignmentsMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleAssignmentsMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRoleAssignmentsMember1(val.(RoleAssignmentsMember1able))
-        }
-        return nil
-    }
-    return res
-}
-// GetRoleAssignmentsMember1 gets the roleAssignmentsMember1 property value. Union type representation for type roleAssignmentsMember1
-func (m *RoleAssignments) GetRoleAssignmentsMember1()(RoleAssignmentsMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.roleAssignmentsMember1
-    }
-}
-// Serialize serializes information the current object
-func (m *RoleAssignments) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("attributeMappingSource", m.GetAttributeMappingSource())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("roleAssignmentsMember1", m.GetRoleAssignmentsMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleAssignments) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetAttributeMappingSource sets the attributeMappingSource property value. Union type representation for type attributeMappingSource
-func (m *RoleAssignments) SetAttributeMappingSource(value AttributeMappingSourceable)() {
-    if m != nil {
-        m.attributeMappingSource = value
-    }
-}
-// SetRoleAssignmentsMember1 sets the roleAssignmentsMember1 property value. Union type representation for type roleAssignmentsMember1
-func (m *RoleAssignments) SetRoleAssignmentsMember1(value RoleAssignmentsMember1able)() {
-    if m != nil {
-        m.roleAssignmentsMember1 = value
-    }
-}
-// RoleAssignmentsable 
-type RoleAssignmentsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAttributeMappingSource()(AttributeMappingSourceable)
-    GetRoleAssignmentsMember1()(RoleAssignmentsMember1able)
-    SetAttributeMappingSource(value AttributeMappingSourceable)()
-    SetRoleAssignmentsMember1(value RoleAssignmentsMember1able)()
 }
 // NewAttributeMapping instantiates a new attributeMapping and sets the default values.
 func NewAttributeMapping()(*AttributeMapping) {
@@ -231,12 +112,12 @@ func (m *AttributeMapping) GetFieldDeserializers()(map[string]func(i878a80d2330e
         return nil
     }
     res["source"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleAssignmentsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateAttributeMappingSourceFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSource(val.(RoleAssignmentsable))
+            m.SetSource(val.(AttributeMappingSourceable))
         }
         return nil
     }
@@ -277,7 +158,7 @@ func (m *AttributeMapping) GetMatchingPriority()(*int32) {
     }
 }
 // GetSource gets the source property value. Defines how a value should be extracted (or transformed) from the source object.
-func (m *AttributeMapping) GetSource()(RoleAssignmentsable) {
+func (m *AttributeMapping) GetSource()(AttributeMappingSourceable) {
     if m == nil {
         return nil
     } else {
@@ -383,7 +264,7 @@ func (m *AttributeMapping) SetMatchingPriority(value *int32)() {
     }
 }
 // SetSource sets the source property value. Defines how a value should be extracted (or transformed) from the source object.
-func (m *AttributeMapping) SetSource(value RoleAssignmentsable)() {
+func (m *AttributeMapping) SetSource(value AttributeMappingSourceable)() {
     if m != nil {
         m.source = value
     }

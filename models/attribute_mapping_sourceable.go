@@ -10,10 +10,10 @@ type AttributeMappingSourceable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetExpression()(*string)
     GetName()(*string)
-    GetParameters()([]RoleAssignmentsable)
+    GetParameters()([]StringKeyAttributeMappingSourceValuePairable)
     GetType()(*AttributeMappingSourceType)
     SetExpression(value *string)()
     SetName(value *string)()
-    SetParameters(value []RoleAssignmentsable)()
+    SetParameters(value []StringKeyAttributeMappingSourceValuePairable)()
     SetType(value *AttributeMappingSourceType)()
 }

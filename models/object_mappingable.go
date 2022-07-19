@@ -8,20 +8,20 @@ import (
 type ObjectMappingable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAttributeMappings()([]RoleAssignmentsable)
+    GetAttributeMappings()([]AttributeMappingable)
     GetEnabled()(*bool)
     GetFlowTypes()(*ObjectFlowTypes)
-    GetMetadata()([]RoleAssignmentsable)
+    GetMetadata()([]MetadataEntryable)
     GetName()(*string)
-    GetScope()(RoleAssignmentsable)
+    GetScope()(Filterable)
     GetSourceObjectName()(*string)
     GetTargetObjectName()(*string)
-    SetAttributeMappings(value []RoleAssignmentsable)()
+    SetAttributeMappings(value []AttributeMappingable)()
     SetEnabled(value *bool)()
     SetFlowTypes(value *ObjectFlowTypes)()
-    SetMetadata(value []RoleAssignmentsable)()
+    SetMetadata(value []MetadataEntryable)()
     SetName(value *string)()
-    SetScope(value RoleAssignmentsable)()
+    SetScope(value Filterable)()
     SetSourceObjectName(value *string)()
     SetTargetObjectName(value *string)()
 }

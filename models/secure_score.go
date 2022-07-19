@@ -2,7 +2,6 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    if28b7c7fbe90206b93837a76712128e6b7972d3ae4bd2142ac85f7b7b892aff7 "securescore"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -12,11 +11,11 @@ type SecureScore struct {
     // Active user count of the given tenant.
     activeUserCount *int32
     // Average score by different scopes (for example, average by industry, average by seating) and control category (Identity, Data, Device, Apps, Infrastructure) within the scope.
-    averageComparativeScores []RoleDefinitionsable
+    averageComparativeScores []AverageComparativeScoreable
     // GUID string for tenant ID.
     azureTenantId *string
     // Contains tenant scores for a set of controls.
-    controlScores []RoleDefinitionsable
+    controlScores []ControlScoreable
     // The date when the entity is created.
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Tenant current attained score on specified date.
@@ -28,195 +27,9 @@ type SecureScore struct {
     // Tenant maximum possible score on specified date.
     maxScore *float64
     // Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.
-    vendorInformation RoleDefinitionsable
+    vendorInformation SecurityVendorInformationable
 }
-// RoleDefinitions union type wrapper for classes averageComparativeScore, roleDefinitionsMember1
-type RoleDefinitions struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type averageComparativeScore
-    averageComparativeScore AverageComparativeScoreable
-    // Union type representation for type controlScore
-    controlScore ControlScoreable
-    // Union type representation for type roleDefinitionsMember1
-    roleDefinitionsMember1 RoleDefinitionsMember1able
-    // Union type representation for type securityVendorInformation
-    securityVendorInformation SecurityVendorInformationable
-}
-// NewRoleDefinitions instantiates a new roleDefinitions and sets the default values.
-func NewRoleDefinitions()(*RoleDefinitions) {
-    m := &RoleDefinitions{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateRoleDefinitionsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateRoleDefinitionsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewRoleDefinitions(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleDefinitions) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetAverageComparativeScore gets the averageComparativeScore property value. Union type representation for type averageComparativeScore
-func (m *RoleDefinitions) GetAverageComparativeScore()(AverageComparativeScoreable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.averageComparativeScore
-    }
-}
-// GetControlScore gets the controlScore property value. Union type representation for type controlScore
-func (m *RoleDefinitions) GetControlScore()(ControlScoreable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.controlScore
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *RoleDefinitions) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["averageComparativeScore"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateAverageComparativeScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetAverageComparativeScore(val.(AverageComparativeScoreable))
-        }
-        return nil
-    }
-    res["controlScore"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateControlScoreFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetControlScore(val.(ControlScoreable))
-        }
-        return nil
-    }
-    res["roleDefinitionsMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleDefinitionsMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRoleDefinitionsMember1(val.(RoleDefinitionsMember1able))
-        }
-        return nil
-    }
-    res["securityVendorInformation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSecurityVendorInformationFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSecurityVendorInformation(val.(SecurityVendorInformationable))
-        }
-        return nil
-    }
-    return res
-}
-// GetRoleDefinitionsMember1 gets the roleDefinitionsMember1 property value. Union type representation for type roleDefinitionsMember1
-func (m *RoleDefinitions) GetRoleDefinitionsMember1()(RoleDefinitionsMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.roleDefinitionsMember1
-    }
-}
-// GetSecurityVendorInformation gets the securityVendorInformation property value. Union type representation for type securityVendorInformation
-func (m *RoleDefinitions) GetSecurityVendorInformation()(SecurityVendorInformationable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.securityVendorInformation
-    }
-}
-// Serialize serializes information the current object
-func (m *RoleDefinitions) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("averageComparativeScore", m.GetAverageComparativeScore())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("controlScore", m.GetControlScore())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("roleDefinitionsMember1", m.GetRoleDefinitionsMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("securityVendorInformation", m.GetSecurityVendorInformation())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleDefinitions) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetAverageComparativeScore sets the averageComparativeScore property value. Union type representation for type averageComparativeScore
-func (m *RoleDefinitions) SetAverageComparativeScore(value AverageComparativeScoreable)() {
-    if m != nil {
-        m.averageComparativeScore = value
-    }
-}
-// SetControlScore sets the controlScore property value. Union type representation for type controlScore
-func (m *RoleDefinitions) SetControlScore(value ControlScoreable)() {
-    if m != nil {
-        m.controlScore = value
-    }
-}
-// SetRoleDefinitionsMember1 sets the roleDefinitionsMember1 property value. Union type representation for type roleDefinitionsMember1
-func (m *RoleDefinitions) SetRoleDefinitionsMember1(value RoleDefinitionsMember1able)() {
-    if m != nil {
-        m.roleDefinitionsMember1 = value
-    }
-}
-// SetSecurityVendorInformation sets the securityVendorInformation property value. Union type representation for type securityVendorInformation
-func (m *RoleDefinitions) SetSecurityVendorInformation(value SecurityVendorInformationable)() {
-    if m != nil {
-        m.securityVendorInformation = value
-    }
-}
-// RoleDefinitionsable 
-type RoleDefinitionsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetAverageComparativeScore()(AverageComparativeScoreable)
-    GetControlScore()(ControlScoreable)
-    GetRoleDefinitionsMember1()(RoleDefinitionsMember1able)
-    GetSecurityVendorInformation()(SecurityVendorInformationable)
-    SetAverageComparativeScore(value AverageComparativeScoreable)()
-    SetControlScore(value ControlScoreable)()
-    SetRoleDefinitionsMember1(value RoleDefinitionsMember1able)()
-    SetSecurityVendorInformation(value SecurityVendorInformationable)()
-}
-// NewSecureScore instantiates a new SecureScore and sets the default values.
+// NewSecureScore instantiates a new secureScore and sets the default values.
 func NewSecureScore()(*SecureScore) {
     m := &SecureScore{
         Entity: *NewEntity(),
@@ -236,7 +49,7 @@ func (m *SecureScore) GetActiveUserCount()(*int32) {
     }
 }
 // GetAverageComparativeScores gets the averageComparativeScores property value. Average score by different scopes (for example, average by industry, average by seating) and control category (Identity, Data, Device, Apps, Infrastructure) within the scope.
-func (m *SecureScore) GetAverageComparativeScores()([]RoleDefinitionsable) {
+func (m *SecureScore) GetAverageComparativeScores()([]AverageComparativeScoreable) {
     if m == nil {
         return nil
     } else {
@@ -252,7 +65,7 @@ func (m *SecureScore) GetAzureTenantId()(*string) {
     }
 }
 // GetControlScores gets the controlScores property value. Contains tenant scores for a set of controls.
-func (m *SecureScore) GetControlScores()([]RoleDefinitionsable) {
+func (m *SecureScore) GetControlScores()([]ControlScoreable) {
     if m == nil {
         return nil
     } else {
@@ -297,14 +110,14 @@ func (m *SecureScore) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["averageComparativeScores"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateRoleDefinitionsFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateAverageComparativeScoreFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]RoleDefinitionsable, len(val))
+            res := make([]AverageComparativeScoreable, len(val))
             for i, v := range val {
-                res[i] = v.(RoleDefinitionsable)
+                res[i] = v.(AverageComparativeScoreable)
             }
             m.SetAverageComparativeScores(res)
         }
@@ -321,14 +134,14 @@ func (m *SecureScore) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["controlScores"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateRoleDefinitionsFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateControlScoreFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]RoleDefinitionsable, len(val))
+            res := make([]ControlScoreable, len(val))
             for i, v := range val {
-                res[i] = v.(RoleDefinitionsable)
+                res[i] = v.(ControlScoreable)
             }
             m.SetControlScores(res)
         }
@@ -389,12 +202,12 @@ func (m *SecureScore) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["vendorInformation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleDefinitionsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateSecurityVendorInformationFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetVendorInformation(val.(RoleDefinitionsable))
+            m.SetVendorInformation(val.(SecurityVendorInformationable))
         }
         return nil
     }
@@ -417,7 +230,7 @@ func (m *SecureScore) GetMaxScore()(*float64) {
     }
 }
 // GetVendorInformation gets the vendorInformation property value. Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.
-func (m *SecureScore) GetVendorInformation()(RoleDefinitionsable) {
+func (m *SecureScore) GetVendorInformation()(SecurityVendorInformationable) {
     if m == nil {
         return nil
     } else {
@@ -507,7 +320,7 @@ func (m *SecureScore) SetActiveUserCount(value *int32)() {
     }
 }
 // SetAverageComparativeScores sets the averageComparativeScores property value. Average score by different scopes (for example, average by industry, average by seating) and control category (Identity, Data, Device, Apps, Infrastructure) within the scope.
-func (m *SecureScore) SetAverageComparativeScores(value []RoleDefinitionsable)() {
+func (m *SecureScore) SetAverageComparativeScores(value []AverageComparativeScoreable)() {
     if m != nil {
         m.averageComparativeScores = value
     }
@@ -519,7 +332,7 @@ func (m *SecureScore) SetAzureTenantId(value *string)() {
     }
 }
 // SetControlScores sets the controlScores property value. Contains tenant scores for a set of controls.
-func (m *SecureScore) SetControlScores(value []RoleDefinitionsable)() {
+func (m *SecureScore) SetControlScores(value []ControlScoreable)() {
     if m != nil {
         m.controlScores = value
     }
@@ -555,7 +368,7 @@ func (m *SecureScore) SetMaxScore(value *float64)() {
     }
 }
 // SetVendorInformation sets the vendorInformation property value. Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.
-func (m *SecureScore) SetVendorInformation(value RoleDefinitionsable)() {
+func (m *SecureScore) SetVendorInformation(value SecurityVendorInformationable)() {
     if m != nil {
         m.vendorInformation = value
     }

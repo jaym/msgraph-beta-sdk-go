@@ -9,7 +9,7 @@ import (
 type Application struct {
     DirectoryObject
     // Specifies settings for an application that implements a web API.
-    api IdentitySecurityDefaultsEnforcementPolicyable
+    api ApiApplicationable
     // The unique identifier for the application that is assigned by Azure AD. Not nullable. Read-only.
     appId *string
     // The appManagementPolicy applied to this application.
@@ -17,13 +17,13 @@ type Application struct {
     // The collection of roles assigned to the application. With app role assignments, these roles can be assigned to users, groups, or service principals associated with other applications. Not nullable.
     appRoles []AppRoleable
     // Specifies the certification status of the application.
-    certification IdentitySecurityDefaultsEnforcementPolicyable
+    certification Certificationable
     // The connectorGroup the application is using with Azure AD Application Proxy. Nullable.
-    connectorGroup IdentitySecurityDefaultsEnforcementPolicyable
+    connectorGroup ConnectorGroupable
     // The date and time the application was registered. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.  Supports $filter (eq, ne, not, ge, le, in, and eq on null values) and $orderBy.
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The createdOnBehalfOf property
-    createdOnBehalfOf IdentitySecurityDefaultsEnforcementPolicyable
+    createdOnBehalfOf DirectoryObjectable
     // The default redirect URI. If specified and there is no explicit redirect URI in the sign-in request for SAML and OIDC flows, Azure AD sends the token to this redirect URI. Azure AD also sends the token to this default URI in SAML IdP-initiated single sign-on. The value must match one of the configured redirect URIs for the application.
     defaultRedirectUri *string
     // Free text field to provide a description of the application object to end users. The maximum allowed size is 1024 characters. Returned by default. Supports $filter (eq, ne, not, ge, le, startsWith) and $search.
@@ -43,7 +43,7 @@ type Application struct {
     // Also known as App ID URI, this value is set when an application is used as a resource app. The identifierUris acts as the prefix for the scopes you'll reference in your API's code, and it must be globally unique. You can use the default value provided, which is in the form api://<application-client-id>, or specify a more readable URI like https://contoso.com/api. For more information on valid identifierUris patterns and best practices, see Azure AD application registration security best practices. Not nullable. Supports $filter (eq, ne, ge, le, startsWith).
     identifierUris []string
     // Basic profile information of the application, such as it's marketing, support, terms of service, and privacy statement URLs. The terms of service and privacy statement are surfaced to users through the user consent experience. For more information, see How to: Add Terms of service and privacy statement for registered Azure AD apps. Supports $filter (eq, ne, not, ge, le, and eq on null values).
-    info IdentitySecurityDefaultsEnforcementPolicyable
+    info InformationalUrlable
     // Specifies whether this application supports device authentication without a user. The default is false.
     isDeviceOnlyAuthSupported *bool
     // Specifies the fallback application type as public client, such as an installed application running on a mobile device. The default value is false which means the fallback application type is confidential client such as a web app. There are certain scenarios where Azure AD cannot determine the client application type. For example, the ROPC flow where the application is configured without specifying a redirect URI. In those cases Azure AD interprets the application type based on the value of this property.
@@ -55,17 +55,17 @@ type Application struct {
     // Notes relevant for the management of the application.
     notes *string
     // Represents the set of properties required for configuring Application Proxy for this application. Configuring these properties allows you to publish your on-premises application for secure remote access.
-    onPremisesPublishing IdentitySecurityDefaultsEnforcementPolicyable
+    onPremisesPublishing OnPremisesPublishingable
     // Application developers can configure optional claims in their Azure AD applications to specify the claims that are sent to their application by the Microsoft security token service. For more information, see How to: Provide optional claims to your app.
-    optionalClaims IdentitySecurityDefaultsEnforcementPolicyable
+    optionalClaims OptionalClaimsable
     // Directory objects that are owners of the application. Read-only. Nullable. Supports $expand.
     owners []DirectoryObjectable
     // Specifies parental control settings for an application.
-    parentalControlSettings IdentitySecurityDefaultsEnforcementPolicyable
+    parentalControlSettings ParentalControlSettingsable
     // The collection of password credentials associated with the application. Not nullable.
     passwordCredentials []PasswordCredentialable
     // Specifies settings for installed clients such as desktop or mobile devices.
-    publicClient IdentitySecurityDefaultsEnforcementPolicyable
+    publicClient PublicClientApplicationable
     // The verified publisher domain for the application. Read-only. Supports $filter (eq, ne, ge, le, startsWith).
     publisherDomain *string
     // Specifies the resources that the application needs to access. This property also specifies the set of delegated permissions and application roles that it needs for each of those resources. This configuration of access to the required resources drives the consent experience. No more than 50 resource services (APIs) can be configured. Beginning mid-October 2021, the total number of required permissions must not exceed 400. Not nullable. Supports $filter (eq, not, ge, le).
@@ -77,9 +77,9 @@ type Application struct {
     // Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table below. Supports $filter (eq, ne, not).
     signInAudience *string
     // Specifies settings for a single-page application, including sign out URLs and redirect URIs for authorization codes and access tokens.
-    spa IdentitySecurityDefaultsEnforcementPolicyable
+    spa SpaApplicationable
     // The synchronization property
-    synchronization IdentitySecurityDefaultsEnforcementPolicyable
+    synchronization Synchronizationable
     // Custom strings that can be used to categorize and identify the application. Not nullable.Supports $filter (eq, not, ge, le, startsWith).
     tags []string
     // Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD encrypts all the tokens it emits by using the key this property points to. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
@@ -91,536 +91,11 @@ type Application struct {
     // The unique identifier that can be assigned to an application as an alternative identifier. Immutable. Read-only.
     uniqueName *string
     // Specifies the verified publisher of the application. For more information about how publisher verification helps support application security, trustworthiness, and compliance, see Publisher verification.
-    verifiedPublisher IdentitySecurityDefaultsEnforcementPolicyable
+    verifiedPublisher VerifiedPublisherable
     // Specifies settings for a web application.
-    web IdentitySecurityDefaultsEnforcementPolicyable
+    web WebApplicationable
     // Specifies settings for apps running Microsoft Windows and published in the Microsoft Store or Xbox games store.
-    windows IdentitySecurityDefaultsEnforcementPolicyable
-}
-// IdentitySecurityDefaultsEnforcementPolicy union type wrapper for classes certification, identitySecurityDefaultsEnforcementPolicyMember1
-type IdentitySecurityDefaultsEnforcementPolicy struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type apiApplication
-    apiApplication *ApiApplication
-    // Union type representation for type certification
-    certification *Certification
-    // Union type representation for type connectorGroup
-    connectorGroup *ConnectorGroup
-    // Union type representation for type directoryObject
-    directoryObject *DirectoryObject
-    // Union type representation for type identitySecurityDefaultsEnforcementPolicyMember1
-    identitySecurityDefaultsEnforcementPolicyMember1 *IdentitySecurityDefaultsEnforcementPolicyMember1
-    // Union type representation for type informationalUrl
-    informationalUrl *InformationalUrl
-    // Union type representation for type onPremisesPublishing
-    onPremisesPublishing *OnPremisesPublishing
-    // Union type representation for type optionalClaims
-    optionalClaims *OptionalClaims
-    // Union type representation for type parentalControlSettings
-    parentalControlSettings *ParentalControlSettings
-    // Union type representation for type publicClientApplication
-    publicClientApplication *PublicClientApplication
-    // Union type representation for type spaApplication
-    spaApplication *SpaApplication
-    // Union type representation for type synchronization
-    synchronization *Synchronization
-    // Union type representation for type verifiedPublisher
-    verifiedPublisher *VerifiedPublisher
-    // Union type representation for type webApplication
-    webApplication *WebApplication
-    // Union type representation for type windowsApplication
-    windowsApplication *WindowsApplication
-}
-// NewIdentitySecurityDefaultsEnforcementPolicy instantiates a new identitySecurityDefaultsEnforcementPolicy and sets the default values.
-func NewIdentitySecurityDefaultsEnforcementPolicy()(*IdentitySecurityDefaultsEnforcementPolicy) {
-    m := &IdentitySecurityDefaultsEnforcementPolicy{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewIdentitySecurityDefaultsEnforcementPolicy(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetApiApplication gets the apiApplication property value. Union type representation for type apiApplication
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetApiApplication()(*ApiApplication) {
-    if m == nil {
-        return nil
-    } else {
-        return m.apiApplication
-    }
-}
-// GetCertification gets the certification property value. Union type representation for type certification
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetCertification()(*Certification) {
-    if m == nil {
-        return nil
-    } else {
-        return m.certification
-    }
-}
-// GetConnectorGroup gets the connectorGroup property value. Union type representation for type connectorGroup
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetConnectorGroup()(*ConnectorGroup) {
-    if m == nil {
-        return nil
-    } else {
-        return m.connectorGroup
-    }
-}
-// GetDirectoryObject gets the directoryObject property value. Union type representation for type directoryObject
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetDirectoryObject()(*DirectoryObject) {
-    if m == nil {
-        return nil
-    } else {
-        return m.directoryObject
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["apiApplication"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateApiApplicationFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetApiApplication(val.(*ApiApplication))
-        }
-        return nil
-    }
-    res["certification"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateCertificationFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetCertification(val.(*Certification))
-        }
-        return nil
-    }
-    res["connectorGroup"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateConnectorGroupFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetConnectorGroup(val.(*ConnectorGroup))
-        }
-        return nil
-    }
-    res["directoryObject"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateDirectoryObjectFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetDirectoryObject(val.(*DirectoryObject))
-        }
-        return nil
-    }
-    res["identitySecurityDefaultsEnforcementPolicyMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetIdentitySecurityDefaultsEnforcementPolicyMember1(val.(*IdentitySecurityDefaultsEnforcementPolicyMember1))
-        }
-        return nil
-    }
-    res["informationalUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateInformationalUrlFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetInformationalUrl(val.(*InformationalUrl))
-        }
-        return nil
-    }
-    res["onPremisesPublishing"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateOnPremisesPublishingFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOnPremisesPublishing(val.(*OnPremisesPublishing))
-        }
-        return nil
-    }
-    res["optionalClaims"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateOptionalClaimsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetOptionalClaims(val.(*OptionalClaims))
-        }
-        return nil
-    }
-    res["parentalControlSettings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateParentalControlSettingsFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetParentalControlSettings(val.(*ParentalControlSettings))
-        }
-        return nil
-    }
-    res["publicClientApplication"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreatePublicClientApplicationFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetPublicClientApplication(val.(*PublicClientApplication))
-        }
-        return nil
-    }
-    res["spaApplication"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSpaApplicationFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSpaApplication(val.(*SpaApplication))
-        }
-        return nil
-    }
-    res["synchronization"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSynchronizationFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSynchronization(val.(*Synchronization))
-        }
-        return nil
-    }
-    res["verifiedPublisher"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateVerifiedPublisherFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetVerifiedPublisher(val.(*VerifiedPublisher))
-        }
-        return nil
-    }
-    res["webApplication"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateWebApplicationFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWebApplication(val.(*WebApplication))
-        }
-        return nil
-    }
-    res["windowsApplication"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateWindowsApplicationFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetWindowsApplication(val.(*WindowsApplication))
-        }
-        return nil
-    }
-    return res
-}
-// GetIdentitySecurityDefaultsEnforcementPolicyMember1 gets the identitySecurityDefaultsEnforcementPolicyMember1 property value. Union type representation for type identitySecurityDefaultsEnforcementPolicyMember1
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetIdentitySecurityDefaultsEnforcementPolicyMember1()(*IdentitySecurityDefaultsEnforcementPolicyMember1) {
-    if m == nil {
-        return nil
-    } else {
-        return m.identitySecurityDefaultsEnforcementPolicyMember1
-    }
-}
-// GetInformationalUrl gets the informationalUrl property value. Union type representation for type informationalUrl
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetInformationalUrl()(*InformationalUrl) {
-    if m == nil {
-        return nil
-    } else {
-        return m.informationalUrl
-    }
-}
-// GetOnPremisesPublishing gets the onPremisesPublishing property value. Union type representation for type onPremisesPublishing
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetOnPremisesPublishing()(*OnPremisesPublishing) {
-    if m == nil {
-        return nil
-    } else {
-        return m.onPremisesPublishing
-    }
-}
-// GetOptionalClaims gets the optionalClaims property value. Union type representation for type optionalClaims
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetOptionalClaims()(*OptionalClaims) {
-    if m == nil {
-        return nil
-    } else {
-        return m.optionalClaims
-    }
-}
-// GetParentalControlSettings gets the parentalControlSettings property value. Union type representation for type parentalControlSettings
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetParentalControlSettings()(*ParentalControlSettings) {
-    if m == nil {
-        return nil
-    } else {
-        return m.parentalControlSettings
-    }
-}
-// GetPublicClientApplication gets the publicClientApplication property value. Union type representation for type publicClientApplication
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetPublicClientApplication()(*PublicClientApplication) {
-    if m == nil {
-        return nil
-    } else {
-        return m.publicClientApplication
-    }
-}
-// GetSpaApplication gets the spaApplication property value. Union type representation for type spaApplication
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetSpaApplication()(*SpaApplication) {
-    if m == nil {
-        return nil
-    } else {
-        return m.spaApplication
-    }
-}
-// GetSynchronization gets the synchronization property value. Union type representation for type synchronization
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetSynchronization()(*Synchronization) {
-    if m == nil {
-        return nil
-    } else {
-        return m.synchronization
-    }
-}
-// GetVerifiedPublisher gets the verifiedPublisher property value. Union type representation for type verifiedPublisher
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetVerifiedPublisher()(*VerifiedPublisher) {
-    if m == nil {
-        return nil
-    } else {
-        return m.verifiedPublisher
-    }
-}
-// GetWebApplication gets the webApplication property value. Union type representation for type webApplication
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetWebApplication()(*WebApplication) {
-    if m == nil {
-        return nil
-    } else {
-        return m.webApplication
-    }
-}
-// GetWindowsApplication gets the windowsApplication property value. Union type representation for type windowsApplication
-func (m *IdentitySecurityDefaultsEnforcementPolicy) GetWindowsApplication()(*WindowsApplication) {
-    if m == nil {
-        return nil
-    } else {
-        return m.windowsApplication
-    }
-}
-// Serialize serializes information the current object
-func (m *IdentitySecurityDefaultsEnforcementPolicy) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("apiApplication", m.GetApiApplication())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("certification", m.GetCertification())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("connectorGroup", m.GetConnectorGroup())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("directoryObject", m.GetDirectoryObject())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("identitySecurityDefaultsEnforcementPolicyMember1", m.GetIdentitySecurityDefaultsEnforcementPolicyMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("informationalUrl", m.GetInformationalUrl())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("onPremisesPublishing", m.GetOnPremisesPublishing())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("optionalClaims", m.GetOptionalClaims())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("parentalControlSettings", m.GetParentalControlSettings())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("publicClientApplication", m.GetPublicClientApplication())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("spaApplication", m.GetSpaApplication())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("synchronization", m.GetSynchronization())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("verifiedPublisher", m.GetVerifiedPublisher())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("webApplication", m.GetWebApplication())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("windowsApplication", m.GetWindowsApplication())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetApiApplication sets the apiApplication property value. Union type representation for type apiApplication
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetApiApplication(value *ApiApplication)() {
-    if m != nil {
-        m.apiApplication = value
-    }
-}
-// SetCertification sets the certification property value. Union type representation for type certification
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetCertification(value *Certification)() {
-    if m != nil {
-        m.certification = value
-    }
-}
-// SetConnectorGroup sets the connectorGroup property value. Union type representation for type connectorGroup
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetConnectorGroup(value *ConnectorGroup)() {
-    if m != nil {
-        m.connectorGroup = value
-    }
-}
-// SetDirectoryObject sets the directoryObject property value. Union type representation for type directoryObject
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetDirectoryObject(value *DirectoryObject)() {
-    if m != nil {
-        m.directoryObject = value
-    }
-}
-// SetIdentitySecurityDefaultsEnforcementPolicyMember1 sets the identitySecurityDefaultsEnforcementPolicyMember1 property value. Union type representation for type identitySecurityDefaultsEnforcementPolicyMember1
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetIdentitySecurityDefaultsEnforcementPolicyMember1(value *IdentitySecurityDefaultsEnforcementPolicyMember1)() {
-    if m != nil {
-        m.identitySecurityDefaultsEnforcementPolicyMember1 = value
-    }
-}
-// SetInformationalUrl sets the informationalUrl property value. Union type representation for type informationalUrl
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetInformationalUrl(value *InformationalUrl)() {
-    if m != nil {
-        m.informationalUrl = value
-    }
-}
-// SetOnPremisesPublishing sets the onPremisesPublishing property value. Union type representation for type onPremisesPublishing
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetOnPremisesPublishing(value *OnPremisesPublishing)() {
-    if m != nil {
-        m.onPremisesPublishing = value
-    }
-}
-// SetOptionalClaims sets the optionalClaims property value. Union type representation for type optionalClaims
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetOptionalClaims(value *OptionalClaims)() {
-    if m != nil {
-        m.optionalClaims = value
-    }
-}
-// SetParentalControlSettings sets the parentalControlSettings property value. Union type representation for type parentalControlSettings
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetParentalControlSettings(value *ParentalControlSettings)() {
-    if m != nil {
-        m.parentalControlSettings = value
-    }
-}
-// SetPublicClientApplication sets the publicClientApplication property value. Union type representation for type publicClientApplication
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetPublicClientApplication(value *PublicClientApplication)() {
-    if m != nil {
-        m.publicClientApplication = value
-    }
-}
-// SetSpaApplication sets the spaApplication property value. Union type representation for type spaApplication
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetSpaApplication(value *SpaApplication)() {
-    if m != nil {
-        m.spaApplication = value
-    }
-}
-// SetSynchronization sets the synchronization property value. Union type representation for type synchronization
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetSynchronization(value *Synchronization)() {
-    if m != nil {
-        m.synchronization = value
-    }
-}
-// SetVerifiedPublisher sets the verifiedPublisher property value. Union type representation for type verifiedPublisher
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetVerifiedPublisher(value *VerifiedPublisher)() {
-    if m != nil {
-        m.verifiedPublisher = value
-    }
-}
-// SetWebApplication sets the webApplication property value. Union type representation for type webApplication
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetWebApplication(value *WebApplication)() {
-    if m != nil {
-        m.webApplication = value
-    }
-}
-// SetWindowsApplication sets the windowsApplication property value. Union type representation for type windowsApplication
-func (m *IdentitySecurityDefaultsEnforcementPolicy) SetWindowsApplication(value *WindowsApplication)() {
-    if m != nil {
-        m.windowsApplication = value
-    }
+    windows WindowsApplicationable
 }
 // NewApplication instantiates a new Application and sets the default values.
 func NewApplication()(*Application) {
@@ -634,7 +109,7 @@ func CreateApplicationFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
     return NewApplication(), nil
 }
 // GetApi gets the api property value. Specifies settings for an application that implements a web API.
-func (m *Application) GetApi()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetApi()(ApiApplicationable) {
     if m == nil {
         return nil
     } else {
@@ -666,7 +141,7 @@ func (m *Application) GetAppRoles()([]AppRoleable) {
     }
 }
 // GetCertification gets the certification property value. Specifies the certification status of the application.
-func (m *Application) GetCertification()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetCertification()(Certificationable) {
     if m == nil {
         return nil
     } else {
@@ -674,7 +149,7 @@ func (m *Application) GetCertification()(IdentitySecurityDefaultsEnforcementPoli
     }
 }
 // GetConnectorGroup gets the connectorGroup property value. The connectorGroup the application is using with Azure AD Application Proxy. Nullable.
-func (m *Application) GetConnectorGroup()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetConnectorGroup()(ConnectorGroupable) {
     if m == nil {
         return nil
     } else {
@@ -690,7 +165,7 @@ func (m *Application) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f
     }
 }
 // GetCreatedOnBehalfOf gets the createdOnBehalfOf property value. The createdOnBehalfOf property
-func (m *Application) GetCreatedOnBehalfOf()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetCreatedOnBehalfOf()(DirectoryObjectable) {
     if m == nil {
         return nil
     } else {
@@ -749,12 +224,12 @@ func (m *Application) GetFederatedIdentityCredentials()([]FederatedIdentityCrede
 func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.DirectoryObject.GetFieldDeserializers()
     res["api"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateApiApplicationFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetApi(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetApi(val.(ApiApplicationable))
         }
         return nil
     }
@@ -797,22 +272,22 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["certification"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateCertificationFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCertification(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetCertification(val.(Certificationable))
         }
         return nil
     }
     res["connectorGroup"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateConnectorGroupFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetConnectorGroup(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetConnectorGroup(val.(ConnectorGroupable))
         }
         return nil
     }
@@ -827,12 +302,12 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["createdOnBehalfOf"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateDirectoryObjectFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetCreatedOnBehalfOf(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetCreatedOnBehalfOf(val.(DirectoryObjectable))
         }
         return nil
     }
@@ -943,12 +418,12 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["info"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateInformationalUrlFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetInfo(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetInfo(val.(InformationalUrlable))
         }
         return nil
     }
@@ -1007,22 +482,22 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["onPremisesPublishing"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateOnPremisesPublishingFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetOnPremisesPublishing(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetOnPremisesPublishing(val.(OnPremisesPublishingable))
         }
         return nil
     }
     res["optionalClaims"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateOptionalClaimsFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetOptionalClaims(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetOptionalClaims(val.(OptionalClaimsable))
         }
         return nil
     }
@@ -1041,12 +516,12 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["parentalControlSettings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateParentalControlSettingsFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetParentalControlSettings(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetParentalControlSettings(val.(ParentalControlSettingsable))
         }
         return nil
     }
@@ -1065,12 +540,12 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["publicClient"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreatePublicClientApplicationFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetPublicClient(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetPublicClient(val.(PublicClientApplicationable))
         }
         return nil
     }
@@ -1129,22 +604,22 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["spa"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateSpaApplicationFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSpa(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetSpa(val.(SpaApplicationable))
         }
         return nil
     }
     res["synchronization"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateSynchronizationFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetSynchronization(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetSynchronization(val.(Synchronizationable))
         }
         return nil
     }
@@ -1211,32 +686,32 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         return nil
     }
     res["verifiedPublisher"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateVerifiedPublisherFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetVerifiedPublisher(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetVerifiedPublisher(val.(VerifiedPublisherable))
         }
         return nil
     }
     res["web"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateWebApplicationFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetWeb(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetWeb(val.(WebApplicationable))
         }
         return nil
     }
     res["windows"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateWindowsApplicationFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetWindows(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+            m.SetWindows(val.(WindowsApplicationable))
         }
         return nil
     }
@@ -1267,7 +742,7 @@ func (m *Application) GetIdentifierUris()([]string) {
     }
 }
 // GetInfo gets the info property value. Basic profile information of the application, such as it's marketing, support, terms of service, and privacy statement URLs. The terms of service and privacy statement are surfaced to users through the user consent experience. For more information, see How to: Add Terms of service and privacy statement for registered Azure AD apps. Supports $filter (eq, ne, not, ge, le, and eq on null values).
-func (m *Application) GetInfo()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetInfo()(InformationalUrlable) {
     if m == nil {
         return nil
     } else {
@@ -1315,7 +790,7 @@ func (m *Application) GetNotes()(*string) {
     }
 }
 // GetOnPremisesPublishing gets the onPremisesPublishing property value. Represents the set of properties required for configuring Application Proxy for this application. Configuring these properties allows you to publish your on-premises application for secure remote access.
-func (m *Application) GetOnPremisesPublishing()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetOnPremisesPublishing()(OnPremisesPublishingable) {
     if m == nil {
         return nil
     } else {
@@ -1323,7 +798,7 @@ func (m *Application) GetOnPremisesPublishing()(IdentitySecurityDefaultsEnforcem
     }
 }
 // GetOptionalClaims gets the optionalClaims property value. Application developers can configure optional claims in their Azure AD applications to specify the claims that are sent to their application by the Microsoft security token service. For more information, see How to: Provide optional claims to your app.
-func (m *Application) GetOptionalClaims()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetOptionalClaims()(OptionalClaimsable) {
     if m == nil {
         return nil
     } else {
@@ -1339,7 +814,7 @@ func (m *Application) GetOwners()([]DirectoryObjectable) {
     }
 }
 // GetParentalControlSettings gets the parentalControlSettings property value. Specifies parental control settings for an application.
-func (m *Application) GetParentalControlSettings()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetParentalControlSettings()(ParentalControlSettingsable) {
     if m == nil {
         return nil
     } else {
@@ -1355,7 +830,7 @@ func (m *Application) GetPasswordCredentials()([]PasswordCredentialable) {
     }
 }
 // GetPublicClient gets the publicClient property value. Specifies settings for installed clients such as desktop or mobile devices.
-func (m *Application) GetPublicClient()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetPublicClient()(PublicClientApplicationable) {
     if m == nil {
         return nil
     } else {
@@ -1403,7 +878,7 @@ func (m *Application) GetSignInAudience()(*string) {
     }
 }
 // GetSpa gets the spa property value. Specifies settings for a single-page application, including sign out URLs and redirect URIs for authorization codes and access tokens.
-func (m *Application) GetSpa()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetSpa()(SpaApplicationable) {
     if m == nil {
         return nil
     } else {
@@ -1411,7 +886,7 @@ func (m *Application) GetSpa()(IdentitySecurityDefaultsEnforcementPolicyable) {
     }
 }
 // GetSynchronization gets the synchronization property value. The synchronization property
-func (m *Application) GetSynchronization()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetSynchronization()(Synchronizationable) {
     if m == nil {
         return nil
     } else {
@@ -1459,7 +934,7 @@ func (m *Application) GetUniqueName()(*string) {
     }
 }
 // GetVerifiedPublisher gets the verifiedPublisher property value. Specifies the verified publisher of the application. For more information about how publisher verification helps support application security, trustworthiness, and compliance, see Publisher verification.
-func (m *Application) GetVerifiedPublisher()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetVerifiedPublisher()(VerifiedPublisherable) {
     if m == nil {
         return nil
     } else {
@@ -1467,7 +942,7 @@ func (m *Application) GetVerifiedPublisher()(IdentitySecurityDefaultsEnforcement
     }
 }
 // GetWeb gets the web property value. Specifies settings for a web application.
-func (m *Application) GetWeb()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetWeb()(WebApplicationable) {
     if m == nil {
         return nil
     } else {
@@ -1475,7 +950,7 @@ func (m *Application) GetWeb()(IdentitySecurityDefaultsEnforcementPolicyable) {
     }
 }
 // GetWindows gets the windows property value. Specifies settings for apps running Microsoft Windows and published in the Microsoft Store or Xbox games store.
-func (m *Application) GetWindows()(IdentitySecurityDefaultsEnforcementPolicyable) {
+func (m *Application) GetWindows()(WindowsApplicationable) {
     if m == nil {
         return nil
     } else {
@@ -1799,7 +1274,7 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     return nil
 }
 // SetApi sets the api property value. Specifies settings for an application that implements a web API.
-func (m *Application) SetApi(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetApi(value ApiApplicationable)() {
     if m != nil {
         m.api = value
     }
@@ -1823,13 +1298,13 @@ func (m *Application) SetAppRoles(value []AppRoleable)() {
     }
 }
 // SetCertification sets the certification property value. Specifies the certification status of the application.
-func (m *Application) SetCertification(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetCertification(value Certificationable)() {
     if m != nil {
         m.certification = value
     }
 }
 // SetConnectorGroup sets the connectorGroup property value. The connectorGroup the application is using with Azure AD Application Proxy. Nullable.
-func (m *Application) SetConnectorGroup(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetConnectorGroup(value ConnectorGroupable)() {
     if m != nil {
         m.connectorGroup = value
     }
@@ -1841,7 +1316,7 @@ func (m *Application) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a
     }
 }
 // SetCreatedOnBehalfOf sets the createdOnBehalfOf property value. The createdOnBehalfOf property
-func (m *Application) SetCreatedOnBehalfOf(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetCreatedOnBehalfOf(value DirectoryObjectable)() {
     if m != nil {
         m.createdOnBehalfOf = value
     }
@@ -1901,7 +1376,7 @@ func (m *Application) SetIdentifierUris(value []string)() {
     }
 }
 // SetInfo sets the info property value. Basic profile information of the application, such as it's marketing, support, terms of service, and privacy statement URLs. The terms of service and privacy statement are surfaced to users through the user consent experience. For more information, see How to: Add Terms of service and privacy statement for registered Azure AD apps. Supports $filter (eq, ne, not, ge, le, and eq on null values).
-func (m *Application) SetInfo(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetInfo(value InformationalUrlable)() {
     if m != nil {
         m.info = value
     }
@@ -1937,13 +1412,13 @@ func (m *Application) SetNotes(value *string)() {
     }
 }
 // SetOnPremisesPublishing sets the onPremisesPublishing property value. Represents the set of properties required for configuring Application Proxy for this application. Configuring these properties allows you to publish your on-premises application for secure remote access.
-func (m *Application) SetOnPremisesPublishing(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetOnPremisesPublishing(value OnPremisesPublishingable)() {
     if m != nil {
         m.onPremisesPublishing = value
     }
 }
 // SetOptionalClaims sets the optionalClaims property value. Application developers can configure optional claims in their Azure AD applications to specify the claims that are sent to their application by the Microsoft security token service. For more information, see How to: Provide optional claims to your app.
-func (m *Application) SetOptionalClaims(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetOptionalClaims(value OptionalClaimsable)() {
     if m != nil {
         m.optionalClaims = value
     }
@@ -1955,7 +1430,7 @@ func (m *Application) SetOwners(value []DirectoryObjectable)() {
     }
 }
 // SetParentalControlSettings sets the parentalControlSettings property value. Specifies parental control settings for an application.
-func (m *Application) SetParentalControlSettings(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetParentalControlSettings(value ParentalControlSettingsable)() {
     if m != nil {
         m.parentalControlSettings = value
     }
@@ -1967,7 +1442,7 @@ func (m *Application) SetPasswordCredentials(value []PasswordCredentialable)() {
     }
 }
 // SetPublicClient sets the publicClient property value. Specifies settings for installed clients such as desktop or mobile devices.
-func (m *Application) SetPublicClient(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetPublicClient(value PublicClientApplicationable)() {
     if m != nil {
         m.publicClient = value
     }
@@ -2003,13 +1478,13 @@ func (m *Application) SetSignInAudience(value *string)() {
     }
 }
 // SetSpa sets the spa property value. Specifies settings for a single-page application, including sign out URLs and redirect URIs for authorization codes and access tokens.
-func (m *Application) SetSpa(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetSpa(value SpaApplicationable)() {
     if m != nil {
         m.spa = value
     }
 }
 // SetSynchronization sets the synchronization property value. The synchronization property
-func (m *Application) SetSynchronization(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetSynchronization(value Synchronizationable)() {
     if m != nil {
         m.synchronization = value
     }
@@ -2045,19 +1520,19 @@ func (m *Application) SetUniqueName(value *string)() {
     }
 }
 // SetVerifiedPublisher sets the verifiedPublisher property value. Specifies the verified publisher of the application. For more information about how publisher verification helps support application security, trustworthiness, and compliance, see Publisher verification.
-func (m *Application) SetVerifiedPublisher(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetVerifiedPublisher(value VerifiedPublisherable)() {
     if m != nil {
         m.verifiedPublisher = value
     }
 }
 // SetWeb sets the web property value. Specifies settings for a web application.
-func (m *Application) SetWeb(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetWeb(value WebApplicationable)() {
     if m != nil {
         m.web = value
     }
 }
 // SetWindows sets the windows property value. Specifies settings for apps running Microsoft Windows and published in the Microsoft Store or Xbox games store.
-func (m *Application) SetWindows(value IdentitySecurityDefaultsEnforcementPolicyable)() {
+func (m *Application) SetWindows(value WindowsApplicationable)() {
     if m != nil {
         m.windows = value
     }

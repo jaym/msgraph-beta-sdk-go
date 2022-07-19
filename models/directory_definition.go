@@ -1,7 +1,6 @@
 package models
 
 import (
-    i1cb342a555ce84307e361151fb7065a03742d88d55275c9e8e21d5fd02d105e2 "directorydefinition"
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
@@ -16,131 +15,13 @@ type DirectoryDefinition struct {
     // Name of the directory. Must be unique within the synchronization schema. Not nullable.
     name *string
     // Collection of objects supported by the directory.
-    objects []SecureScoresable
+    objects []ObjectDefinitionable
     // The readOnly property
     readOnly *bool
     // Read only value that indicates version discovered. null if discovery has not yet occurred.
     version *string
 }
-// SecureScores union type wrapper for classes objectDefinition, secureScoresMember1
-type SecureScores struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type objectDefinition
-    objectDefinition ObjectDefinitionable
-    // Union type representation for type secureScoresMember1
-    secureScoresMember1 SecureScoresMember1able
-}
-// NewSecureScores instantiates a new secureScores and sets the default values.
-func NewSecureScores()(*SecureScores) {
-    m := &SecureScores{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateSecureScoresFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateSecureScoresFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewSecureScores(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SecureScores) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *SecureScores) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["objectDefinition"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateObjectDefinitionFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetObjectDefinition(val.(ObjectDefinitionable))
-        }
-        return nil
-    }
-    res["secureScoresMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSecureScoresMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSecureScoresMember1(val.(SecureScoresMember1able))
-        }
-        return nil
-    }
-    return res
-}
-// GetObjectDefinition gets the objectDefinition property value. Union type representation for type objectDefinition
-func (m *SecureScores) GetObjectDefinition()(ObjectDefinitionable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.objectDefinition
-    }
-}
-// GetSecureScoresMember1 gets the secureScoresMember1 property value. Union type representation for type secureScoresMember1
-func (m *SecureScores) GetSecureScoresMember1()(SecureScoresMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.secureScoresMember1
-    }
-}
-// Serialize serializes information the current object
-func (m *SecureScores) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("objectDefinition", m.GetObjectDefinition())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("secureScoresMember1", m.GetSecureScoresMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SecureScores) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetObjectDefinition sets the objectDefinition property value. Union type representation for type objectDefinition
-func (m *SecureScores) SetObjectDefinition(value ObjectDefinitionable)() {
-    if m != nil {
-        m.objectDefinition = value
-    }
-}
-// SetSecureScoresMember1 sets the secureScoresMember1 property value. Union type representation for type secureScoresMember1
-func (m *SecureScores) SetSecureScoresMember1(value SecureScoresMember1able)() {
-    if m != nil {
-        m.secureScoresMember1 = value
-    }
-}
-// SecureScoresable 
-type SecureScoresable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetObjectDefinition()(ObjectDefinitionable)
-    GetSecureScoresMember1()(SecureScoresMember1able)
-    SetObjectDefinition(value ObjectDefinitionable)()
-    SetSecureScoresMember1(value SecureScoresMember1able)()
-}
-// NewDirectoryDefinition instantiates a new DirectoryDefinition and sets the default values.
+// NewDirectoryDefinition instantiates a new directoryDefinition and sets the default values.
 func NewDirectoryDefinition()(*DirectoryDefinition) {
     m := &DirectoryDefinition{
         Entity: *NewEntity(),
@@ -201,14 +82,14 @@ func (m *DirectoryDefinition) GetFieldDeserializers()(map[string]func(i878a80d23
         return nil
     }
     res["objects"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateSecureScoresFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateObjectDefinitionFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]SecureScoresable, len(val))
+            res := make([]ObjectDefinitionable, len(val))
             for i, v := range val {
-                res[i] = v.(SecureScoresable)
+                res[i] = v.(ObjectDefinitionable)
             }
             m.SetObjects(res)
         }
@@ -245,7 +126,7 @@ func (m *DirectoryDefinition) GetName()(*string) {
     }
 }
 // GetObjects gets the objects property value. Collection of objects supported by the directory.
-func (m *DirectoryDefinition) GetObjects()([]SecureScoresable) {
+func (m *DirectoryDefinition) GetObjects()([]ObjectDefinitionable) {
     if m == nil {
         return nil
     } else {
@@ -336,7 +217,7 @@ func (m *DirectoryDefinition) SetName(value *string)() {
     }
 }
 // SetObjects sets the objects property value. Collection of objects supported by the directory.
-func (m *DirectoryDefinition) SetObjects(value []SecureScoresable)() {
+func (m *DirectoryDefinition) SetObjects(value []ObjectDefinitionable)() {
     if m != nil {
         m.objects = value
     }

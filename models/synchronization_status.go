@@ -2,7 +2,6 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    ib1755bf45aac675d3331dd21be8b6908c7df8eb8b5db77bcf4f8490b471220d4 "synchronizationstatus"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -17,243 +16,23 @@ type SynchronizationStatus struct {
     // true if the job's escrows (object-level errors) were pruned during initial synchronization. Escrows can be pruned if during the initial synchronization, you reach the threshold of errors that would normally put the job in quarantine. Instead of going into quarantine, the synchronization process clears the job's errors and continues until the initial synchronization is completed. When the initial synchronization is completed, the job will pause and wait for the customer to clean up the errors.
     escrowsPruned *bool
     // Details of the last execution of the job.
-    lastExecution RoleAssignmentsable
+    lastExecution SynchronizationTaskExecutionable
     // Details of the last execution of this job, which didn't have any errors.
-    lastSuccessfulExecution RoleAssignmentsable
+    lastSuccessfulExecution SynchronizationTaskExecutionable
     // Details of the last execution of the job, which exported objects into the target directory.
-    lastSuccessfulExecutionWithExports RoleAssignmentsable
+    lastSuccessfulExecutionWithExports SynchronizationTaskExecutionable
     // Details of the progress of a job toward completion.
-    progress []RoleAssignmentsable
+    progress []SynchronizationProgressable
     // If job is in quarantine, quarantine details.
-    quarantine RoleAssignmentsable
+    quarantine SynchronizationQuarantineable
     // The time when steady state (no more changes to the process) was first achieved. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     steadyStateFirstAchievedTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The time when steady state (no more changes to the process) was last achieved. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     steadyStateLastAchievedTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Count of synchronized objects, listed by object type.
-    synchronizedEntryCountByType []RoleAssignmentsable
+    synchronizedEntryCountByType []StringKeyLongValuePairable
     // In the event of an error, the URL with the troubleshooting steps for the issue.
     troubleshootingUrl *string
-}
-// RoleAssignments union type wrapper for classes synchronizationTaskExecution, roleAssignmentsMember1
-type RoleAssignments struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type roleAssignmentsMember1
-    roleAssignmentsMember1 RoleAssignmentsMember1able
-    // Union type representation for type stringKeyLongValuePair
-    stringKeyLongValuePair StringKeyLongValuePairable
-    // Union type representation for type synchronizationProgress
-    synchronizationProgress SynchronizationProgressable
-    // Union type representation for type synchronizationQuarantine
-    synchronizationQuarantine SynchronizationQuarantineable
-    // Union type representation for type synchronizationTaskExecution
-    synchronizationTaskExecution SynchronizationTaskExecutionable
-}
-// NewRoleAssignments instantiates a new roleAssignments and sets the default values.
-func NewRoleAssignments()(*RoleAssignments) {
-    m := &RoleAssignments{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateRoleAssignmentsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateRoleAssignmentsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewRoleAssignments(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleAssignments) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *RoleAssignments) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["roleAssignmentsMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleAssignmentsMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRoleAssignmentsMember1(val.(RoleAssignmentsMember1able))
-        }
-        return nil
-    }
-    res["stringKeyLongValuePair"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateStringKeyLongValuePairFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetStringKeyLongValuePair(val.(StringKeyLongValuePairable))
-        }
-        return nil
-    }
-    res["synchronizationProgress"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSynchronizationProgressFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSynchronizationProgress(val.(SynchronizationProgressable))
-        }
-        return nil
-    }
-    res["synchronizationQuarantine"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSynchronizationQuarantineFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSynchronizationQuarantine(val.(SynchronizationQuarantineable))
-        }
-        return nil
-    }
-    res["synchronizationTaskExecution"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSynchronizationTaskExecutionFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSynchronizationTaskExecution(val.(SynchronizationTaskExecutionable))
-        }
-        return nil
-    }
-    return res
-}
-// GetRoleAssignmentsMember1 gets the roleAssignmentsMember1 property value. Union type representation for type roleAssignmentsMember1
-func (m *RoleAssignments) GetRoleAssignmentsMember1()(RoleAssignmentsMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.roleAssignmentsMember1
-    }
-}
-// GetStringKeyLongValuePair gets the stringKeyLongValuePair property value. Union type representation for type stringKeyLongValuePair
-func (m *RoleAssignments) GetStringKeyLongValuePair()(StringKeyLongValuePairable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.stringKeyLongValuePair
-    }
-}
-// GetSynchronizationProgress gets the synchronizationProgress property value. Union type representation for type synchronizationProgress
-func (m *RoleAssignments) GetSynchronizationProgress()(SynchronizationProgressable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.synchronizationProgress
-    }
-}
-// GetSynchronizationQuarantine gets the synchronizationQuarantine property value. Union type representation for type synchronizationQuarantine
-func (m *RoleAssignments) GetSynchronizationQuarantine()(SynchronizationQuarantineable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.synchronizationQuarantine
-    }
-}
-// GetSynchronizationTaskExecution gets the synchronizationTaskExecution property value. Union type representation for type synchronizationTaskExecution
-func (m *RoleAssignments) GetSynchronizationTaskExecution()(SynchronizationTaskExecutionable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.synchronizationTaskExecution
-    }
-}
-// Serialize serializes information the current object
-func (m *RoleAssignments) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("roleAssignmentsMember1", m.GetRoleAssignmentsMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("stringKeyLongValuePair", m.GetStringKeyLongValuePair())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("synchronizationProgress", m.GetSynchronizationProgress())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("synchronizationQuarantine", m.GetSynchronizationQuarantine())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("synchronizationTaskExecution", m.GetSynchronizationTaskExecution())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleAssignments) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetRoleAssignmentsMember1 sets the roleAssignmentsMember1 property value. Union type representation for type roleAssignmentsMember1
-func (m *RoleAssignments) SetRoleAssignmentsMember1(value RoleAssignmentsMember1able)() {
-    if m != nil {
-        m.roleAssignmentsMember1 = value
-    }
-}
-// SetStringKeyLongValuePair sets the stringKeyLongValuePair property value. Union type representation for type stringKeyLongValuePair
-func (m *RoleAssignments) SetStringKeyLongValuePair(value StringKeyLongValuePairable)() {
-    if m != nil {
-        m.stringKeyLongValuePair = value
-    }
-}
-// SetSynchronizationProgress sets the synchronizationProgress property value. Union type representation for type synchronizationProgress
-func (m *RoleAssignments) SetSynchronizationProgress(value SynchronizationProgressable)() {
-    if m != nil {
-        m.synchronizationProgress = value
-    }
-}
-// SetSynchronizationQuarantine sets the synchronizationQuarantine property value. Union type representation for type synchronizationQuarantine
-func (m *RoleAssignments) SetSynchronizationQuarantine(value SynchronizationQuarantineable)() {
-    if m != nil {
-        m.synchronizationQuarantine = value
-    }
-}
-// SetSynchronizationTaskExecution sets the synchronizationTaskExecution property value. Union type representation for type synchronizationTaskExecution
-func (m *RoleAssignments) SetSynchronizationTaskExecution(value SynchronizationTaskExecutionable)() {
-    if m != nil {
-        m.synchronizationTaskExecution = value
-    }
-}
-// RoleAssignmentsable 
-type RoleAssignmentsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetRoleAssignmentsMember1()(RoleAssignmentsMember1able)
-    GetStringKeyLongValuePair()(StringKeyLongValuePairable)
-    GetSynchronizationProgress()(SynchronizationProgressable)
-    GetSynchronizationQuarantine()(SynchronizationQuarantineable)
-    GetSynchronizationTaskExecution()(SynchronizationTaskExecutionable)
-    SetRoleAssignmentsMember1(value RoleAssignmentsMember1able)()
-    SetStringKeyLongValuePair(value StringKeyLongValuePairable)()
-    SetSynchronizationProgress(value SynchronizationProgressable)()
-    SetSynchronizationQuarantine(value SynchronizationQuarantineable)()
-    SetSynchronizationTaskExecution(value SynchronizationTaskExecutionable)()
 }
 // NewSynchronizationStatus instantiates a new synchronizationStatus and sets the default values.
 func NewSynchronizationStatus()(*SynchronizationStatus) {
@@ -332,56 +111,56 @@ func (m *SynchronizationStatus) GetFieldDeserializers()(map[string]func(i878a80d
         return nil
     }
     res["lastExecution"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleAssignmentsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateSynchronizationTaskExecutionFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetLastExecution(val.(RoleAssignmentsable))
+            m.SetLastExecution(val.(SynchronizationTaskExecutionable))
         }
         return nil
     }
     res["lastSuccessfulExecution"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleAssignmentsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateSynchronizationTaskExecutionFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetLastSuccessfulExecution(val.(RoleAssignmentsable))
+            m.SetLastSuccessfulExecution(val.(SynchronizationTaskExecutionable))
         }
         return nil
     }
     res["lastSuccessfulExecutionWithExports"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleAssignmentsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateSynchronizationTaskExecutionFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetLastSuccessfulExecutionWithExports(val.(RoleAssignmentsable))
+            m.SetLastSuccessfulExecutionWithExports(val.(SynchronizationTaskExecutionable))
         }
         return nil
     }
     res["progress"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateRoleAssignmentsFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateSynchronizationProgressFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]RoleAssignmentsable, len(val))
+            res := make([]SynchronizationProgressable, len(val))
             for i, v := range val {
-                res[i] = v.(RoleAssignmentsable)
+                res[i] = v.(SynchronizationProgressable)
             }
             m.SetProgress(res)
         }
         return nil
     }
     res["quarantine"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleAssignmentsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateSynchronizationQuarantineFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetQuarantine(val.(RoleAssignmentsable))
+            m.SetQuarantine(val.(SynchronizationQuarantineable))
         }
         return nil
     }
@@ -406,14 +185,14 @@ func (m *SynchronizationStatus) GetFieldDeserializers()(map[string]func(i878a80d
         return nil
     }
     res["synchronizedEntryCountByType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(CreateRoleAssignmentsFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(CreateStringKeyLongValuePairFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]RoleAssignmentsable, len(val))
+            res := make([]StringKeyLongValuePairable, len(val))
             for i, v := range val {
-                res[i] = v.(RoleAssignmentsable)
+                res[i] = v.(StringKeyLongValuePairable)
             }
             m.SetSynchronizedEntryCountByType(res)
         }
@@ -432,7 +211,7 @@ func (m *SynchronizationStatus) GetFieldDeserializers()(map[string]func(i878a80d
     return res
 }
 // GetLastExecution gets the lastExecution property value. Details of the last execution of the job.
-func (m *SynchronizationStatus) GetLastExecution()(RoleAssignmentsable) {
+func (m *SynchronizationStatus) GetLastExecution()(SynchronizationTaskExecutionable) {
     if m == nil {
         return nil
     } else {
@@ -440,7 +219,7 @@ func (m *SynchronizationStatus) GetLastExecution()(RoleAssignmentsable) {
     }
 }
 // GetLastSuccessfulExecution gets the lastSuccessfulExecution property value. Details of the last execution of this job, which didn't have any errors.
-func (m *SynchronizationStatus) GetLastSuccessfulExecution()(RoleAssignmentsable) {
+func (m *SynchronizationStatus) GetLastSuccessfulExecution()(SynchronizationTaskExecutionable) {
     if m == nil {
         return nil
     } else {
@@ -448,7 +227,7 @@ func (m *SynchronizationStatus) GetLastSuccessfulExecution()(RoleAssignmentsable
     }
 }
 // GetLastSuccessfulExecutionWithExports gets the lastSuccessfulExecutionWithExports property value. Details of the last execution of the job, which exported objects into the target directory.
-func (m *SynchronizationStatus) GetLastSuccessfulExecutionWithExports()(RoleAssignmentsable) {
+func (m *SynchronizationStatus) GetLastSuccessfulExecutionWithExports()(SynchronizationTaskExecutionable) {
     if m == nil {
         return nil
     } else {
@@ -456,7 +235,7 @@ func (m *SynchronizationStatus) GetLastSuccessfulExecutionWithExports()(RoleAssi
     }
 }
 // GetProgress gets the progress property value. Details of the progress of a job toward completion.
-func (m *SynchronizationStatus) GetProgress()([]RoleAssignmentsable) {
+func (m *SynchronizationStatus) GetProgress()([]SynchronizationProgressable) {
     if m == nil {
         return nil
     } else {
@@ -464,7 +243,7 @@ func (m *SynchronizationStatus) GetProgress()([]RoleAssignmentsable) {
     }
 }
 // GetQuarantine gets the quarantine property value. If job is in quarantine, quarantine details.
-func (m *SynchronizationStatus) GetQuarantine()(RoleAssignmentsable) {
+func (m *SynchronizationStatus) GetQuarantine()(SynchronizationQuarantineable) {
     if m == nil {
         return nil
     } else {
@@ -488,7 +267,7 @@ func (m *SynchronizationStatus) GetSteadyStateLastAchievedTime()(*i336074805fc85
     }
 }
 // GetSynchronizedEntryCountByType gets the synchronizedEntryCountByType property value. Count of synchronized objects, listed by object type.
-func (m *SynchronizationStatus) GetSynchronizedEntryCountByType()([]RoleAssignmentsable) {
+func (m *SynchronizationStatus) GetSynchronizedEntryCountByType()([]StringKeyLongValuePairable) {
     if m == nil {
         return nil
     } else {
@@ -619,31 +398,31 @@ func (m *SynchronizationStatus) SetEscrowsPruned(value *bool)() {
     }
 }
 // SetLastExecution sets the lastExecution property value. Details of the last execution of the job.
-func (m *SynchronizationStatus) SetLastExecution(value RoleAssignmentsable)() {
+func (m *SynchronizationStatus) SetLastExecution(value SynchronizationTaskExecutionable)() {
     if m != nil {
         m.lastExecution = value
     }
 }
 // SetLastSuccessfulExecution sets the lastSuccessfulExecution property value. Details of the last execution of this job, which didn't have any errors.
-func (m *SynchronizationStatus) SetLastSuccessfulExecution(value RoleAssignmentsable)() {
+func (m *SynchronizationStatus) SetLastSuccessfulExecution(value SynchronizationTaskExecutionable)() {
     if m != nil {
         m.lastSuccessfulExecution = value
     }
 }
 // SetLastSuccessfulExecutionWithExports sets the lastSuccessfulExecutionWithExports property value. Details of the last execution of the job, which exported objects into the target directory.
-func (m *SynchronizationStatus) SetLastSuccessfulExecutionWithExports(value RoleAssignmentsable)() {
+func (m *SynchronizationStatus) SetLastSuccessfulExecutionWithExports(value SynchronizationTaskExecutionable)() {
     if m != nil {
         m.lastSuccessfulExecutionWithExports = value
     }
 }
 // SetProgress sets the progress property value. Details of the progress of a job toward completion.
-func (m *SynchronizationStatus) SetProgress(value []RoleAssignmentsable)() {
+func (m *SynchronizationStatus) SetProgress(value []SynchronizationProgressable)() {
     if m != nil {
         m.progress = value
     }
 }
 // SetQuarantine sets the quarantine property value. If job is in quarantine, quarantine details.
-func (m *SynchronizationStatus) SetQuarantine(value RoleAssignmentsable)() {
+func (m *SynchronizationStatus) SetQuarantine(value SynchronizationQuarantineable)() {
     if m != nil {
         m.quarantine = value
     }
@@ -661,7 +440,7 @@ func (m *SynchronizationStatus) SetSteadyStateLastAchievedTime(value *i336074805
     }
 }
 // SetSynchronizedEntryCountByType sets the synchronizedEntryCountByType property value. Count of synchronized objects, listed by object type.
-func (m *SynchronizationStatus) SetSynchronizedEntryCountByType(value []RoleAssignmentsable)() {
+func (m *SynchronizationStatus) SetSynchronizedEntryCountByType(value []StringKeyLongValuePairable)() {
     if m != nil {
         m.synchronizedEntryCountByType = value
     }

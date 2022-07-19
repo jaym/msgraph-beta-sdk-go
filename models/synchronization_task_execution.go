@@ -2,7 +2,6 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i76da110464d3e769bc2853cc6e3728b54b28b74218a1ed752b223d1f6ef6b2c7 "synchronizationtaskexecution"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -31,131 +30,13 @@ type SynchronizationTaskExecution struct {
     // Count of imported delta-changes pertaining to reference changes.
     countImportedReferenceDeltas *int64
     // If an error was encountered, contains a synchronizationError object with details.
-    error RoleAssignmentsable
+    error SynchronizationErrorable
     // The state property
     state *SynchronizationTaskExecutionResult
     // Time when this job run began. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     timeBegan *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Time when this job run ended. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     timeEnded *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-}
-// RoleAssignments union type wrapper for classes synchronizationError, roleAssignmentsMember1
-type RoleAssignments struct {
-    // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Union type representation for type roleAssignmentsMember1
-    roleAssignmentsMember1 RoleAssignmentsMember1able
-    // Union type representation for type synchronizationError
-    synchronizationError SynchronizationErrorable
-}
-// NewRoleAssignments instantiates a new roleAssignments and sets the default values.
-func NewRoleAssignments()(*RoleAssignments) {
-    m := &RoleAssignments{
-    }
-    m.SetAdditionalData(make(map[string]interface{}));
-    return m
-}
-// CreateRoleAssignmentsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateRoleAssignmentsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-    return NewRoleAssignments(), nil
-}
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleAssignments) GetAdditionalData()(map[string]interface{}) {
-    if m == nil {
-        return nil
-    } else {
-        return m.additionalData
-    }
-}
-// GetFieldDeserializers the deserialization information for the current model
-func (m *RoleAssignments) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
-    res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["roleAssignmentsMember1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleAssignmentsMember1FromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetRoleAssignmentsMember1(val.(RoleAssignmentsMember1able))
-        }
-        return nil
-    }
-    res["synchronizationError"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateSynchronizationErrorFromDiscriminatorValue)
-        if err != nil {
-            return err
-        }
-        if val != nil {
-            m.SetSynchronizationError(val.(SynchronizationErrorable))
-        }
-        return nil
-    }
-    return res
-}
-// GetRoleAssignmentsMember1 gets the roleAssignmentsMember1 property value. Union type representation for type roleAssignmentsMember1
-func (m *RoleAssignments) GetRoleAssignmentsMember1()(RoleAssignmentsMember1able) {
-    if m == nil {
-        return nil
-    } else {
-        return m.roleAssignmentsMember1
-    }
-}
-// GetSynchronizationError gets the synchronizationError property value. Union type representation for type synchronizationError
-func (m *RoleAssignments) GetSynchronizationError()(SynchronizationErrorable) {
-    if m == nil {
-        return nil
-    } else {
-        return m.synchronizationError
-    }
-}
-// Serialize serializes information the current object
-func (m *RoleAssignments) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
-    {
-        err := writer.WriteObjectValue("roleAssignmentsMember1", m.GetRoleAssignmentsMember1())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteObjectValue("synchronizationError", m.GetSynchronizationError())
-        if err != nil {
-            return err
-        }
-    }
-    {
-        err := writer.WriteAdditionalData(m.GetAdditionalData())
-        if err != nil {
-            return err
-        }
-    }
-    return nil
-}
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RoleAssignments) SetAdditionalData(value map[string]interface{})() {
-    if m != nil {
-        m.additionalData = value
-    }
-}
-// SetRoleAssignmentsMember1 sets the roleAssignmentsMember1 property value. Union type representation for type roleAssignmentsMember1
-func (m *RoleAssignments) SetRoleAssignmentsMember1(value RoleAssignmentsMember1able)() {
-    if m != nil {
-        m.roleAssignmentsMember1 = value
-    }
-}
-// SetSynchronizationError sets the synchronizationError property value. Union type representation for type synchronizationError
-func (m *RoleAssignments) SetSynchronizationError(value SynchronizationErrorable)() {
-    if m != nil {
-        m.synchronizationError = value
-    }
-}
-// RoleAssignmentsable 
-type RoleAssignmentsable interface {
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
-    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-    GetRoleAssignmentsMember1()(RoleAssignmentsMember1able)
-    GetSynchronizationError()(SynchronizationErrorable)
-    SetRoleAssignmentsMember1(value RoleAssignmentsMember1able)()
-    SetSynchronizationError(value SynchronizationErrorable)()
 }
 // NewSynchronizationTaskExecution instantiates a new synchronizationTaskExecution and sets the default values.
 func NewSynchronizationTaskExecution()(*SynchronizationTaskExecution) {
@@ -257,7 +138,7 @@ func (m *SynchronizationTaskExecution) GetCountImportedReferenceDeltas()(*int64)
     }
 }
 // GetError gets the error property value. If an error was encountered, contains a synchronizationError object with details.
-func (m *SynchronizationTaskExecution) GetError()(RoleAssignmentsable) {
+func (m *SynchronizationTaskExecution) GetError()(SynchronizationErrorable) {
     if m == nil {
         return nil
     } else {
@@ -368,12 +249,12 @@ func (m *SynchronizationTaskExecution) GetFieldDeserializers()(map[string]func(i
         return nil
     }
     res["error"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetObjectValue(CreateRoleAssignmentsFromDiscriminatorValue)
+        val, err := n.GetObjectValue(CreateSynchronizationErrorFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            m.SetError(val.(RoleAssignmentsable))
+            m.SetError(val.(SynchronizationErrorable))
         }
         return nil
     }
@@ -595,7 +476,7 @@ func (m *SynchronizationTaskExecution) SetCountImportedReferenceDeltas(value *in
     }
 }
 // SetError sets the error property value. If an error was encountered, contains a synchronizationError object with details.
-func (m *SynchronizationTaskExecution) SetError(value RoleAssignmentsable)() {
+func (m *SynchronizationTaskExecution) SetError(value SynchronizationErrorable)() {
     if m != nil {
         m.error = value
     }
