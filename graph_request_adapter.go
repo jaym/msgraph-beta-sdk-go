@@ -9,7 +9,7 @@ import (
 )
 
 var clientOptions = core.GraphClientOptions{
-	GraphServiceVersion:        "", //v1 doesn't include the service version in the telemetry header
+	GraphServiceVersion:        "beta", //v1 doesn't include the service version in the telemetry header
 	GraphServiceLibraryVersion: "0.30.0",
 }
 
@@ -72,9 +72,3 @@ func NewGraphRequestAdapterWithParseNodeFactoryAndSerializationWriterFactoryAndH
 
 	return result, nil
 }
-
-
-
-
-
-
