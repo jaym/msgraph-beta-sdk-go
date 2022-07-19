@@ -17,6 +17,8 @@ func NewOutlookCategory()(*OutlookCategory) {
     m := &OutlookCategory{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.outlookCategory";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateOutlookCategoryFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

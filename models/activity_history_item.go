@@ -32,6 +32,8 @@ func NewActivityHistoryItem()(*ActivityHistoryItem) {
     m := &ActivityHistoryItem{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.activityHistoryItem";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateActivityHistoryItemFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

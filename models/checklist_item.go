@@ -22,6 +22,8 @@ func NewChecklistItem()(*ChecklistItem) {
     m := &ChecklistItem{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.checklistItem";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateChecklistItemFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

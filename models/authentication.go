@@ -30,11 +30,13 @@ type Authentication struct {
     // Represents the Windows Hello for Business authentication method registered to a user for authentication.
     windowsHelloForBusinessMethods []WindowsHelloForBusinessAuthenticationMethodable
 }
-// NewAuthentication instantiates a new authentication and sets the default values.
+// NewAuthentication instantiates a new Authentication and sets the default values.
 func NewAuthentication()(*Authentication) {
     m := &Authentication{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.authentication";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateAuthenticationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

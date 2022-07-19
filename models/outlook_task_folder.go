@@ -27,6 +27,8 @@ func NewOutlookTaskFolder()(*OutlookTaskFolder) {
     m := &OutlookTaskFolder{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.outlookTaskFolder";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateOutlookTaskFolderFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

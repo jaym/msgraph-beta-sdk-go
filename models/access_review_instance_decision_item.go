@@ -48,6 +48,8 @@ func NewAccessReviewInstanceDecisionItem()(*AccessReviewInstanceDecisionItem) {
     m := &AccessReviewInstanceDecisionItem{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.accessReviewInstanceDecisionItem";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateAccessReviewInstanceDecisionItemFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

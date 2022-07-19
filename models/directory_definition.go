@@ -26,6 +26,8 @@ func NewDirectoryDefinition()(*DirectoryDefinition) {
     m := &DirectoryDefinition{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.directoryDefinition";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateDirectoryDefinitionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

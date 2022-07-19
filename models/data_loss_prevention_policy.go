@@ -15,6 +15,8 @@ func NewDataLossPreventionPolicy()(*DataLossPreventionPolicy) {
     m := &DataLossPreventionPolicy{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.dataLossPreventionPolicy";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateDataLossPreventionPolicyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

@@ -19,6 +19,8 @@ func NewScopedRoleMembership()(*ScopedRoleMembership) {
     m := &ScopedRoleMembership{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.scopedRoleMembership";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateScopedRoleMembershipFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

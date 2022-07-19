@@ -17,6 +17,8 @@ func NewInferenceClassificationOverride()(*InferenceClassificationOverride) {
     m := &InferenceClassificationOverride{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.inferenceClassificationOverride";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateInferenceClassificationOverrideFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

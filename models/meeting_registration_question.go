@@ -21,6 +21,8 @@ func NewMeetingRegistrationQuestion()(*MeetingRegistrationQuestion) {
     m := &MeetingRegistrationQuestion{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.meetingRegistrationQuestion";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateMeetingRegistrationQuestionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

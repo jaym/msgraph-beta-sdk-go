@@ -40,12 +40,18 @@ func CreatePolicyBaseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
                         return NewAppManagementPolicy(), nil
                     case "#microsoft.graph.authorizationPolicy":
                         return NewAuthorizationPolicy(), nil
+                    case "#microsoft.graph.homeRealmDiscoveryPolicy":
+                        return NewHomeRealmDiscoveryPolicy(), nil
                     case "#microsoft.graph.identitySecurityDefaultsEnforcementPolicy":
                         return NewIdentitySecurityDefaultsEnforcementPolicy(), nil
                     case "#microsoft.graph.permissionGrantPolicy":
                         return NewPermissionGrantPolicy(), nil
                     case "#microsoft.graph.stsPolicy":
                         return NewStsPolicy(), nil
+                    case "#microsoft.graph.tokenIssuancePolicy":
+                        return NewTokenIssuancePolicy(), nil
+                    case "#microsoft.graph.tokenLifetimePolicy":
+                        return NewTokenLifetimePolicy(), nil
                 }
             }
         }

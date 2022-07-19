@@ -21,6 +21,8 @@ func NewConnector()(*Connector) {
     m := &Connector{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.connector";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateConnectorFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

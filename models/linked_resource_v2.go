@@ -21,6 +21,8 @@ func NewLinkedResource_v2()(*LinkedResource_v2) {
     m := &LinkedResource_v2{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.linkedResource_v2";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateLinkedResource_v2FromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

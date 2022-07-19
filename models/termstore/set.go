@@ -2,13 +2,13 @@ package termstore
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837 "msgraphbetasdkgo/models"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 )
 
 // Set 
 type Set struct {
-    ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.Entity
+    ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.Entity
     // Children terms of set in term [store].
     children []Termable
     // Date and time of set creation. Read-only.
@@ -20,7 +20,7 @@ type Set struct {
     // The parentGroup property
     parentGroup Groupable
     // Custom properties for the set.
-    properties []ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.KeyValueable
+    properties []ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.KeyValueable
     // Indicates which terms have been pinned or reused directly under the set.
     relations []Relationable
     // All the terms under the set.
@@ -29,8 +29,10 @@ type Set struct {
 // NewSet instantiates a new set and sets the default values.
 func NewSet()(*Set) {
     m := &Set{
-        Entity: *ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.NewEntity(),
+        Entity: *ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.termStore.set";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateSetFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -123,14 +125,14 @@ func (m *Set) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3
         return nil
     }
     res["properties"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.CreateKeyValueFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.CreateKeyValueFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.KeyValueable, len(val))
+            res := make([]ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.KeyValueable, len(val))
             for i, v := range val {
-                res[i] = v.(ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.KeyValueable)
+                res[i] = v.(ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.KeyValueable)
             }
             m.SetProperties(res)
         }
@@ -183,7 +185,7 @@ func (m *Set) GetParentGroup()(Groupable) {
     }
 }
 // GetProperties gets the properties property value. Custom properties for the set.
-func (m *Set) GetProperties()([]ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.KeyValueable) {
+func (m *Set) GetProperties()([]ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.KeyValueable) {
     if m == nil {
         return nil
     } else {
@@ -313,7 +315,7 @@ func (m *Set) SetParentGroup(value Groupable)() {
     }
 }
 // SetProperties sets the properties property value. Custom properties for the set.
-func (m *Set) SetProperties(value []ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.KeyValueable)() {
+func (m *Set) SetProperties(value []ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.KeyValueable)() {
     if m != nil {
         m.properties = value
     }

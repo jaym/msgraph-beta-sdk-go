@@ -18,11 +18,13 @@ type AppConsentRequest struct {
     // A list of pending user consent requests.
     userConsentRequests []UserConsentRequestable
 }
-// NewAppConsentRequest instantiates a new AppConsentRequest and sets the default values.
+// NewAppConsentRequest instantiates a new appConsentRequest and sets the default values.
 func NewAppConsentRequest()(*AppConsentRequest) {
     m := &AppConsentRequest{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.appConsentRequest";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateAppConsentRequestFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

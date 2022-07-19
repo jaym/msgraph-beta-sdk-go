@@ -17,6 +17,8 @@ func NewTasks()(*Tasks) {
     m := &Tasks{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.tasks";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateTasksFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

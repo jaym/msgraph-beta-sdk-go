@@ -10,11 +10,13 @@ type Approval struct {
     // The steps property
     steps []ApprovalStepable
 }
-// NewApproval instantiates a new Approval and sets the default values.
+// NewApproval instantiates a new approval and sets the default values.
 func NewApproval()(*Approval) {
     m := &Approval{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.approval";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateApprovalFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

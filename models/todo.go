@@ -10,11 +10,13 @@ type Todo struct {
     // The task lists in the users mailbox.
     lists []TodoTaskListable
 }
-// NewTodo instantiates a new todo and sets the default values.
+// NewTodo instantiates a new Todo and sets the default values.
 func NewTodo()(*Todo) {
     m := &Todo{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.todo";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateTodoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

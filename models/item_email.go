@@ -19,6 +19,8 @@ func NewItemEmail()(*ItemEmail) {
     m := &ItemEmail{
         ItemFacet: *NewItemFacet(),
     }
+    odataTypeValue := "#microsoft.graph.itemEmail";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateItemEmailFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

@@ -1,11 +1,11 @@
 package policies
 
 import (
-    i21588b40caaddef52a034946c3674bc41513befe24f7c98ed96222418d4caa3f "msgraphbetasdkgo/policies/identitysecuritydefaultsenforcementpolicy"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i393f4dff1da5b4803faf521f41eb43a4d6f8df76b774b123243d28efb959e42d "msgraphbetasdkgo/policies/adminconsentrequestpolicy"
-    i8e71945d343786d387efdbf97cb7746942f2578ebd3076e69a816c11c172bd7c "msgraphbetasdkgo/policies/permissiongrantpolicies"
-    iaa7c639a2bbe5bec73cd8ac5783a8640d2a37f6ec32d95f58df8acafe74e64f6 "msgraphbetasdkgo/policies/authorizationpolicy"
+    i154ced0e8b3656059650a4bd061d0aa6f15bc39d29746142cde157c94c8ce663 "github.com/microsoftgraph/msgraph-beta-sdk-go/policies/identitysecuritydefaultsenforcementpolicy"
+    i3baef4935efa79b1ea53b0f8a4d12e8e33271d34f1b7fe4e5e3deefd698fb11d "github.com/microsoftgraph/msgraph-beta-sdk-go/policies/adminconsentrequestpolicy"
+    i4235b128855e4ef4e736e93e75306be2329042607217b14308bae073614f6b91 "github.com/microsoftgraph/msgraph-beta-sdk-go/policies/permissiongrantpolicies"
+    idf9e8b9f9da041893e6b6cb24dd45425a8696e3da093aef925b748ba4b81e936 "github.com/microsoftgraph/msgraph-beta-sdk-go/policies/authorizationpolicy"
 )
 
 // PoliciesRequestBuilder builds and executes requests for operations under \policies
@@ -18,12 +18,12 @@ type PoliciesRequestBuilder struct {
     urlTemplate string
 }
 // AdminConsentRequestPolicy the adminConsentRequestPolicy property
-func (m *PoliciesRequestBuilder) AdminConsentRequestPolicy()(*i393f4dff1da5b4803faf521f41eb43a4d6f8df76b774b123243d28efb959e42d.AdminConsentRequestPolicyRequestBuilder) {
-    return i393f4dff1da5b4803faf521f41eb43a4d6f8df76b774b123243d28efb959e42d.NewAdminConsentRequestPolicyRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *PoliciesRequestBuilder) AdminConsentRequestPolicy()(*i3baef4935efa79b1ea53b0f8a4d12e8e33271d34f1b7fe4e5e3deefd698fb11d.AdminConsentRequestPolicyRequestBuilder) {
+    return i3baef4935efa79b1ea53b0f8a4d12e8e33271d34f1b7fe4e5e3deefd698fb11d.NewAdminConsentRequestPolicyRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
 // AuthorizationPolicy the authorizationPolicy property
-func (m *PoliciesRequestBuilder) AuthorizationPolicy()(*iaa7c639a2bbe5bec73cd8ac5783a8640d2a37f6ec32d95f58df8acafe74e64f6.AuthorizationPolicyRequestBuilder) {
-    return iaa7c639a2bbe5bec73cd8ac5783a8640d2a37f6ec32d95f58df8acafe74e64f6.NewAuthorizationPolicyRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *PoliciesRequestBuilder) AuthorizationPolicy()(*idf9e8b9f9da041893e6b6cb24dd45425a8696e3da093aef925b748ba4b81e936.AuthorizationPolicyRequestBuilder) {
+    return idf9e8b9f9da041893e6b6cb24dd45425a8696e3da093aef925b748ba4b81e936.NewAuthorizationPolicyRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
 // NewPoliciesRequestBuilderInternal instantiates a new PoliciesRequestBuilder and sets the default values.
 func NewPoliciesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*PoliciesRequestBuilder) {
@@ -45,10 +45,10 @@ func NewPoliciesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26337
     return NewPoliciesRequestBuilderInternal(urlParams, requestAdapter)
 }
 // IdentitySecurityDefaultsEnforcementPolicy the identitySecurityDefaultsEnforcementPolicy property
-func (m *PoliciesRequestBuilder) IdentitySecurityDefaultsEnforcementPolicy()(*i21588b40caaddef52a034946c3674bc41513befe24f7c98ed96222418d4caa3f.IdentitySecurityDefaultsEnforcementPolicyRequestBuilder) {
-    return i21588b40caaddef52a034946c3674bc41513befe24f7c98ed96222418d4caa3f.NewIdentitySecurityDefaultsEnforcementPolicyRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *PoliciesRequestBuilder) IdentitySecurityDefaultsEnforcementPolicy()(*i154ced0e8b3656059650a4bd061d0aa6f15bc39d29746142cde157c94c8ce663.IdentitySecurityDefaultsEnforcementPolicyRequestBuilder) {
+    return i154ced0e8b3656059650a4bd061d0aa6f15bc39d29746142cde157c94c8ce663.NewIdentitySecurityDefaultsEnforcementPolicyRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
 // PermissionGrantPolicies the permissionGrantPolicies property
-func (m *PoliciesRequestBuilder) PermissionGrantPolicies()(*i8e71945d343786d387efdbf97cb7746942f2578ebd3076e69a816c11c172bd7c.PermissionGrantPoliciesRequestBuilder) {
-    return i8e71945d343786d387efdbf97cb7746942f2578ebd3076e69a816c11c172bd7c.NewPermissionGrantPoliciesRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *PoliciesRequestBuilder) PermissionGrantPolicies()(*i4235b128855e4ef4e736e93e75306be2329042607217b14308bae073614f6b91.PermissionGrantPoliciesRequestBuilder) {
+    return i4235b128855e4ef4e736e93e75306be2329042607217b14308bae073614f6b91.NewPermissionGrantPoliciesRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }

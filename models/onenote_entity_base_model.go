@@ -34,10 +34,20 @@ func CreateOnenoteEntityBaseModelFromDiscriminatorValue(parseNode i878a80d2330e8
             if mappingValue != nil {
                 mappingStr := *mappingValue
                 switch mappingStr {
+                    case "#microsoft.graph.notebook":
+                        return NewNotebook(), nil
+                    case "#microsoft.graph.onenoteEntityHierarchyModel":
+                        return NewOnenoteEntityHierarchyModel(), nil
                     case "#microsoft.graph.onenoteEntitySchemaObjectModel":
                         return NewOnenoteEntitySchemaObjectModel(), nil
+                    case "#microsoft.graph.onenotePage":
+                        return NewOnenotePage(), nil
                     case "#microsoft.graph.onenoteResource":
                         return NewOnenoteResource(), nil
+                    case "#microsoft.graph.onenoteSection":
+                        return NewOnenoteSection(), nil
+                    case "#microsoft.graph.sectionGroup":
+                        return NewSectionGroup(), nil
                 }
             }
         }

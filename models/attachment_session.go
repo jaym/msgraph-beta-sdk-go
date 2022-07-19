@@ -20,6 +20,8 @@ func NewAttachmentSession()(*AttachmentSession) {
     m := &AttachmentSession{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.attachmentSession";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateAttachmentSessionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

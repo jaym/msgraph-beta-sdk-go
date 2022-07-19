@@ -51,6 +51,8 @@ func NewContentType()(*ContentType) {
     m := &ContentType{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.contentType";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateContentTypeFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

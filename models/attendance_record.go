@@ -25,6 +25,8 @@ func NewAttendanceRecord()(*AttendanceRecord) {
     m := &AttendanceRecord{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.attendanceRecord";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateAttendanceRecordFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

@@ -8,11 +8,13 @@ import (
 type OrganizationalBrandingLocalization struct {
     OrganizationalBrandingProperties
 }
-// NewOrganizationalBrandingLocalization instantiates a new organizationalBrandingLocalization and sets the default values.
+// NewOrganizationalBrandingLocalization instantiates a new OrganizationalBrandingLocalization and sets the default values.
 func NewOrganizationalBrandingLocalization()(*OrganizationalBrandingLocalization) {
     m := &OrganizationalBrandingLocalization{
         OrganizationalBrandingProperties: *NewOrganizationalBrandingProperties(),
     }
+    odataTypeValue := "#microsoft.graph.organizationalBrandingLocalization";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateOrganizationalBrandingLocalizationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

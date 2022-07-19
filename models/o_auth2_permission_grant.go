@@ -28,6 +28,8 @@ func NewOAuth2PermissionGrant()(*OAuth2PermissionGrant) {
     m := &OAuth2PermissionGrant{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.oAuth2PermissionGrant";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateOAuth2PermissionGrantFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

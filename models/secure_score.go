@@ -29,11 +29,13 @@ type SecureScore struct {
     // Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.
     vendorInformation SecurityVendorInformationable
 }
-// NewSecureScore instantiates a new secureScore and sets the default values.
+// NewSecureScore instantiates a new SecureScore and sets the default values.
 func NewSecureScore()(*SecureScore) {
     m := &SecureScore{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.secureScore";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateSecureScoreFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

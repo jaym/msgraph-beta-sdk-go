@@ -18,11 +18,13 @@ type Endpoint struct {
     // URL of the published resource. Not nullable. Read-only.
     uri *string
 }
-// NewEndpoint instantiates a new endpoint and sets the default values.
+// NewEndpoint instantiates a new Endpoint and sets the default values.
 func NewEndpoint()(*Endpoint) {
     m := &Endpoint{
         DirectoryObject: *NewDirectoryObject(),
     }
+    odataTypeValue := "#microsoft.graph.endpoint";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateEndpointFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

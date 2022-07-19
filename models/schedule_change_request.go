@@ -53,6 +53,8 @@ func CreateScheduleChangeRequestFromDiscriminatorValue(parseNode i878a80d2330e89
                         return NewOfferShiftRequest(), nil
                     case "#microsoft.graph.openShiftChangeRequest":
                         return NewOpenShiftChangeRequest(), nil
+                    case "#microsoft.graph.swapShiftsChangeRequest":
+                        return NewSwapShiftsChangeRequest(), nil
                     case "#microsoft.graph.timeOffRequest":
                         return NewTimeOffRequest(), nil
                 }

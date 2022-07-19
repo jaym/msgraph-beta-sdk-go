@@ -1,8 +1,8 @@
 package getbyids
 
 import (
-    ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837 "msgraphbetasdkgo/models"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be "github.com/microsoftgraph/msgraph-beta-sdk-go/models"
 )
 
 // GetByIdsResponse 
@@ -10,7 +10,7 @@ type GetByIdsResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]interface{}
     // The value property
-    value []ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.DirectoryObjectable
+    value []ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.DirectoryObjectable
 }
 // NewGetByIdsResponse instantiates a new getByIdsResponse and sets the default values.
 func NewGetByIdsResponse()(*GetByIdsResponse) {
@@ -35,14 +35,14 @@ func (m *GetByIdsResponse) GetAdditionalData()(map[string]interface{}) {
 func (m *GetByIdsResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
     res["value"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfObjectValues(ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.CreateDirectoryObjectFromDiscriminatorValue)
+        val, err := n.GetCollectionOfObjectValues(ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.CreateDirectoryObjectFromDiscriminatorValue)
         if err != nil {
             return err
         }
         if val != nil {
-            res := make([]ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.DirectoryObjectable, len(val))
+            res := make([]ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.DirectoryObjectable)
+                res[i] = v.(ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.DirectoryObjectable)
             }
             m.SetValue(res)
         }
@@ -51,7 +51,7 @@ func (m *GetByIdsResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e
     return res
 }
 // GetValue gets the value property value. The value property
-func (m *GetByIdsResponse) GetValue()([]ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.DirectoryObjectable) {
+func (m *GetByIdsResponse) GetValue()([]ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.DirectoryObjectable) {
     if m == nil {
         return nil
     } else {
@@ -85,7 +85,7 @@ func (m *GetByIdsResponse) SetAdditionalData(value map[string]interface{})() {
     }
 }
 // SetValue sets the value property value. The value property
-func (m *GetByIdsResponse) SetValue(value []ic1cf40dc5fb70b4d4b54570999720cc0be6b4fc13aeb4599f8cf07d641e36837.DirectoryObjectable)() {
+func (m *GetByIdsResponse) SetValue(value []ie233ee762e29b4ba6970aa2a2efce4b7fde11697ca9ea81099d0f8269309c1be.DirectoryObjectable)() {
     if m != nil {
         m.value = value
     }

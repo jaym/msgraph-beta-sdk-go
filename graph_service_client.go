@@ -1,21 +1,21 @@
 package msgraphbetasdkgo
 
 import (
-    i4b2d55bb354e12d758e74ae9fe8ba9df2480de0e2c09162d79d9b8c5986c28b9 "msgraphbetasdkgo/policies"
-    i6455bbcebecc3db18fad5f32313e7969578fe6c4bb85f7af86268614eac8461f "msgraphbetasdkgo/security"
-    i782388dedc41a62acb7543de41ce1036e876276bd42b682e3032a7f3b53f4887 "msgraphbetasdkgo/organization"
-    i79ef632ebe4800278ff66763d66d68550464a260065b1342136af919099a8478 "msgraphbetasdkgo/settings"
-    i9c34a78adbfe3782d6e5ccd507fee3aebe9b22d9acd2cd87aa2581854bc3d6c3 "msgraphbetasdkgo/domains"
-    ib1a75c74a5d481c8b8846d6b99ecb600db5e8063b65d888e4f551d66baa4d129 "msgraphbetasdkgo/devicemanagement"
-    ibb12c00680dda05aab78922c0e76be04fe8206dc7cfb7e5d194c5f5b9798a8b9 "msgraphbetasdkgo/rolemanagement"
-    ic6e6215f2555e2bb2c9363dbe950a8cbb1db0a5b4605ffc718f0dd47dc47f22e "msgraphbetasdkgo/users"
-    id715ab657bcb7663bf224d754abbfe797891ada76b074972274e49079a3db48a "msgraphbetasdkgo/applications"
     i25911dc319edd61cbac496af7eab5ef20b6069a42515e22ec6a9bc97bf598488 "github.com/microsoft/kiota-serialization-json-go"
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i48cb45b3658128273922cc3b73ad57746451a113b41496c3315a00b079cca49b "msgraphbetasdkgo/domains/item"
-    i6a64ca7801c71f2061d2a5373c6837be393e418538fb89a7a860556f56f27dd6 "msgraphbetasdkgo/users/item"
     i7294a22093d408fdca300f11b81a887d89c47b764af06c8b803e2323973fdb83 "github.com/microsoft/kiota-serialization-text-go"
+    i09893664b20e7c846b2bc7aaaf1cd7f554ed3d2c00ac11336bea4c3c3d859e09 "github.com/microsoftgraph/msgraph-beta-sdk-go/devicemanagement"
+    i310cda3e9f244aa61f9c9c78de433773f341b91c4a2310b8991671fe773be16e "github.com/microsoftgraph/msgraph-beta-sdk-go/rolemanagement"
+    i5f794bd004f1cc95da776bcb1947ffabf97b71aae1f5c9f15255b24451e2929b "github.com/microsoftgraph/msgraph-beta-sdk-go/policies"
+    i714cbeb65962cb4d3e58007792fa4832d175c04614ba3aa7efb22871aea885bf "github.com/microsoftgraph/msgraph-beta-sdk-go/settings"
+    i761e9f0dec20dbf36c7fd626d107fb81ef94cafa7369422d2b2af143ffa16184 "github.com/microsoftgraph/msgraph-beta-sdk-go/security"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    i9e22e53c888822daa9264a72be4d11f335e3170e9198aae4bba758214e319857 "github.com/microsoftgraph/msgraph-beta-sdk-go/domains"
+    icd01c84a90833c55ac2309fd7034cb1962c60f59eb1ee2b2cf7b04c708402b6a "github.com/microsoftgraph/msgraph-beta-sdk-go/users"
+    ie1b2fd35e4b1f7cbc7bd808e462c966c4ec16a274923b50216bdd8a2ae0a3129 "github.com/microsoftgraph/msgraph-beta-sdk-go/applications"
+    ie58948149bb028757a64f16376df00cc5a99ad93e0d57affa0ac24ff6d096aaf "github.com/microsoftgraph/msgraph-beta-sdk-go/organization"
+    ia82ac058caa6740adb23fd487affca202963b9786c4890c80eaec27b6d7ced24 "github.com/microsoftgraph/msgraph-beta-sdk-go/domains/item"
+    id9f276010196e2d79e634ec622333b5c53dc0fbc407a6c9aa27ca92d4f388ed3 "github.com/microsoftgraph/msgraph-beta-sdk-go/users/item"
 )
 
 // GraphServiceClient the main entry point of the SDK, exposes the configuration and the fluent API.
@@ -28,8 +28,8 @@ type GraphServiceClient struct {
     urlTemplate string
 }
 // Applications the applications property
-func (m *GraphServiceClient) Applications()(*id715ab657bcb7663bf224d754abbfe797891ada76b074972274e49079a3db48a.ApplicationsRequestBuilder) {
-    return id715ab657bcb7663bf224d754abbfe797891ada76b074972274e49079a3db48a.NewApplicationsRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *GraphServiceClient) Applications()(*ie1b2fd35e4b1f7cbc7bd808e462c966c4ec16a274923b50216bdd8a2ae0a3129.ApplicationsRequestBuilder) {
+    return ie1b2fd35e4b1f7cbc7bd808e462c966c4ec16a274923b50216bdd8a2ae0a3129.NewApplicationsRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
 // NewGraphServiceClient instantiates a new GraphServiceClient and sets the default values.
 func NewGraphServiceClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GraphServiceClient) {
@@ -48,15 +48,15 @@ func NewGraphServiceClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab5
     return m
 }
 // DeviceManagement the deviceManagement property
-func (m *GraphServiceClient) DeviceManagement()(*ib1a75c74a5d481c8b8846d6b99ecb600db5e8063b65d888e4f551d66baa4d129.DeviceManagementRequestBuilder) {
-    return ib1a75c74a5d481c8b8846d6b99ecb600db5e8063b65d888e4f551d66baa4d129.NewDeviceManagementRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *GraphServiceClient) DeviceManagement()(*i09893664b20e7c846b2bc7aaaf1cd7f554ed3d2c00ac11336bea4c3c3d859e09.DeviceManagementRequestBuilder) {
+    return i09893664b20e7c846b2bc7aaaf1cd7f554ed3d2c00ac11336bea4c3c3d859e09.NewDeviceManagementRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
 // Domains the domains property
-func (m *GraphServiceClient) Domains()(*i9c34a78adbfe3782d6e5ccd507fee3aebe9b22d9acd2cd87aa2581854bc3d6c3.DomainsRequestBuilder) {
-    return i9c34a78adbfe3782d6e5ccd507fee3aebe9b22d9acd2cd87aa2581854bc3d6c3.NewDomainsRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *GraphServiceClient) Domains()(*i9e22e53c888822daa9264a72be4d11f335e3170e9198aae4bba758214e319857.DomainsRequestBuilder) {
+    return i9e22e53c888822daa9264a72be4d11f335e3170e9198aae4bba758214e319857.NewDomainsRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
-// DomainsById gets an item from the msgraphbetasdkgo.domains.item collection
-func (m *GraphServiceClient) DomainsById(id string)(*i48cb45b3658128273922cc3b73ad57746451a113b41496c3315a00b079cca49b.DomainItemRequestBuilder) {
+// DomainsById gets an item from the github.com/microsoftgraph/msgraph-beta-sdk-go.domains.item collection
+func (m *GraphServiceClient) DomainsById(id string)(*ia82ac058caa6740adb23fd487affca202963b9786c4890c80eaec27b6d7ced24.DomainItemRequestBuilder) {
     urlTplParams := make(map[string]string)
     for idx, item := range m.pathParameters {
         urlTplParams[idx] = item
@@ -64,34 +64,34 @@ func (m *GraphServiceClient) DomainsById(id string)(*i48cb45b3658128273922cc3b73
     if id != "" {
         urlTplParams["domain%2Did"] = id
     }
-    return i48cb45b3658128273922cc3b73ad57746451a113b41496c3315a00b079cca49b.NewDomainItemRequestBuilderInternal(urlTplParams, m.requestAdapter);
+    return ia82ac058caa6740adb23fd487affca202963b9786c4890c80eaec27b6d7ced24.NewDomainItemRequestBuilderInternal(urlTplParams, m.requestAdapter);
 }
 // Organization the organization property
-func (m *GraphServiceClient) Organization()(*i782388dedc41a62acb7543de41ce1036e876276bd42b682e3032a7f3b53f4887.OrganizationRequestBuilder) {
-    return i782388dedc41a62acb7543de41ce1036e876276bd42b682e3032a7f3b53f4887.NewOrganizationRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *GraphServiceClient) Organization()(*ie58948149bb028757a64f16376df00cc5a99ad93e0d57affa0ac24ff6d096aaf.OrganizationRequestBuilder) {
+    return ie58948149bb028757a64f16376df00cc5a99ad93e0d57affa0ac24ff6d096aaf.NewOrganizationRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
 // Policies the policies property
-func (m *GraphServiceClient) Policies()(*i4b2d55bb354e12d758e74ae9fe8ba9df2480de0e2c09162d79d9b8c5986c28b9.PoliciesRequestBuilder) {
-    return i4b2d55bb354e12d758e74ae9fe8ba9df2480de0e2c09162d79d9b8c5986c28b9.NewPoliciesRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *GraphServiceClient) Policies()(*i5f794bd004f1cc95da776bcb1947ffabf97b71aae1f5c9f15255b24451e2929b.PoliciesRequestBuilder) {
+    return i5f794bd004f1cc95da776bcb1947ffabf97b71aae1f5c9f15255b24451e2929b.NewPoliciesRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
 // RoleManagement the roleManagement property
-func (m *GraphServiceClient) RoleManagement()(*ibb12c00680dda05aab78922c0e76be04fe8206dc7cfb7e5d194c5f5b9798a8b9.RoleManagementRequestBuilder) {
-    return ibb12c00680dda05aab78922c0e76be04fe8206dc7cfb7e5d194c5f5b9798a8b9.NewRoleManagementRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *GraphServiceClient) RoleManagement()(*i310cda3e9f244aa61f9c9c78de433773f341b91c4a2310b8991671fe773be16e.RoleManagementRequestBuilder) {
+    return i310cda3e9f244aa61f9c9c78de433773f341b91c4a2310b8991671fe773be16e.NewRoleManagementRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
 // Security the security property
-func (m *GraphServiceClient) Security()(*i6455bbcebecc3db18fad5f32313e7969578fe6c4bb85f7af86268614eac8461f.SecurityRequestBuilder) {
-    return i6455bbcebecc3db18fad5f32313e7969578fe6c4bb85f7af86268614eac8461f.NewSecurityRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *GraphServiceClient) Security()(*i761e9f0dec20dbf36c7fd626d107fb81ef94cafa7369422d2b2af143ffa16184.SecurityRequestBuilder) {
+    return i761e9f0dec20dbf36c7fd626d107fb81ef94cafa7369422d2b2af143ffa16184.NewSecurityRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
 // Settings the settings property
-func (m *GraphServiceClient) Settings()(*i79ef632ebe4800278ff66763d66d68550464a260065b1342136af919099a8478.SettingsRequestBuilder) {
-    return i79ef632ebe4800278ff66763d66d68550464a260065b1342136af919099a8478.NewSettingsRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *GraphServiceClient) Settings()(*i714cbeb65962cb4d3e58007792fa4832d175c04614ba3aa7efb22871aea885bf.SettingsRequestBuilder) {
+    return i714cbeb65962cb4d3e58007792fa4832d175c04614ba3aa7efb22871aea885bf.NewSettingsRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
 // Users the users property
-func (m *GraphServiceClient) Users()(*ic6e6215f2555e2bb2c9363dbe950a8cbb1db0a5b4605ffc718f0dd47dc47f22e.UsersRequestBuilder) {
-    return ic6e6215f2555e2bb2c9363dbe950a8cbb1db0a5b4605ffc718f0dd47dc47f22e.NewUsersRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *GraphServiceClient) Users()(*icd01c84a90833c55ac2309fd7034cb1962c60f59eb1ee2b2cf7b04c708402b6a.UsersRequestBuilder) {
+    return icd01c84a90833c55ac2309fd7034cb1962c60f59eb1ee2b2cf7b04c708402b6a.NewUsersRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
-// UsersById gets an item from the msgraphbetasdkgo.users.item collection
-func (m *GraphServiceClient) UsersById(id string)(*i6a64ca7801c71f2061d2a5373c6837be393e418538fb89a7a860556f56f27dd6.UserItemRequestBuilder) {
+// UsersById gets an item from the github.com/microsoftgraph/msgraph-beta-sdk-go.users.item collection
+func (m *GraphServiceClient) UsersById(id string)(*id9f276010196e2d79e634ec622333b5c53dc0fbc407a6c9aa27ca92d4f388ed3.UserItemRequestBuilder) {
     urlTplParams := make(map[string]string)
     for idx, item := range m.pathParameters {
         urlTplParams[idx] = item
@@ -99,5 +99,5 @@ func (m *GraphServiceClient) UsersById(id string)(*i6a64ca7801c71f2061d2a5373c68
     if id != "" {
         urlTplParams["user%2Did"] = id
     }
-    return i6a64ca7801c71f2061d2a5373c6837be393e418538fb89a7a860556f56f27dd6.NewUserItemRequestBuilderInternal(urlTplParams, m.requestAdapter);
+    return id9f276010196e2d79e634ec622333b5c53dc0fbc407a6c9aa27ca92d4f388ed3.NewUserItemRequestBuilderInternal(urlTplParams, m.requestAdapter);
 }

@@ -27,6 +27,8 @@ func NewTeamsTab()(*TeamsTab) {
     m := &TeamsTab{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.teamsTab";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateTeamsTabFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

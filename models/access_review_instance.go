@@ -31,11 +31,13 @@ type AccessReviewInstance struct {
     // Specifies the status of an accessReview. Possible values: Initializing, NotStarted, Starting, InProgress, Completing, Completed, AutoReviewing, and AutoReviewed. Supports $select, $orderby, and $filter (eq only). Read-only.
     status *string
 }
-// NewAccessReviewInstance instantiates a new AccessReviewInstance and sets the default values.
+// NewAccessReviewInstance instantiates a new accessReviewInstance and sets the default values.
 func NewAccessReviewInstance()(*AccessReviewInstance) {
     m := &AccessReviewInstance{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.accessReviewInstance";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateAccessReviewInstanceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

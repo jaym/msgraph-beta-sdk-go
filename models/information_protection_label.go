@@ -27,6 +27,8 @@ func NewInformationProtectionLabel()(*InformationProtectionLabel) {
     m := &InformationProtectionLabel{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.informationProtectionLabel";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateInformationProtectionLabelFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

@@ -2,7 +2,7 @@ package rolemanagement
 
 import (
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i60fcea844834d04268ab75ad2b465502d1530b6893a3b95822880356df4b76c9 "msgraphbetasdkgo/rolemanagement/directory"
+    i8a93901c4a3aed17badfa3c9c54168d3e7506fa6cc5ed2d60a7be06761c00759 "github.com/microsoftgraph/msgraph-beta-sdk-go/rolemanagement/directory"
 )
 
 // RoleManagementRequestBuilder builds and executes requests for operations under \roleManagement
@@ -34,6 +34,6 @@ func NewRoleManagementRequestBuilder(rawUrl string, requestAdapter i2ae4187f7dae
     return NewRoleManagementRequestBuilderInternal(urlParams, requestAdapter)
 }
 // Directory the directory property
-func (m *RoleManagementRequestBuilder) Directory()(*i60fcea844834d04268ab75ad2b465502d1530b6893a3b95822880356df4b76c9.DirectoryRequestBuilder) {
-    return i60fcea844834d04268ab75ad2b465502d1530b6893a3b95822880356df4b76c9.NewDirectoryRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *RoleManagementRequestBuilder) Directory()(*i8a93901c4a3aed17badfa3c9c54168d3e7506fa6cc5ed2d60a7be06761c00759.DirectoryRequestBuilder) {
+    return i8a93901c4a3aed17badfa3c9c54168d3e7506fa6cc5ed2d60a7be06761c00759.NewDirectoryRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }

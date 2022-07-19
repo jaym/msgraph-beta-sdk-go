@@ -28,6 +28,8 @@ func NewApprovalStep()(*ApprovalStep) {
     m := &ApprovalStep{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.approvalStep";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateApprovalStepFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

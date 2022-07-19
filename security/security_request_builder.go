@@ -2,7 +2,7 @@ package security
 
 import (
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i323c02b8f1d942b986eeeccea894ad39a6c9f4c24665817a758e54c21ec73907 "msgraphbetasdkgo/security/securescores"
+    id43f72338affca62b04ede5a8930eef2eacb7985a0d9ba5d084163b59793c1b0 "github.com/microsoftgraph/msgraph-beta-sdk-go/security/securescores"
 )
 
 // SecurityRequestBuilder builds and executes requests for operations under \security
@@ -34,6 +34,6 @@ func NewSecurityRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26337
     return NewSecurityRequestBuilderInternal(urlParams, requestAdapter)
 }
 // SecureScores the secureScores property
-func (m *SecurityRequestBuilder) SecureScores()(*i323c02b8f1d942b986eeeccea894ad39a6c9f4c24665817a758e54c21ec73907.SecureScoresRequestBuilder) {
-    return i323c02b8f1d942b986eeeccea894ad39a6c9f4c24665817a758e54c21ec73907.NewSecureScoresRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *SecurityRequestBuilder) SecureScores()(*id43f72338affca62b04ede5a8930eef2eacb7985a0d9ba5d084163b59793c1b0.SecureScoresRequestBuilder) {
+    return id43f72338affca62b04ede5a8930eef2eacb7985a0d9ba5d084163b59793c1b0.NewSecureScoresRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }

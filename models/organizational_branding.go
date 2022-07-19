@@ -10,11 +10,13 @@ type OrganizationalBranding struct {
     // Add different branding based on a locale.
     localizations []OrganizationalBrandingLocalizationable
 }
-// NewOrganizationalBranding instantiates a new OrganizationalBranding and sets the default values.
+// NewOrganizationalBranding instantiates a new organizationalBranding and sets the default values.
 func NewOrganizationalBranding()(*OrganizationalBranding) {
     m := &OrganizationalBranding{
         OrganizationalBrandingProperties: *NewOrganizationalBrandingProperties(),
     }
+    odataTypeValue := "#microsoft.graph.organizationalBranding";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateOrganizationalBrandingFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

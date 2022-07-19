@@ -17,6 +17,8 @@ func NewTypedEmailAddress()(*TypedEmailAddress) {
     m := &TypedEmailAddress{
         EmailAddress: *NewEmailAddress(),
     }
+    odataTypeValue := "#microsoft.graph.typedEmailAddress";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateTypedEmailAddressFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

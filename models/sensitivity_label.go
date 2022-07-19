@@ -39,6 +39,8 @@ func NewSensitivityLabel()(*SensitivityLabel) {
     m := &SensitivityLabel{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.sensitivityLabel";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateSensitivityLabelFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

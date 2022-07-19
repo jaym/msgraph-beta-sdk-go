@@ -18,11 +18,13 @@ type FederatedIdentityCredential struct {
     // Required. The identifier of the external software workload within the external identity provider. Like the audience value, it has no fixed format, as each identity provider uses their own - sometimes a GUID, sometimes a colon delimited identifier, sometimes arbitrary strings. The value here must match the sub claim within the token presented to Azure AD. The combination of issuer and subject must be unique on the app. Supports $filter (eq).
     subject *string
 }
-// NewFederatedIdentityCredential instantiates a new FederatedIdentityCredential and sets the default values.
+// NewFederatedIdentityCredential instantiates a new federatedIdentityCredential and sets the default values.
 func NewFederatedIdentityCredential()(*FederatedIdentityCredential) {
     m := &FederatedIdentityCredential{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.federatedIdentityCredential";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateFederatedIdentityCredentialFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

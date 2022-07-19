@@ -41,8 +41,12 @@ func CreateChangeTrackedEntityFromDiscriminatorValue(parseNode i878a80d2330e89d2
             if mappingValue != nil {
                 mappingStr := *mappingValue
                 switch mappingStr {
+                    case "#microsoft.graph.offerShiftRequest":
+                        return NewOfferShiftRequest(), nil
                     case "#microsoft.graph.openShift":
                         return NewOpenShift(), nil
+                    case "#microsoft.graph.openShiftChangeRequest":
+                        return NewOpenShiftChangeRequest(), nil
                     case "#microsoft.graph.scheduleChangeRequest":
                         return NewScheduleChangeRequest(), nil
                     case "#microsoft.graph.schedulingGroup":
@@ -51,12 +55,16 @@ func CreateChangeTrackedEntityFromDiscriminatorValue(parseNode i878a80d2330e89d2
                         return NewShift(), nil
                     case "#microsoft.graph.shiftPreferences":
                         return NewShiftPreferences(), nil
+                    case "#microsoft.graph.swapShiftsChangeRequest":
+                        return NewSwapShiftsChangeRequest(), nil
                     case "#microsoft.graph.timeCard":
                         return NewTimeCard(), nil
                     case "#microsoft.graph.timeOff":
                         return NewTimeOff(), nil
                     case "#microsoft.graph.timeOffReason":
                         return NewTimeOffReason(), nil
+                    case "#microsoft.graph.timeOffRequest":
+                        return NewTimeOffRequest(), nil
                 }
             }
         }

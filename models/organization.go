@@ -65,11 +65,13 @@ type Organization struct {
     // The collection of domains associated with this tenant. Not nullable.
     verifiedDomains []VerifiedDomainable
 }
-// NewOrganization instantiates a new organization and sets the default values.
+// NewOrganization instantiates a new Organization and sets the default values.
 func NewOrganization()(*Organization) {
     m := &Organization{
         DirectoryObject: *NewDirectoryObject(),
     }
+    odataTypeValue := "#microsoft.graph.organization";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateOrganizationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

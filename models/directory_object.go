@@ -37,6 +37,10 @@ func CreateDirectoryObjectFromDiscriminatorValue(parseNode i878a80d2330e89d26896
                 switch mappingStr {
                     case "#microsoft.graph.application":
                         return NewApplication(), nil
+                    case "#microsoft.graph.appManagementPolicy":
+                        return NewAppManagementPolicy(), nil
+                    case "#microsoft.graph.authorizationPolicy":
+                        return NewAuthorizationPolicy(), nil
                     case "#microsoft.graph.device":
                         return NewDevice(), nil
                     case "#microsoft.graph.endpoint":
@@ -45,12 +49,24 @@ func CreateDirectoryObjectFromDiscriminatorValue(parseNode i878a80d2330e89d26896
                         return NewExtensionProperty(), nil
                     case "#microsoft.graph.group":
                         return NewGroup(), nil
+                    case "#microsoft.graph.homeRealmDiscoveryPolicy":
+                        return NewHomeRealmDiscoveryPolicy(), nil
+                    case "#microsoft.graph.identitySecurityDefaultsEnforcementPolicy":
+                        return NewIdentitySecurityDefaultsEnforcementPolicy(), nil
                     case "#microsoft.graph.organization":
                         return NewOrganization(), nil
+                    case "#microsoft.graph.permissionGrantPolicy":
+                        return NewPermissionGrantPolicy(), nil
                     case "#microsoft.graph.policyBase":
                         return NewPolicyBase(), nil
                     case "#microsoft.graph.resourceSpecificPermissionGrant":
                         return NewResourceSpecificPermissionGrant(), nil
+                    case "#microsoft.graph.stsPolicy":
+                        return NewStsPolicy(), nil
+                    case "#microsoft.graph.tokenIssuancePolicy":
+                        return NewTokenIssuancePolicy(), nil
+                    case "#microsoft.graph.tokenLifetimePolicy":
+                        return NewTokenLifetimePolicy(), nil
                     case "#microsoft.graph.user":
                         return NewUser(), nil
                 }

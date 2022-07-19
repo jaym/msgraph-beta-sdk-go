@@ -2,8 +2,8 @@ package devicemanagement
 
 import (
     i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
-    i3dbc32ed6e7f2382197bf0faf9babee9e91f243b2d9fbce1ea9d7d7df535349b "msgraphbetasdkgo/devicemanagement/devicecompliancepolicies"
-    ida6191aa5e91e1cefce390636108fe8ab55e2bbb3d65f9dfc31c46fe420e017c "msgraphbetasdkgo/devicemanagement/deviceconfigurations"
+    i06897cd84592b50e6e76477755f51f0fc302e5664c3a9d4325a123deb6d935d4 "github.com/microsoftgraph/msgraph-beta-sdk-go/devicemanagement/deviceconfigurations"
+    i358b7a34135f775242bdf4c2e565d2d6445c815cd929fbf919e431687e5d64e0 "github.com/microsoftgraph/msgraph-beta-sdk-go/devicemanagement/devicecompliancepolicies"
 )
 
 // DeviceManagementRequestBuilder builds and executes requests for operations under \deviceManagement
@@ -35,10 +35,10 @@ func NewDeviceManagementRequestBuilder(rawUrl string, requestAdapter i2ae4187f7d
     return NewDeviceManagementRequestBuilderInternal(urlParams, requestAdapter)
 }
 // DeviceCompliancePolicies the deviceCompliancePolicies property
-func (m *DeviceManagementRequestBuilder) DeviceCompliancePolicies()(*i3dbc32ed6e7f2382197bf0faf9babee9e91f243b2d9fbce1ea9d7d7df535349b.DeviceCompliancePoliciesRequestBuilder) {
-    return i3dbc32ed6e7f2382197bf0faf9babee9e91f243b2d9fbce1ea9d7d7df535349b.NewDeviceCompliancePoliciesRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *DeviceManagementRequestBuilder) DeviceCompliancePolicies()(*i358b7a34135f775242bdf4c2e565d2d6445c815cd929fbf919e431687e5d64e0.DeviceCompliancePoliciesRequestBuilder) {
+    return i358b7a34135f775242bdf4c2e565d2d6445c815cd929fbf919e431687e5d64e0.NewDeviceCompliancePoliciesRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }
 // DeviceConfigurations the deviceConfigurations property
-func (m *DeviceManagementRequestBuilder) DeviceConfigurations()(*ida6191aa5e91e1cefce390636108fe8ab55e2bbb3d65f9dfc31c46fe420e017c.DeviceConfigurationsRequestBuilder) {
-    return ida6191aa5e91e1cefce390636108fe8ab55e2bbb3d65f9dfc31c46fe420e017c.NewDeviceConfigurationsRequestBuilderInternal(m.pathParameters, m.requestAdapter);
+func (m *DeviceManagementRequestBuilder) DeviceConfigurations()(*i06897cd84592b50e6e76477755f51f0fc302e5664c3a9d4325a123deb6d935d4.DeviceConfigurationsRequestBuilder) {
+    return i06897cd84592b50e6e76477755f51f0fc302e5664c3a9d4325a123deb6d935d4.NewDeviceConfigurationsRequestBuilderInternal(m.pathParameters, m.requestAdapter);
 }

@@ -22,6 +22,8 @@ func NewBitlockerRecoveryKey()(*BitlockerRecoveryKey) {
     m := &BitlockerRecoveryKey{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.bitlockerRecoveryKey";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateBitlockerRecoveryKeyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

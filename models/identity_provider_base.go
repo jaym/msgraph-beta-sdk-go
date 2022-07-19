@@ -34,6 +34,8 @@ func CreateIdentityProviderBaseFromDiscriminatorValue(parseNode i878a80d2330e89d
             if mappingValue != nil {
                 mappingStr := *mappingValue
                 switch mappingStr {
+                    case "#microsoft.graph.internalDomainFederation":
+                        return NewInternalDomainFederation(), nil
                     case "#microsoft.graph.samlOrWsFedProvider":
                         return NewSamlOrWsFedProvider(), nil
                 }

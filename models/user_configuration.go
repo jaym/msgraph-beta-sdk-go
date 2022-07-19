@@ -15,6 +15,8 @@ func NewUserConfiguration()(*UserConfiguration) {
     m := &UserConfiguration{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.userConfiguration";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateUserConfigurationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

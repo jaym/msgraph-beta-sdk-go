@@ -27,6 +27,8 @@ func NewWorkbookNamedItem()(*WorkbookNamedItem) {
     m := &WorkbookNamedItem{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.workbookNamedItem";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateWorkbookNamedItemFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

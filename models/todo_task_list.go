@@ -25,6 +25,8 @@ func NewTodoTaskList()(*TodoTaskList) {
     m := &TodoTaskList{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.todoTaskList";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateTodoTaskListFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

@@ -17,6 +17,8 @@ func NewDefaultUserRoleOverride()(*DefaultUserRoleOverride) {
     m := &DefaultUserRoleOverride{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.defaultUserRoleOverride";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateDefaultUserRoleOverrideFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

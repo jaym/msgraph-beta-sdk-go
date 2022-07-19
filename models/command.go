@@ -31,6 +31,8 @@ func NewCommand()(*Command) {
     m := &Command{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.command";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateCommandFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

@@ -10,11 +10,13 @@ type UserScopeTeamsAppInstallation struct {
     // The chat between the user and Teams app.
     chat Chatable
 }
-// NewUserScopeTeamsAppInstallation instantiates a new userScopeTeamsAppInstallation and sets the default values.
+// NewUserScopeTeamsAppInstallation instantiates a new UserScopeTeamsAppInstallation and sets the default values.
 func NewUserScopeTeamsAppInstallation()(*UserScopeTeamsAppInstallation) {
     m := &UserScopeTeamsAppInstallation{
         TeamsAppInstallation: *NewTeamsAppInstallation(),
     }
+    odataTypeValue := "#microsoft.graph.userScopeTeamsAppInstallation";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateUserScopeTeamsAppInstallationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

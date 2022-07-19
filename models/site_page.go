@@ -18,11 +18,13 @@ type SitePage struct {
     // The webParts property
     webParts []WebPartable
 }
-// NewSitePage instantiates a new sitePage and sets the default values.
+// NewSitePage instantiates a new SitePage and sets the default values.
 func NewSitePage()(*SitePage) {
     m := &SitePage{
         BaseItem: *NewBaseItem(),
     }
+    odataTypeValue := "#microsoft.graph.sitePage";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateSitePageFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

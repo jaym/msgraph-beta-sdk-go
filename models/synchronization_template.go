@@ -27,6 +27,8 @@ func NewSynchronizationTemplate()(*SynchronizationTemplate) {
     m := &SynchronizationTemplate{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.synchronizationTemplate";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateSynchronizationTemplateFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

@@ -17,6 +17,8 @@ func NewProfileCardProperty()(*ProfileCardProperty) {
     m := &ProfileCardProperty{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.profileCardProperty";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateProfileCardPropertyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

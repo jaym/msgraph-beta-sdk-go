@@ -23,6 +23,8 @@ func NewSynchronizationJob()(*SynchronizationJob) {
     m := &SynchronizationJob{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.synchronizationJob";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateSynchronizationJobFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

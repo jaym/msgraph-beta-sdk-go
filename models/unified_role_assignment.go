@@ -30,11 +30,13 @@ type UnifiedRoleAssignment struct {
     // Identifier of the unifiedRoleDefinition the assignment is for. Read-only. Supports $filter (eq operator only).
     roleDefinitionId *string
 }
-// NewUnifiedRoleAssignment instantiates a new UnifiedRoleAssignment and sets the default values.
+// NewUnifiedRoleAssignment instantiates a new unifiedRoleAssignment and sets the default values.
 func NewUnifiedRoleAssignment()(*UnifiedRoleAssignment) {
     m := &UnifiedRoleAssignment{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.unifiedRoleAssignment";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateUnifiedRoleAssignmentFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

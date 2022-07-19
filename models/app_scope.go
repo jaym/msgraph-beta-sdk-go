@@ -12,11 +12,13 @@ type AppScope struct {
     // Describes the type of app-specific resource represented by the app scope. Provided for display purposes, so a user interface can convey to the user the kind of app specific resource represented by the app scope. This property is read only.
     type_escaped *string
 }
-// NewAppScope instantiates a new AppScope and sets the default values.
+// NewAppScope instantiates a new appScope and sets the default values.
 func NewAppScope()(*AppScope) {
     m := &AppScope{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.appScope";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateAppScopeFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

@@ -15,6 +15,8 @@ func NewColumnLink()(*ColumnLink) {
     m := &ColumnLink{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.columnLink";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateColumnLinkFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

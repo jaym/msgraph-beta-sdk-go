@@ -31,7 +31,7 @@ type BaseItem struct {
     // URL that displays the resource in the browser. Read-only.
     webUrl *string
 }
-// NewBaseItem instantiates a new baseItem and sets the default values.
+// NewBaseItem instantiates a new BaseItem and sets the default values.
 func NewBaseItem()(*BaseItem) {
     m := &BaseItem{
         Entity: *NewEntity(),

@@ -21,6 +21,8 @@ func NewPlannerBucket()(*PlannerBucket) {
     m := &PlannerBucket{
         PlannerDelta: *NewPlannerDelta(),
     }
+    odataTypeValue := "#microsoft.graph.plannerBucket";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreatePlannerBucketFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

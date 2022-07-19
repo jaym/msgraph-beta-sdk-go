@@ -20,6 +20,8 @@ func NewSharedEmailDomainInvitation()(*SharedEmailDomainInvitation) {
     m := &SharedEmailDomainInvitation{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.sharedEmailDomainInvitation";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateSharedEmailDomainInvitationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

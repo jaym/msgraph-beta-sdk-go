@@ -20,6 +20,8 @@ func NewThreatAssessmentResult()(*ThreatAssessmentResult) {
     m := &ThreatAssessmentResult{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.threatAssessmentResult";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateThreatAssessmentResultFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

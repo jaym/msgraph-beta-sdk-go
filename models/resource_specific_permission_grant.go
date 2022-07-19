@@ -18,11 +18,13 @@ type ResourceSpecificPermissionGrant struct {
     // ID of the Azure AD app that is hosting the resource. Read-only.
     resourceAppId *string
 }
-// NewResourceSpecificPermissionGrant instantiates a new resourceSpecificPermissionGrant and sets the default values.
+// NewResourceSpecificPermissionGrant instantiates a new ResourceSpecificPermissionGrant and sets the default values.
 func NewResourceSpecificPermissionGrant()(*ResourceSpecificPermissionGrant) {
     m := &ResourceSpecificPermissionGrant{
         DirectoryObject: *NewDirectoryObject(),
     }
+    odataTypeValue := "#microsoft.graph.resourceSpecificPermissionGrant";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateResourceSpecificPermissionGrantFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

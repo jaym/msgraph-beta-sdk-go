@@ -37,6 +37,8 @@ func CreateRecipientFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
             if mappingValue != nil {
                 mappingStr := *mappingValue
                 switch mappingStr {
+                    case "#microsoft.graph.attendee":
+                        return NewAttendee(), nil
                     case "#microsoft.graph.attendeeBase":
                         return NewAttendeeBase(), nil
                 }

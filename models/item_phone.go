@@ -19,6 +19,8 @@ func NewItemPhone()(*ItemPhone) {
     m := &ItemPhone{
         ItemFacet: *NewItemFacet(),
     }
+    odataTypeValue := "#microsoft.graph.itemPhone";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateItemPhoneFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

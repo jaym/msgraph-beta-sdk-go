@@ -77,6 +77,8 @@ func NewColumnDefinition()(*ColumnDefinition) {
     m := &ColumnDefinition{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.columnDefinition";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateColumnDefinitionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

@@ -14,11 +14,13 @@ type UsageRight struct {
     // The state property
     state *UsageRightState
 }
-// NewUsageRight instantiates a new UsageRight and sets the default values.
+// NewUsageRight instantiates a new usageRight and sets the default values.
 func NewUsageRight()(*UsageRight) {
     m := &UsageRight{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.usageRight";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateUsageRightFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

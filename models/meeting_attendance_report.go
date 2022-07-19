@@ -22,6 +22,8 @@ func NewMeetingAttendanceReport()(*MeetingAttendanceReport) {
     m := &MeetingAttendanceReport{
         Entity: *NewEntity(),
     }
+    odataTypeValue := "#microsoft.graph.meetingAttendanceReport";
+    m.SetOdataType(&odataTypeValue);
     return m
 }
 // CreateMeetingAttendanceReportFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
